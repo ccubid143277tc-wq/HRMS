@@ -14,5 +14,11 @@ namespace HRMS
             LoginAdmin loginAdmin = new LoginAdmin();
             loginAdmin.Show();
         }
+
+        private void BtnStaff_Click(object sender, EventArgs e)
+        {
+            StaffLogin staffLogin = new StaffLogin();
+            staffLogin.Show();
+        }
     }
 }

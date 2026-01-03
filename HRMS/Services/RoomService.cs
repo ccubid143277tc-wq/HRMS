@@ -297,19 +297,19 @@ namespace HRMS.Services
             {
                 conn.Open();
 
-                // Total Rooms
+               
                 var cmdTotal = new MySqlCommand("SELECT COUNT(*) FROM Rooms", conn);
                 result["Total"] = Convert.ToInt32(cmdTotal.ExecuteScalar());
 
-                // Available Rooms
+                
                 var cmdAvailable = new MySqlCommand("SELECT COUNT(*) FROM Rooms WHERE RoomStatusID = 1", conn);
                 result["Available"] = Convert.ToInt32(cmdAvailable.ExecuteScalar());
 
-                // Occupied Rooms
+                
                 var cmdOccupied = new MySqlCommand("SELECT COUNT(*) FROM Rooms WHERE RoomStatusID = 2", conn);
                 result["Occupied"] = Convert.ToInt32(cmdOccupied.ExecuteScalar());
 
-                // Under Maintenance
+                
                 var cmdMaintenance = new MySqlCommand("SELECT COUNT(*) FROM Rooms WHERE RoomStatusID = 3", conn);
                 result["Maintenance"] = Convert.ToInt32(cmdMaintenance.ExecuteScalar());
             }

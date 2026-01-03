@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginAdmin));
             panel1 = new Panel();
-            label1 = new Label();
             label2 = new Label();
+            label1 = new Label();
             label3 = new Label();
             label4 = new Label();
             txtUsername = new TextBox();
@@ -53,6 +54,16 @@
             panel1.Size = new Size(698, 82);
             panel1.TabIndex = 0;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(12, 50);
+            label2.Name = "label2";
+            label2.Size = new Size(160, 20);
+            label2.TabIndex = 1;
+            label2.Text = "Hotel Manager - Login";
+            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -64,29 +75,21 @@
             label1.TabIndex = 0;
             label1.Text = "Hotel Reservation Management System";
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(12, 50);
-            label2.Name = "label2";
-            label2.Size = new Size(104, 20);
-            label2.TabIndex = 1;
-            label2.Text = "Admin - Login";
-            // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(294, 146);
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Segoe UI", 22.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(279, 146);
             label3.Name = "label3";
-            label3.Size = new Size(85, 38);
+            label3.Size = new Size(113, 50);
             label3.TabIndex = 1;
             label3.Text = "Login";
             // 
             // label4
             // 
             label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
             label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.Location = new Point(169, 233);
             label4.Name = "label4";
@@ -113,6 +116,7 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.Location = new Point(169, 314);
             label5.Name = "label5";
@@ -123,12 +127,13 @@
             // chckShowPassword
             // 
             chckShowPassword.AutoSize = true;
+            chckShowPassword.BackColor = Color.Transparent;
             chckShowPassword.Location = new Point(386, 376);
             chckShowPassword.Name = "chckShowPassword";
             chckShowPassword.Size = new Size(132, 24);
             chckShowPassword.TabIndex = 6;
             chckShowPassword.Text = "Show Password";
-            chckShowPassword.UseVisualStyleBackColor = true;
+            chckShowPassword.UseVisualStyleBackColor = false;
             // 
             // button1
             // 
@@ -147,17 +152,19 @@
             // chckRememberMe
             // 
             chckRememberMe.AutoSize = true;
+            chckRememberMe.BackColor = Color.Transparent;
             chckRememberMe.Location = new Point(169, 457);
             chckRememberMe.Name = "chckRememberMe";
             chckRememberMe.Size = new Size(129, 24);
             chckRememberMe.TabIndex = 8;
             chckRememberMe.Text = "Remember me";
-            chckRememberMe.UseVisualStyleBackColor = true;
+            chckRememberMe.UseVisualStyleBackColor = false;
             // 
             // LoginAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(698, 614);
             Controls.Add(chckRememberMe);
             Controls.Add(button1);

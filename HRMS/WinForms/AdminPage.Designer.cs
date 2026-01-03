@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminPage));
-            panel1 = new Panel();
-            label2 = new Label();
-            label1 = new Label();
             panel2 = new Panel();
             button6 = new Button();
             button5 = new Button();
@@ -40,42 +37,12 @@
             button2 = new Button();
             button1 = new Button();
             panel3 = new Panel();
-            panel1.SuspendLayout();
+            label1 = new Label();
+            label2 = new Label();
+            panel1 = new Panel();
             panel2.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.FromArgb(42, 93, 159);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(label1);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1924, 106);
-            panel1.TabIndex = 2;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(24, 65);
-            label2.Name = "label2";
-            label2.Size = new Size(180, 23);
-            label2.TabIndex = 1;
-            label2.Text = "Welcome back! Admin";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(12, 19);
-            label1.Name = "label1";
-            label1.Size = new Size(626, 46);
-            label1.TabIndex = 0;
-            label1.Text = "Hotel Reservation Management System";
             // 
             // panel2
             // 
@@ -197,6 +164,40 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(1924, 891);
             panel3.TabIndex = 4;
+            panel3.Paint += panel3_Paint;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(12, 19);
+            label1.Name = "label1";
+            label1.Size = new Size(626, 46);
+            label1.TabIndex = 0;
+            label1.Text = "Hotel Reservation Management System";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(24, 65);
+            label2.Name = "label2";
+            label2.Size = new Size(180, 23);
+            label2.TabIndex = 1;
+            label2.Text = "Welcome back! Admin";
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(42, 93, 159);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label1);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1924, 106);
+            panel1.TabIndex = 2;
             // 
             // AdminPage
             // 
@@ -208,17 +209,14 @@
             Controls.Add(panel1);
             Name = "AdminPage";
             Text = "AdminPage";
+            Load += AdminPage_Load;
+            panel2.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Panel panel1;
-        private Label label2;
-        private Label label1;
         private Panel panel2;
         private Button button6;
         private Button button5;
@@ -227,5 +225,8 @@
         private Button button2;
         private Button button1;
         private Panel panel3;
+        private Label label1;
+        private Label label2;
+        private Panel panel1;
     }
 }

@@ -33,5 +33,15 @@ namespace HRMS.WinForms
             UCUsers UCU = new UCUsers();
             UserControl(UCU);
         }
+
+        private void AdminPage_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

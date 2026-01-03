@@ -28,12 +28,166 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "StaffLogin";
+            panel1 = new Panel();
+            label2 = new Label();
+            label1 = new Label();
+            chckRememberMe = new CheckBox();
+            button1 = new Button();
+            chckShowPassword = new CheckBox();
+            txtPassword = new TextBox();
+            label5 = new Label();
+            txtUsername = new TextBox();
+            label4 = new Label();
+            label3 = new Label();
+            panel1.SuspendLayout();
+            SuspendLayout();
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(42, 93, 159);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label1);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(698, 82);
+            panel1.TabIndex = 1;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(12, 50);
+            label2.Name = "label2";
+            label2.Size = new Size(126, 20);
+            label2.TabIndex = 1;
+            label2.Text = "FrontDesk - Login";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(12, 27);
+            label1.Name = "label1";
+            label1.Size = new Size(327, 23);
+            label1.TabIndex = 0;
+            label1.Text = "Hotel Reservation Management System";
+            // 
+            // chckRememberMe
+            // 
+            chckRememberMe.AutoSize = true;
+            chckRememberMe.Location = new Point(157, 452);
+            chckRememberMe.Name = "chckRememberMe";
+            chckRememberMe.Size = new Size(129, 24);
+            chckRememberMe.TabIndex = 16;
+            chckRememberMe.Text = "Remember me";
+            chckRememberMe.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(42, 93, 159);
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(157, 401);
+            button1.Name = "button1";
+            button1.Size = new Size(349, 45);
+            button1.TabIndex = 15;
+            button1.Text = "Login";
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // chckShowPassword
+            // 
+            chckShowPassword.AutoSize = true;
+            chckShowPassword.Location = new Point(374, 371);
+            chckShowPassword.Name = "chckShowPassword";
+            chckShowPassword.Size = new Size(132, 24);
+            chckShowPassword.TabIndex = 14;
+            chckShowPassword.Text = "Show Password";
+            chckShowPassword.UseVisualStyleBackColor = true;
+            // 
+            // txtPassword
+            // 
+            txtPassword.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPassword.Location = new Point(157, 335);
+            txtPassword.Name = "txtPassword";
+            txtPassword.Size = new Size(349, 30);
+            txtPassword.TabIndex = 13;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(157, 309);
+            label5.Name = "label5";
+            label5.Size = new Size(80, 23);
+            label5.TabIndex = 12;
+            label5.Text = "Password";
+            // 
+            // txtUsername
+            // 
+            txtUsername.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUsername.Location = new Point(157, 254);
+            txtUsername.Name = "txtUsername";
+            txtUsername.Size = new Size(349, 30);
+            txtUsername.TabIndex = 11;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(157, 228);
+            label4.Name = "label4";
+            label4.Size = new Size(87, 23);
+            label4.TabIndex = 10;
+            label4.Text = "Username";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 22.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(267, 141);
+            label3.Name = "label3";
+            label3.Size = new Size(113, 50);
+            label3.TabIndex = 9;
+            label3.Text = "Login";
+            // 
+            // StaffLogin
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(698, 614);
+            Controls.Add(chckRememberMe);
+            Controls.Add(button1);
+            Controls.Add(chckShowPassword);
+            Controls.Add(txtPassword);
+            Controls.Add(label5);
+            Controls.Add(txtUsername);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(panel1);
+            Name = "StaffLogin";
+            Text = "StaffLogin";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Panel panel1;
+        private Label label2;
+        private Label label1;
+        private CheckBox chckRememberMe;
+        private Button button1;
+        private CheckBox chckShowPassword;
+        private TextBox txtPassword;
+        private Label label5;
+        private TextBox txtUsername;
+        private Label label4;
+        private Label label3;
     }
 }

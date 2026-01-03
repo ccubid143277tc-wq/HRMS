@@ -145,11 +145,11 @@ namespace HRMS.UCForms
             // Bind results to DataGridView
             dataGridView1.DataSource = null;
             dataGridView1.Columns.Clear();
-            
+
 
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = results.ToList();
-             // IEnumerable → List
+            // IEnumerable → List
 
             // Hide RoomID
             if (dataGridView1.Columns.Contains("RoomID"))
@@ -167,6 +167,9 @@ namespace HRMS.UCForms
             dataGridView1.Columns["AmenitiesString"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
     }
 }

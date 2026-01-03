@@ -40,6 +40,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(42, 93, 159);
             label1.Location = new Point(109, 281);
@@ -51,6 +52,7 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
             label2.Location = new Point(424, 335);
             label2.Name = "label2";
             label2.Size = new Size(64, 20);
@@ -59,6 +61,7 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(281, 82);
             pictureBox1.Name = "pictureBox1";
@@ -92,11 +95,13 @@
             BtnStaff.TabIndex = 4;
             BtnStaff.Text = "Staff";
             BtnStaff.UseVisualStyleBackColor = true;
+            BtnStaff.Click += BtnStaff_Click;
             // 
             // Welcome
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(935, 548);
             Controls.Add(BtnStaff);
             Controls.Add(button1);
