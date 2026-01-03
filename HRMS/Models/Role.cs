@@ -1,0 +1,12 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HRMS.Models
+{
+    public class Role
+    {
+        public int RoleID { get; set; }
+        public string RoleName { get; set; }
+    }
+}
