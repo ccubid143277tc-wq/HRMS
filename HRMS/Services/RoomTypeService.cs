@@ -1,13 +1,14 @@
 ﻿using HRMS.Helper;
+using HRMS.Interfaces;
 using HRMS.Models;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 
 namespace HRMS.Services
 {
-    public class RoomTypeService
+    public class RoomTypeService : IRoomTypeService
     {
-        public List<RoomType> GetAllRoomTypes()
+        public IEnumerable<RoomType> GetAllRoomTypes()
         {
             var roomTypes = new List<RoomType>();
 
@@ -31,6 +32,34 @@ namespace HRMS.Services
             }
 
             return roomTypes;
+        }
+
+        public RoomType GetRoomTypeById(int roomTypeId)
+        {
+            using (var conn = DBHelper.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT RoomTypeID, RoomType FROM RoomType WHERE RoomTypeID = @RoomTypeID";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@RoomTypeID", roomTypeId);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new RoomType
+                            {
+                                RoomTypeID = Convert.ToInt32(reader["RoomTypeID"]),
+                                RoomTypeName = reader["RoomType"].ToString()
+                            };
+                        }
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }

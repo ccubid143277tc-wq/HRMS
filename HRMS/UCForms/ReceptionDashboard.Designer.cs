@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReceptionDashboard));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panel1 = new Panel();
             panel9 = new Panel();
             pictureBox1 = new PictureBox();
@@ -92,6 +93,15 @@
             pictureBox14 = new PictureBox();
             pictureBox15 = new PictureBox();
             label13 = new Label();
+            panel26 = new Panel();
+            label14 = new Label();
+            label15 = new Label();
+            pictureBox16 = new PictureBox();
+            label16 = new Label();
+            label17 = new Label();
+            label18 = new Label();
+            label19 = new Label();
+            timer1 = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -136,13 +146,15 @@
             panel25.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
+            panel26.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(panel9);
-            panel1.Location = new Point(59, 29);
+            panel1.Location = new Point(43, 159);
             panel1.Name = "panel1";
             panel1.Size = new Size(355, 144);
             panel1.TabIndex = 0;
@@ -183,7 +195,7 @@
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(panel10);
-            panel2.Location = new Point(412, 29);
+            panel2.Location = new Point(396, 159);
             panel2.Name = "panel2";
             panel2.Size = new Size(388, 144);
             panel2.TabIndex = 1;
@@ -224,7 +236,7 @@
             // 
             panel3.BorderStyle = BorderStyle.FixedSingle;
             panel3.Controls.Add(panel11);
-            panel3.Location = new Point(799, 29);
+            panel3.Location = new Point(783, 159);
             panel3.Name = "panel3";
             panel3.Size = new Size(421, 144);
             panel3.TabIndex = 2;
@@ -265,7 +277,7 @@
             // 
             panel4.BorderStyle = BorderStyle.FixedSingle;
             panel4.Controls.Add(panel12);
-            panel4.Location = new Point(1217, 29);
+            panel4.Location = new Point(1201, 159);
             panel4.Name = "panel4";
             panel4.Size = new Size(353, 144);
             panel4.TabIndex = 1;
@@ -306,7 +318,7 @@
             // 
             panel5.BorderStyle = BorderStyle.FixedSingle;
             panel5.Controls.Add(panel13);
-            panel5.Location = new Point(1218, 234);
+            panel5.Location = new Point(1202, 329);
             panel5.Name = "panel5";
             panel5.Size = new Size(352, 144);
             panel5.TabIndex = 4;
@@ -347,7 +359,7 @@
             // 
             panel6.BorderStyle = BorderStyle.FixedSingle;
             panel6.Controls.Add(panel14);
-            panel6.Location = new Point(790, 234);
+            panel6.Location = new Point(774, 329);
             panel6.Name = "panel6";
             panel6.Size = new Size(430, 144);
             panel6.TabIndex = 6;
@@ -388,7 +400,7 @@
             // 
             panel7.BorderStyle = BorderStyle.FixedSingle;
             panel7.Controls.Add(panel15);
-            panel7.Location = new Point(413, 234);
+            panel7.Location = new Point(396, 329);
             panel7.Name = "panel7";
             panel7.Size = new Size(386, 144);
             panel7.TabIndex = 5;
@@ -429,7 +441,7 @@
             // 
             panel8.BorderStyle = BorderStyle.FixedSingle;
             panel8.Controls.Add(panel16);
-            panel8.Location = new Point(59, 234);
+            panel8.Location = new Point(43, 329);
             panel8.Name = "panel8";
             panel8.Size = new Size(354, 144);
             panel8.TabIndex = 3;
@@ -470,24 +482,24 @@
             // 
             panel17.Controls.Add(chart1);
             panel17.Controls.Add(panel18);
-            panel17.Location = new Point(47, 435);
+            panel17.Location = new Point(48, 533);
             panel17.Name = "panel17";
             panel17.Size = new Size(924, 459);
             panel17.TabIndex = 7;
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea1);
+            chartArea3.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea3);
             chart1.Dock = DockStyle.Fill;
-            legend1.Name = "Legend1";
-            chart1.Legends.Add(legend1);
+            legend3.Name = "Legend1";
+            chart1.Legends.Add(legend3);
             chart1.Location = new Point(0, 53);
             chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            chart1.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            chart1.Series.Add(series3);
             chart1.Size = new Size(924, 406);
             chart1.TabIndex = 3;
             chart1.Text = "chart1";
@@ -562,25 +574,25 @@
             // 
             panel19.Controls.Add(chart2);
             panel19.Controls.Add(panel21);
-            panel19.Location = new Point(1026, 435);
+            panel19.Location = new Point(1016, 534);
             panel19.Name = "panel19";
             panel19.Size = new Size(544, 459);
             panel19.TabIndex = 8;
             // 
             // chart2
             // 
-            chartArea2.Name = "ChartArea1";
-            chart2.ChartAreas.Add(chartArea2);
+            chartArea4.Name = "ChartArea1";
+            chart2.ChartAreas.Add(chartArea4);
             chart2.Dock = DockStyle.Fill;
-            legend2.Name = "Legend1";
-            chart2.Legends.Add(legend2);
+            legend4.Name = "Legend1";
+            chart2.Legends.Add(legend4);
             chart2.Location = new Point(0, 53);
             chart2.Name = "chart2";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            chart2.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            chart2.Series.Add(series4);
             chart2.Size = new Size(544, 406);
             chart2.TabIndex = 4;
             chart2.Text = "chart2";
@@ -632,7 +644,7 @@
             // 
             panel22.Controls.Add(dataGridView1);
             panel22.Controls.Add(panel23);
-            panel22.Location = new Point(47, 956);
+            panel22.Location = new Point(46, 1036);
             panel22.Name = "panel22";
             panel22.Size = new Size(825, 384);
             panel22.TabIndex = 9;
@@ -683,7 +695,7 @@
             // 
             panel24.Controls.Add(dataGridView2);
             panel24.Controls.Add(panel25);
-            panel24.Location = new Point(922, 956);
+            panel24.Location = new Point(921, 1036);
             panel24.Name = "panel24";
             panel24.Size = new Size(648, 384);
             panel24.TabIndex = 10;
@@ -713,7 +725,7 @@
             // pictureBox14
             // 
             pictureBox14.Image = (Image)resources.GetObject("pictureBox14.Image");
-            pictureBox14.Location = new Point(597, 16);
+            pictureBox14.Location = new Point(597, 10);
             pictureBox14.Name = "pictureBox14";
             pictureBox14.Size = new Size(35, 31);
             pictureBox14.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -741,11 +753,110 @@
             label13.TabIndex = 1;
             label13.Text = "Expected Departures Today";
             // 
+            // panel26
+            // 
+            panel26.BackColor = SystemColors.Window;
+            panel26.BackgroundImageLayout = ImageLayout.None;
+            panel26.BorderStyle = BorderStyle.FixedSingle;
+            panel26.Controls.Add(label14);
+            panel26.Controls.Add(label15);
+            panel26.Controls.Add(pictureBox16);
+            panel26.Controls.Add(label16);
+            panel26.Controls.Add(label17);
+            panel26.Controls.Add(label18);
+            panel26.Controls.Add(label19);
+            panel26.Dock = DockStyle.Top;
+            panel26.Location = new Point(0, 0);
+            panel26.Name = "panel26";
+            panel26.Size = new Size(1645, 117);
+            panel26.TabIndex = 11;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.ForeColor = SystemColors.ControlDarkDark;
+            label14.Location = new Point(1436, 68);
+            label14.Name = "label14";
+            label14.Size = new Size(91, 20);
+            label14.TabIndex = 12;
+            label14.Text = "Receptionist";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label15.Location = new Point(1415, 40);
+            label15.Name = "label15";
+            label15.Size = new Size(131, 28);
+            label15.TabIndex = 11;
+            label15.Text = "Carl Christian";
+            // 
+            // pictureBox16
+            // 
+            pictureBox16.Image = (Image)resources.GetObject("pictureBox16.Image");
+            pictureBox16.Location = new Point(1548, 35);
+            pictureBox16.Name = "pictureBox16";
+            pictureBox16.Size = new Size(53, 48);
+            pictureBox16.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox16.TabIndex = 9;
+            pictureBox16.TabStop = false;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label16.ForeColor = SystemColors.ControlDarkDark;
+            label16.Location = new Point(132, 66);
+            label16.Name = "label16";
+            label16.Size = new Size(93, 23);
+            label16.TabIndex = 8;
+            label16.Text = "Dashboard";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label17.ForeColor = SystemColors.ControlDarkDark;
+            label17.Location = new Point(27, 66);
+            label17.Name = "label17";
+            label17.Size = new Size(108, 23);
+            label17.TabIndex = 7;
+            label17.Text = " Front Desk -";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Font = new Font("Cambria", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label18.Location = new Point(20, 27);
+            label18.Name = "label18";
+            label18.Size = new Size(553, 36);
+            label18.TabIndex = 6;
+            label18.Text = "Hotel Reservation Management System";
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label19.ForeColor = Color.Black;
+            label19.Location = new Point(969, 47);
+            label19.Name = "label19";
+            label19.Size = new Size(59, 28);
+            label19.TabIndex = 5;
+            label19.Text = "Time";
+            label19.Click += label19_Click;
+            // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Interval = 1;
+            timer1.Tick += label19_Click;
+            // 
             // ReceptionDashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
+            Controls.Add(panel26);
             Controls.Add(panel24);
             Controls.Add(panel22);
             Controls.Add(panel19);
@@ -759,7 +870,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "ReceptionDashboard";
-            Size = new Size(1645, 1358);
+            Size = new Size(1645, 1487);
             panel1.ResumeLayout(false);
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
@@ -817,6 +928,9 @@
             panel25.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
+            panel26.ResumeLayout(false);
+            panel26.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             ResumeLayout(false);
         }
 
@@ -832,7 +946,6 @@
         private Panel panel8;
         private Panel panel9;
         private Panel panel10;
-        private Panel panel11;
         private Panel panel12;
         private Panel panel13;
         private Panel panel14;
@@ -840,7 +953,6 @@
         private Panel panel16;
         private Label label1;
         private Label label2;
-        private Label label3;
         private Label label4;
         private Label label5;
         private Label label6;
@@ -848,7 +960,6 @@
         private Label label8;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
-        private PictureBox pictureBox3;
         private PictureBox pictureBox4;
         private PictureBox pictureBox6;
         private PictureBox pictureBox5;
@@ -879,5 +990,17 @@
         private PictureBox pictureBox14;
         private PictureBox pictureBox15;
         private Label label13;
+        private Panel panel26;
+        private Label label14;
+        private Label label15;
+        private PictureBox pictureBox16;
+        private Label label16;
+        private Label label17;
+        private Label label18;
+        private Label label19;
+        private System.Windows.Forms.Timer timer1;
+        private Panel panel11;
+        private PictureBox pictureBox3;
+        private Label label3;
     }
 }

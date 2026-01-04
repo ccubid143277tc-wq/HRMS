@@ -317,6 +317,104 @@ namespace HRMS.Services
             return result;
         }
 
+        public IEnumerable<RoomType> GetRoomTypes()
+        {
+            var roomTypes = new List<RoomType>();
+
+            using (var conn = DBHelper.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT * FROM RoomType ORDER BY RoomType";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            roomTypes.Add(new RoomType
+                            {
+                                RoomTypeID = Convert.ToInt32(reader["RoomTypeID"]),
+                                RoomTypeName = reader["RoomType"].ToString(),
+                               
+                            });
+                        }
+                    }
+                }
+            }
+
+            return roomTypes;
+        }
+
+        public IEnumerable<Room> GetAvailableRoomsByType(string roomTypeName)
+        {
+            var rooms = new List<Room>();
+
+            using (var conn = DBHelper.GetConnection())
+            {
+                conn.Open();
+                string query = @"SELECT r.*, rt.RoomType, rs.RoomStatus
+                                 FROM Rooms r
+                                 INNER JOIN RoomType rt ON r.RoomTypeID = rt.RoomTypeID
+                                 INNER JOIN RoomStatus rs ON r.RoomStatusID = rs.RoomStatusID
+                                 WHERE rt.RoomType = @RoomTypeName 
+                                 AND rs.RoomStatus = 'Available'
+                                 ORDER BY r.RoomNumber";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@RoomTypeName", roomTypeName);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            rooms.Add(new Room
+                            {
+                                RoomID = Convert.ToInt32(reader["RoomID"]),
+                                RoomNumber = reader["RoomNumber"].ToString(),
+                                RoomType = Convert.ToInt32(reader["RoomTypeID"]),
+                                BedConfiguration = reader["BedConfiguration"].ToString(),
+                                MaximumOccupancy = Convert.ToInt32(reader["MaximumOccupancy"]),
+                                RoomFloor = Convert.ToInt32(reader["RoomFloor"]),
+                                RoomStatusID = Convert.ToInt32(reader["RoomStatusID"]),
+                                ViewType = reader["ViewType"].ToString(),
+                                RoomRate = Convert.ToDecimal(reader["RoomRate"]),
+                                RoomTypeName = reader["RoomType"].ToString(),
+                                RoomStatusName = reader["RoomStatus"].ToString()
+                            });
+                        }
+                    }
+                }
+            }
+
+            return rooms;
+        }
+
+        public bool IsRoomAvailable(int roomId, DateTime checkInDate, DateTime checkOutDate)
+        {
+            using (var conn = DBHelper.GetConnection())
+            {
+                conn.Open();
+                string query = @"SELECT COUNT(*) FROM reservations 
+                                 WHERE RoomID = @RoomID 
+                                 AND ReservationStatus NOT IN ('Cancelled', 'Checked-Out')
+                                 AND ((Check_InDate <= @CheckIn AND Check_OutDate > @CheckIn) 
+                                      OR (Check_InDate < @CheckOut AND Check_OutDate >= @CheckOut)
+                                      OR (Check_InDate >= @CheckIn AND Check_OutDate <= @CheckOut))";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@RoomID", roomId);
+                    cmd.Parameters.AddWithValue("@CheckIn", checkInDate);
+                    cmd.Parameters.AddWithValue("@CheckOut", checkOutDate);
+
+                    int conflictCount = Convert.ToInt32(cmd.ExecuteScalar());
+                    return conflictCount == 0;
+                }
+            }
+        }
+
 
     }
 

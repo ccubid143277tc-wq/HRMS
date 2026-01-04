@@ -19,5 +19,10 @@ namespace HRMS.UCForms
         {
 
         }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+            label19.Text = DateTime.Now.ToString("dddd, MMMM dd yyyy hh:mm:ss tt");
+        }
     }
 }

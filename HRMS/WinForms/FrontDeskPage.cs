@@ -18,7 +18,7 @@ namespace HRMS.WinForms
 
         private void label5_Click(object sender, EventArgs e)
         {
-            label5.Text = DateTime.Now.ToString("dddd, MMMM dd yyyy hh:mm:ss tt");
+
         }
 
         private void panel5_Paint(object sender, PaintEventArgs e)
@@ -34,8 +34,20 @@ namespace HRMS.WinForms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ReceptionDashboard receptionDashboard = new ReceptionDashboard();   
+            ReceptionDashboard receptionDashboard = new ReceptionDashboard();
             UserControl(receptionDashboard);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            UCreservation ucr = new UCreservation();
+            UserControl(ucr);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            UCGuest ucg = new UCGuest();
+            UserControl(ucg);   
         }
     }
 }
