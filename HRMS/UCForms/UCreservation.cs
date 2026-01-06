@@ -141,10 +141,6 @@ namespace HRMS.UCForms
                     RoomFloor = Convert.ToInt32(row.Cells["RoomFloor"].Value),
                     ViewType = row.Cells["ViewType"].Value.ToString()
                 };
-
-                // Show selected room info
-                MessageBox.Show($"Selected Room: {_selectedRoom.RoomNumber}\nType: {_selectedRoom.RoomTypeName}\nFloor: {_selectedRoom.RoomFloor}", 
-                    "Room Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
