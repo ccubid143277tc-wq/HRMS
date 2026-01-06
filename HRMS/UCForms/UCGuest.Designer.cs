@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCGuest));
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel26 = new Panel();
             label14 = new Label();
             label15 = new Label();
@@ -53,6 +53,9 @@
             panel9 = new Panel();
             label1 = new Label();
             panel5 = new Panel();
+            button6 = new Button();
+            button5 = new Button();
+            button4 = new Button();
             textBox1 = new TextBox();
             dataGridView1 = new DataGridView();
             ColName = new DataGridViewTextBoxColumn();
@@ -87,9 +90,6 @@
             label38 = new Label();
             textBox5 = new TextBox();
             label40 = new Label();
-            button6 = new Button();
-            button5 = new Button();
-            button4 = new Button();
             panel26.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             panel4.SuspendLayout();
@@ -326,7 +326,6 @@
             // 
             // panel5
             // 
-            panel5.BorderStyle = BorderStyle.FixedSingle;
             panel5.Controls.Add(button6);
             panel5.Controls.Add(button5);
             panel5.Controls.Add(button4);
@@ -335,6 +334,42 @@
             panel5.Name = "panel5";
             panel5.Size = new Size(1592, 78);
             panel5.TabIndex = 18;
+            // 
+            // button6
+            // 
+            button6.BackColor = Color.FromArgb(42, 93, 159);
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.ForeColor = Color.White;
+            button6.Location = new Point(1279, 27);
+            button6.Name = "button6";
+            button6.Size = new Size(94, 34);
+            button6.TabIndex = 7;
+            button6.Text = "Add";
+            button6.UseVisualStyleBackColor = false;
+            // 
+            // button5
+            // 
+            button5.BackColor = Color.White;
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.ForeColor = Color.FromArgb(42, 93, 159);
+            button5.Location = new Point(1376, 27);
+            button5.Name = "button5";
+            button5.Size = new Size(94, 34);
+            button5.TabIndex = 6;
+            button5.Text = "Edit";
+            button5.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            button4.BackColor = Color.FromArgb(192, 0, 0);
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.ForeColor = Color.White;
+            button4.Location = new Point(1472, 27);
+            button4.Name = "button4";
+            button4.Size = new Size(94, 34);
+            button4.TabIndex = 5;
+            button4.Text = "Delete";
+            button4.UseVisualStyleBackColor = false;
             // 
             // textBox1
             // 
@@ -349,14 +384,14 @@
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(42, 93, 159);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(42, 93, 159);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ColName, colAddress, colEmail, colPhone, colNationality, colBirthdate, colIDType, colIDNumber, ColClassification });
             dataGridView1.EnableHeadersVisualStyles = false;
@@ -431,6 +466,7 @@
             // 
             // panel6
             // 
+            panel6.BorderStyle = BorderStyle.FixedSingle;
             panel6.Controls.Add(button2);
             panel6.Controls.Add(button3);
             panel6.Controls.Add(comboBox7);
@@ -649,42 +685,6 @@
             label40.Size = new Size(92, 23);
             label40.TabIndex = 13;
             label40.Text = "First Name";
-            // 
-            // button6
-            // 
-            button6.BackColor = Color.FromArgb(42, 93, 159);
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.ForeColor = Color.White;
-            button6.Location = new Point(1279, 27);
-            button6.Name = "button6";
-            button6.Size = new Size(94, 34);
-            button6.TabIndex = 7;
-            button6.Text = "Add";
-            button6.UseVisualStyleBackColor = false;
-            // 
-            // button5
-            // 
-            button5.BackColor = Color.White;
-            button5.FlatStyle = FlatStyle.Flat;
-            button5.ForeColor = Color.FromArgb(42, 93, 159);
-            button5.Location = new Point(1376, 27);
-            button5.Name = "button5";
-            button5.Size = new Size(94, 34);
-            button5.TabIndex = 6;
-            button5.Text = "Edit";
-            button5.UseVisualStyleBackColor = false;
-            // 
-            // button4
-            // 
-            button4.BackColor = Color.FromArgb(192, 0, 0);
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.ForeColor = Color.White;
-            button4.Location = new Point(1472, 27);
-            button4.Name = "button4";
-            button4.Size = new Size(94, 34);
-            button4.TabIndex = 5;
-            button4.Text = "Delete";
-            button4.UseVisualStyleBackColor = false;
             // 
             // UCGuest
             // 

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
-
 namespace HRMS.Interfaces
 {
     //Interface Segregation Principle applied
@@ -24,6 +23,6 @@ namespace HRMS.Interfaces
         IEnumerable<RoomType> GetRoomTypes();
         IEnumerable<Room> GetAvailableRoomsByType(string roomTypeName);
         bool IsRoomAvailable(int roomId, DateTime checkInDate, DateTime checkOutDate);
-
+        bool UpdateRoomStatus(int roomId, string status);
     }
 }

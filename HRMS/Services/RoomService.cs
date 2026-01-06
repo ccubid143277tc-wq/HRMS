@@ -312,9 +312,107 @@ namespace HRMS.Services
                 
                 var cmdMaintenance = new MySqlCommand("SELECT COUNT(*) FROM Rooms WHERE RoomStatusID = 3", conn);
                 result["Maintenance"] = Convert.ToInt32(cmdMaintenance.ExecuteScalar());
+
+                
+                var cmdReserved = new MySqlCommand(@"SELECT COUNT(*)
+                                                    FROM Rooms
+                                                    WHERE RoomStatusID = (SELECT RoomStatusID FROM RoomStatus WHERE RoomStatus = 'Reserved' LIMIT 1)", conn);
+                result["Reserved"] = Convert.ToInt32(cmdReserved.ExecuteScalar());
             }
 
             return result;
+        }
+
+        public int GetOccupiedRoomCountByDate(DateTime date)
+        {
+            using (var conn = DBHelper.GetConnection())
+            {
+                conn.Open();
+                string query = @"SELECT COUNT(DISTINCT roomId) FROM (
+                                    SELECT rr.RoomID AS roomId
+                                    FROM reservations r
+                                    INNER JOIN ReservationRooms rr ON r.ReservationID = rr.ReservationID
+                                    WHERE r.ReservationStatus NOT IN ('Cancelled', 'Checked-Out')
+                                      AND r.Check_InDate <= @Date
+                                      AND r.Check_OutDate > @Date
+                                    UNION
+                                    SELECT r.RoomID AS roomId
+                                    FROM reservations r
+                                    WHERE r.ReservationStatus NOT IN ('Cancelled', 'Checked-Out')
+                                      AND r.Check_InDate <= @Date
+                                      AND r.Check_OutDate > @Date
+                                ) x";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Date", date.Date);
+                    object result = cmd.ExecuteScalar();
+                    if (result == null || result == DBNull.Value)
+                    {
+                        return 0;
+                    }
+                    return Convert.ToInt32(result);
+                }
+            }
+        }
+
+        public Dictionary<DateTime, int> GetWeeklyOccupiedRoomCounts(DateTime startDate, int days)
+        {
+            var result = new Dictionary<DateTime, int>();
+            for (int i = 0; i < days; i++)
+            {
+                var day = startDate.Date.AddDays(i);
+                result[day] = GetOccupiedRoomCountByDate(day);
+            }
+            return result;
+        }
+
+        public int GetExpectedArrivalsCount(DateTime date)
+        {
+            using (var conn = DBHelper.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"SELECT COUNT(DISTINCT r.ReservationID)
+                                 FROM reservations r
+                                 WHERE r.ReservationStatus NOT IN ('Cancelled', 'Checked-Out')
+                                   AND r.Check_InDate = @Date";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Date", date.Date);
+                    object result = cmd.ExecuteScalar();
+                    if (result == null || result == DBNull.Value)
+                    {
+                        return 0;
+                    }
+                    return Convert.ToInt32(result);
+                }
+            }
+        }
+
+        public int GetExpectedDeparturesCount(DateTime date)
+        {
+            using (var conn = DBHelper.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"SELECT COUNT(DISTINCT r.ReservationID)
+                                 FROM reservations r
+                                 WHERE r.ReservationStatus NOT IN ('Cancelled', 'Checked-Out')
+                                   AND r.Check_OutDate = @Date";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Date", date.Date);
+                    object result = cmd.ExecuteScalar();
+                    if (result == null || result == DBNull.Value)
+                    {
+                        return 0;
+                    }
+                    return Convert.ToInt32(result);
+                }
+            }
         }
 
         public IEnumerable<RoomType> GetRoomTypes()
@@ -411,6 +509,26 @@ namespace HRMS.Services
 
                     int conflictCount = Convert.ToInt32(cmd.ExecuteScalar());
                     return conflictCount == 0;
+                }
+            }
+        }
+
+        public bool UpdateRoomStatus(int roomId, string status)
+        {
+            using (var conn = DBHelper.GetConnection())
+            {
+                conn.Open();
+                string query = @"UPDATE Rooms 
+                                SET RoomStatusID = (SELECT RoomStatusID FROM RoomStatus WHERE RoomStatus = @RoomStatus)
+                                WHERE RoomID = @RoomID";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@RoomID", roomId);
+                    cmd.Parameters.AddWithValue("@RoomStatus", status);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
                 }
             }
         }

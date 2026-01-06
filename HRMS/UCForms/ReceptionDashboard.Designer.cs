@@ -30,29 +30,34 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReceptionDashboard));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panel1 = new Panel();
+            label20 = new Label();
             panel9 = new Panel();
             pictureBox1 = new PictureBox();
             label1 = new Label();
             panel2 = new Panel();
+            label21 = new Label();
             panel10 = new Panel();
             pictureBox2 = new PictureBox();
             label2 = new Label();
             panel3 = new Panel();
+            label22 = new Label();
             panel11 = new Panel();
             pictureBox3 = new PictureBox();
             label3 = new Label();
             panel4 = new Panel();
+            label23 = new Label();
             panel12 = new Panel();
             pictureBox4 = new PictureBox();
             label4 = new Label();
             panel5 = new Panel();
+            label27 = new Label();
             panel13 = new Panel();
             pictureBox8 = new PictureBox();
             label5 = new Label();
@@ -60,11 +65,14 @@
             panel14 = new Panel();
             pictureBox7 = new PictureBox();
             label6 = new Label();
+            label25 = new Label();
             panel7 = new Panel();
+            label26 = new Label();
             panel15 = new Panel();
             pictureBox6 = new PictureBox();
             label7 = new Label();
             panel8 = new Panel();
+            label24 = new Label();
             panel16 = new Panel();
             pictureBox5 = new PictureBox();
             label8 = new Label();
@@ -153,11 +161,22 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(label20);
             panel1.Controls.Add(panel9);
             panel1.Location = new Point(43, 159);
             panel1.Name = "panel1";
             panel1.Size = new Size(355, 144);
             panel1.TabIndex = 0;
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label20.Location = new Point(139, 85);
+            label20.Name = "label20";
+            label20.Size = new Size(27, 31);
+            label20.TabIndex = 1;
+            label20.Text = "0";
             // 
             // panel9
             // 
@@ -194,11 +213,22 @@
             // panel2
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(label21);
             panel2.Controls.Add(panel10);
             panel2.Location = new Point(396, 159);
             panel2.Name = "panel2";
             panel2.Size = new Size(388, 144);
             panel2.TabIndex = 1;
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label21.Location = new Point(178, 85);
+            label21.Name = "label21";
+            label21.Size = new Size(27, 31);
+            label21.TabIndex = 2;
+            label21.Text = "0";
             // 
             // panel10
             // 
@@ -235,11 +265,22 @@
             // panel3
             // 
             panel3.BorderStyle = BorderStyle.FixedSingle;
+            panel3.Controls.Add(label22);
             panel3.Controls.Add(panel11);
             panel3.Location = new Point(783, 159);
             panel3.Name = "panel3";
             panel3.Size = new Size(421, 144);
             panel3.TabIndex = 2;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label22.Location = new Point(198, 85);
+            label22.Name = "label22";
+            label22.Size = new Size(27, 31);
+            label22.TabIndex = 2;
+            label22.Text = "0";
             // 
             // panel11
             // 
@@ -276,11 +317,22 @@
             // panel4
             // 
             panel4.BorderStyle = BorderStyle.FixedSingle;
+            panel4.Controls.Add(label23);
             panel4.Controls.Add(panel12);
             panel4.Location = new Point(1201, 159);
             panel4.Name = "panel4";
             panel4.Size = new Size(353, 144);
             panel4.TabIndex = 1;
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label23.Location = new Point(164, 85);
+            label23.Name = "label23";
+            label23.Size = new Size(27, 31);
+            label23.TabIndex = 2;
+            label23.Text = "0";
             // 
             // panel12
             // 
@@ -317,11 +369,22 @@
             // panel5
             // 
             panel5.BorderStyle = BorderStyle.FixedSingle;
+            panel5.Controls.Add(label27);
             panel5.Controls.Add(panel13);
             panel5.Location = new Point(1202, 329);
             panel5.Name = "panel5";
             panel5.Size = new Size(352, 144);
             panel5.TabIndex = 4;
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label27.Location = new Point(163, 82);
+            label27.Name = "label27";
+            label27.Size = new Size(27, 31);
+            label27.TabIndex = 2;
+            label27.Text = "0";
             // 
             // panel13
             // 
@@ -359,6 +422,7 @@
             // 
             panel6.BorderStyle = BorderStyle.FixedSingle;
             panel6.Controls.Add(panel14);
+            panel6.Controls.Add(label25);
             panel6.Location = new Point(774, 329);
             panel6.Name = "panel6";
             panel6.Size = new Size(430, 144);
@@ -396,14 +460,35 @@
             label6.TabIndex = 1;
             label6.Text = "Maintenance";
             // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label25.Location = new Point(207, 82);
+            label25.Name = "label25";
+            label25.Size = new Size(27, 31);
+            label25.TabIndex = 2;
+            label25.Text = "0";
+            // 
             // panel7
             // 
             panel7.BorderStyle = BorderStyle.FixedSingle;
+            panel7.Controls.Add(label26);
             panel7.Controls.Add(panel15);
             panel7.Location = new Point(396, 329);
             panel7.Name = "panel7";
             panel7.Size = new Size(386, 144);
             panel7.TabIndex = 5;
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label26.Location = new Point(178, 82);
+            label26.Name = "label26";
+            label26.Size = new Size(27, 31);
+            label26.TabIndex = 3;
+            label26.Text = "0";
             // 
             // panel15
             // 
@@ -440,11 +525,22 @@
             // panel8
             // 
             panel8.BorderStyle = BorderStyle.FixedSingle;
+            panel8.Controls.Add(label24);
             panel8.Controls.Add(panel16);
             panel8.Location = new Point(43, 329);
             panel8.Name = "panel8";
             panel8.Size = new Size(354, 144);
             panel8.TabIndex = 3;
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label24.Location = new Point(139, 82);
+            label24.Name = "label24";
+            label24.Size = new Size(27, 31);
+            label24.TabIndex = 2;
+            label24.Text = "0";
             // 
             // panel16
             // 
@@ -489,17 +585,17 @@
             // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea3);
+            chartArea1.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea1);
             chart1.Dock = DockStyle.Fill;
-            legend3.Name = "Legend1";
-            chart1.Legends.Add(legend3);
+            legend1.Name = "Legend1";
+            chart1.Legends.Add(legend1);
             chart1.Location = new Point(0, 53);
             chart1.Name = "chart1";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            chart1.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            chart1.Series.Add(series1);
             chart1.Size = new Size(924, 406);
             chart1.TabIndex = 3;
             chart1.Text = "chart1";
@@ -581,18 +677,18 @@
             // 
             // chart2
             // 
-            chartArea4.Name = "ChartArea1";
-            chart2.ChartAreas.Add(chartArea4);
+            chartArea2.Name = "ChartArea1";
+            chart2.ChartAreas.Add(chartArea2);
             chart2.Dock = DockStyle.Fill;
-            legend4.Name = "Legend1";
-            chart2.Legends.Add(legend4);
+            legend2.Name = "Legend1";
+            chart2.Legends.Add(legend2);
             chart2.Location = new Point(0, 53);
             chart2.Name = "chart2";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            chart2.Series.Add(series4);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            chart2.Series.Add(series2);
             chart2.Size = new Size(544, 406);
             chart2.TabIndex = 4;
             chart2.Text = "chart2";
@@ -872,34 +968,42 @@
             Name = "ReceptionDashboard";
             Size = new Size(1645, 1487);
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             panel10.ResumeLayout(false);
             panel10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             panel11.ResumeLayout(false);
             panel11.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             panel12.ResumeLayout(false);
             panel12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             panel5.ResumeLayout(false);
+            panel5.PerformLayout();
             panel13.ResumeLayout(false);
             panel13.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             panel6.ResumeLayout(false);
+            panel6.PerformLayout();
             panel14.ResumeLayout(false);
             panel14.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             panel7.ResumeLayout(false);
+            panel7.PerformLayout();
             panel15.ResumeLayout(false);
             panel15.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             panel8.ResumeLayout(false);
+            panel8.PerformLayout();
             panel16.ResumeLayout(false);
             panel16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
@@ -1002,5 +1106,13 @@
         private Panel panel11;
         private PictureBox pictureBox3;
         private Label label3;
+        private Label label20;
+        private Label label21;
+        private Label label22;
+        private Label label23;
+        private Label label27;
+        private Label label25;
+        private Label label26;
+        private Label label24;
     }
 }
