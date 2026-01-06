@@ -23,5 +23,8 @@ namespace HRMS.Interfaces
         // New methods for room availability by type
         IEnumerable<Room> GetAvailableRoomsByType(int roomTypeId, DateTime checkIn, DateTime checkOut);
         IEnumerable<RoomType> GetAllRoomTypes();
+
+        void AddReservationRooms(int reservationId, List<int> roomIds);
+        List<int> GetRoomIdsByReservation(int reservationId);
     }
 }

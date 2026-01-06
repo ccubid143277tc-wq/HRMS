@@ -13,11 +13,11 @@ namespace HRMS.Services
         private readonly IGuestService _guestService;
         private readonly IRoomTypeService _roomTypeService;
 
-        public ReservationService()
+        public ReservationService(IRoomService roomService, IGuestService guestService, IRoomTypeService roomTypeService)
         {
-            _roomService = new RoomService();
-            _guestService = new GuestService();
-            _roomTypeService = new RoomTypeService();
+            _roomService = roomService;
+            _guestService = guestService;
+            _roomTypeService = roomTypeService;
         }
 
         public int AddReservation(Reservation reservation)
@@ -27,9 +27,9 @@ namespace HRMS.Services
                 conn.Open();
                 string query = @"INSERT INTO reservations 
                                 (GuestID, Check_InDate, Check_OutDate, NumAdult, NumChildren, 
-                                 SpecialRequest, ReservationStatus, RoomID, numberOfNights) 
+                                 SpecialRequest, ReservationStatus, ReservationType, RoomID, numberOfNights, BookingReferences) 
                                 VALUES (@GuestID, @Check_InDate, @Check_OutDate, @NumAdult, @NumChildren, 
-                                        @SpecialRequest, @ReservationStatus, @RoomID, @numberOfNights);
+                                        @SpecialRequest, @ReservationStatus, @ReservationType, @RoomID, @numberOfNights, @BookingReferences);
                                 SELECT LAST_INSERT_ID();";
 
                 using (var cmd = new MySqlCommand(query, conn))
@@ -41,9 +41,10 @@ namespace HRMS.Services
                     cmd.Parameters.AddWithValue("@NumChildren", reservation.NumChild);
                     cmd.Parameters.AddWithValue("@SpecialRequest", reservation.SpecialRequest ?? "");
                     cmd.Parameters.AddWithValue("@ReservationStatus", reservation.ReservationStatus ?? "Confirmed");
+                    cmd.Parameters.AddWithValue("@ReservationType", reservation.ReservationType ?? "");
                     cmd.Parameters.AddWithValue("@RoomID", reservation.RoomID);
                     cmd.Parameters.AddWithValue("@numberOfNights", (reservation.Check_OutDate - reservation.Check_InDate).Days);
-
+                    cmd.Parameters.AddWithValue("@BookingReferences", reservation.BookingReferences ?? "");
                     int newReservationId = Convert.ToInt32(cmd.ExecuteScalar());
                     return newReservationId;
                 }
@@ -58,7 +59,7 @@ namespace HRMS.Services
                 string query = @"UPDATE reservations 
                                 SET GuestID=@GuestID, Check_InDate=@Check_InDate, Check_OutDate=@Check_OutDate, 
                                     NumAdult=@NumAdult, NumChildren=@NumChildren, SpecialRequest=@SpecialRequest, 
-                                    ReservationStatus=@ReservationStatus, RoomID=@RoomID, numberOfNights=@numberOfNights
+                                    ReservationStatus=@ReservationStatus, ReservationType=@ReservationType, RoomID=@RoomID, numberOfNights=@numberOfNights
                                 WHERE ReservationID=@ReservationID";
 
                 using (var cmd = new MySqlCommand(query, conn))
@@ -71,6 +72,7 @@ namespace HRMS.Services
                     cmd.Parameters.AddWithValue("@NumChildren", reservation.NumChild);
                     cmd.Parameters.AddWithValue("@SpecialRequest", reservation.SpecialRequest);
                     cmd.Parameters.AddWithValue("@ReservationStatus", reservation.ReservationStatus);
+                    cmd.Parameters.AddWithValue("@ReservationType", reservation.ReservationType ?? "");
                     cmd.Parameters.AddWithValue("@RoomID", reservation.RoomID);
                     cmd.Parameters.AddWithValue("@numberOfNights", (reservation.Check_OutDate - reservation.Check_InDate).Days);
                     cmd.ExecuteNonQuery();
@@ -83,13 +85,119 @@ namespace HRMS.Services
             using (var conn = DBHelper.GetConnection())
             {
                 conn.Open();
-                string query = "DELETE FROM reservations WHERE ReservationID=@ReservationID";
+                using (var transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        // Get associated rooms BEFORE deleting links
+                        var roomIds = new List<int>();
+                        string getRoomIdsQuery = "SELECT RoomID FROM ReservationRooms WHERE ReservationID=@ReservationID";
+                        using (var cmd = new MySqlCommand(getRoomIdsQuery, conn, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@ReservationID", reservationId);
+                            using (var reader = cmd.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    roomIds.Add(System.Convert.ToInt32(reader["RoomID"]));
+                                }
+                            }
+                        }
+
+                        // Fallback for older data (if junction table has no rows)
+                        if (roomIds.Count == 0)
+                        {
+                            string getSingleRoomIdQuery = "SELECT RoomID FROM reservations WHERE ReservationID=@ReservationID";
+                            using (var cmd = new MySqlCommand(getSingleRoomIdQuery, conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@ReservationID", reservationId);
+                                object result = cmd.ExecuteScalar();
+                                if (result != null && result != System.DBNull.Value)
+                                {
+                                    roomIds.Add(System.Convert.ToInt32(result));
+                                }
+                            }
+                        }
+
+                        // Update room statuses back to Available
+                        foreach (int roomId in roomIds.Distinct())
+                        {
+                            string updateRoomStatusQuery = @"UPDATE Rooms 
+                                SET RoomStatusID = (SELECT RoomStatusID FROM RoomStatus WHERE RoomStatus = @RoomStatus)
+                                WHERE RoomID = @RoomID";
+                            using (var cmd = new MySqlCommand(updateRoomStatusQuery, conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@RoomStatus", "Available");
+                                cmd.Parameters.AddWithValue("@RoomID", roomId);
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        // Delete from junction table
+                        string deleteJunctionQuery = "DELETE FROM ReservationRooms WHERE ReservationID=@ReservationID";
+                        using (var cmd = new MySqlCommand(deleteJunctionQuery, conn, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@ReservationID", reservationId);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        // Then delete from main reservation table
+                        string deleteReservationQuery = "DELETE FROM reservations WHERE ReservationID=@ReservationID";
+                        using (var cmd = new MySqlCommand(deleteReservationQuery, conn, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@ReservationID", reservationId);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+        }
+
+        public void AddReservationRooms(int reservationId, List<int> roomIds)
+        {
+            using (var conn = DBHelper.GetConnection())
+            {
+                conn.Open();
+                foreach (int roomId in roomIds)
+                {
+                    string query = "INSERT INTO ReservationRooms (ReservationID, RoomID) VALUES (@ReservationID, @RoomID)";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ReservationID", reservationId);
+                        cmd.Parameters.AddWithValue("@RoomID", roomId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
+        public List<int> GetRoomIdsByReservation(int reservationId)
+        {
+            var roomIds = new List<int>();
+            using (var conn = DBHelper.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT RoomID FROM ReservationRooms WHERE ReservationID = @ReservationID";
                 using (var cmd = new MySqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@ReservationID", reservationId);
-                    cmd.ExecuteNonQuery();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            roomIds.Add(Convert.ToInt32(reader["RoomID"]));
+                        }
+                    }
                 }
             }
+            return roomIds;
         }
 
         public void CancelReservation(int reservationId)
@@ -147,7 +255,7 @@ namespace HRMS.Services
         {
             using (var conn = DBHelper.GetConnection())
             {
-                conn.Open();
+                conn.Open();        
                 string query = @"SELECT r.*, g.FirstName, g.LastName, g.Email, g.PhoneNumber, rm.RoomNumber, rm.RoomRate
                                  FROM reservations r
                                  LEFT JOIN Guest g ON r.GuestID = g.GuestID
@@ -217,12 +325,18 @@ namespace HRMS.Services
                 conn.Open();
                 string query = @"SELECT r.ReservationID, r.GuestID, r.Check_InDate, r.Check_OutDate, 
                                        r.NumAdult, r.NumChildren, r.SpecialRequest, r.ReservationStatus, r.RoomID,
-                                       r.numberOfNights,
-                                       g.FirstName, g.LastName, rm.RoomNumber, rt.RoomType
+                                       r.numberOfNights, r.BookingReferences, r.ReservationType,
+                                       g.FirstName, g.LastName, 
+                                       GROUP_CONCAT(DISTINCT rm.RoomNumber ORDER BY rm.RoomNumber SEPARATOR ', ') AS RoomNumbers,
+                                       rt.RoomType
                                  FROM reservations r
                                  LEFT JOIN Guest g ON r.GuestID = g.GuestID
-                                 LEFT JOIN Rooms rm ON r.RoomID = rm.RoomID
+                                 LEFT JOIN ReservationRooms rr ON r.ReservationID = rr.ReservationID
+                                 LEFT JOIN Rooms rm ON rr.RoomID = rm.RoomID
                                  LEFT JOIN RoomType rt ON rm.RoomTypeID = rt.RoomTypeID
+                                 GROUP BY r.ReservationID, r.GuestID, r.Check_InDate, r.Check_OutDate, 
+                                          r.NumAdult, r.NumChildren, r.SpecialRequest, r.ReservationStatus, r.RoomID,
+                                          r.numberOfNights, r.BookingReferences, g.FirstName, g.LastName, rt.RoomType
                                  ORDER BY r.Check_InDate DESC";
 
                 using (var cmd = new MySqlCommand(query, conn))
@@ -360,8 +474,36 @@ namespace HRMS.Services
             return _roomTypeService.GetAllRoomTypes();
         }
 
+        private static bool HasColumn(MySqlDataReader reader, string columnName)
+        {
+            try
+            {
+                return reader.GetOrdinal(columnName) >= 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         private Reservation MapReaderToReservation(MySqlDataReader reader)
         {
+            string roomNumberValue = "Unknown";
+            if (HasColumn(reader, "RoomNumbers"))
+            {
+                roomNumberValue = reader["RoomNumbers"]?.ToString() ?? "Unknown";
+            }
+            else if (HasColumn(reader, "RoomNumber"))
+            {
+                roomNumberValue = reader["RoomNumber"]?.ToString() ?? "Unknown";
+            }
+
+            string roomTypeValue = "Unknown";
+            if (HasColumn(reader, "RoomType"))
+            {
+                roomTypeValue = reader["RoomType"]?.ToString() ?? "Unknown";
+            }
+
             return new Reservation
             {
                 ReservationID = Convert.ToInt32(reader["ReservationID"]),
@@ -372,12 +514,14 @@ namespace HRMS.Services
                 NumChild = reader["NumChildren"] != DBNull.Value ? Convert.ToInt32(reader["NumChildren"]) : 0,
                 SpecialRequest = reader["SpecialRequest"].ToString(),
                 ReservationStatus = reader["ReservationStatus"].ToString(),
+                ReservationType = reader["ReservationType"]?.ToString() ?? "",
+                BookingReferences = reader["BookingReferences"]?.ToString() ?? "",
                 RoomID = Convert.ToInt32(reader["RoomID"]),
                 GuestName = reader["FirstName"] != DBNull.Value && reader["LastName"] != DBNull.Value 
                     ? $"{reader["FirstName"]} {reader["LastName"]}" 
                     : "Unknown Guest",
-                RoomNumber = reader["RoomNumber"]?.ToString() ?? "Unknown",
-                RoomTypeName = reader["RoomType"]?.ToString() ?? "Unknown"
+                RoomNumber = roomNumberValue,
+                RoomTypeName = roomTypeValue
             };
         }
     }

@@ -42,6 +42,7 @@
             label19 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
             panel2 = new Panel();
+            button6 = new Button();
             panel14 = new Panel();
             textBox6 = new TextBox();
             radioButton7 = new RadioButton();
@@ -51,14 +52,6 @@
             panel12 = new Panel();
             label37 = new Label();
             label36 = new Label();
-            comboBox2 = new ComboBox();
-            label26 = new Label();
-            panel7 = new Panel();
-            textBox2 = new TextBox();
-            radioButton3 = new RadioButton();
-            radioButton2 = new RadioButton();
-            radioButton1 = new RadioButton();
-            label25 = new Label();
             comboBox1 = new ComboBox();
             label24 = new Label();
             label22 = new Label();
@@ -73,6 +66,8 @@
             label13 = new Label();
             label20 = new Label();
             panel4 = new Panel();
+            label51 = new Label();
+            label25 = new Label();
             label8 = new Label();
             label7 = new Label();
             label6 = new Label();
@@ -82,7 +77,13 @@
             panel3 = new Panel();
             pictureBox2 = new PictureBox();
             label2 = new Label();
+            comboBox2 = new ComboBox();
+            label26 = new Label();
             panel8 = new Panel();
+            comboBox8 = new ComboBox();
+            textBox13 = new TextBox();
+            label50 = new Label();
+            label53 = new Label();
             button2 = new Button();
             button1 = new Button();
             panel11 = new Panel();
@@ -137,18 +138,21 @@
             panel13 = new Panel();
             dataGridView1 = new DataGridView();
             colGuestName = new DataGridViewTextBoxColumn();
+            colBookingReference = new DataGridViewTextBoxColumn();
+            colReservationType = new DataGridViewTextBoxColumn();
             ColRoomNumber = new DataGridViewTextBoxColumn();
             ColRoomType = new DataGridViewTextBoxColumn();
             ColNumberOfNights = new DataGridViewTextBoxColumn();
             colNumberOfOccupants = new DataGridViewTextBoxColumn();
             colSpecialRequest = new DataGridViewTextBoxColumn();
             colReservationStatus = new DataGridViewTextBoxColumn();
+            colNumberOfRooms = new DataGridViewTextBoxColumn();
             panel15 = new Panel();
             label49 = new Label();
             panel16 = new Panel();
-            button6 = new Button();
             button5 = new Button();
             button4 = new Button();
+            button7 = new Button();
             button3 = new Button();
             textBox1 = new TextBox();
             panel26.SuspendLayout();
@@ -156,7 +160,6 @@
             panel2.SuspendLayout();
             panel14.SuspendLayout();
             panel12.SuspendLayout();
-            panel7.SuspendLayout();
             panel6.SuspendLayout();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
@@ -277,11 +280,9 @@
             // panel2
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(button6);
             panel2.Controls.Add(panel14);
             panel2.Controls.Add(panel12);
-            panel2.Controls.Add(comboBox2);
-            panel2.Controls.Add(label26);
-            panel2.Controls.Add(panel7);
             panel2.Controls.Add(comboBox1);
             panel2.Controls.Add(label24);
             panel2.Controls.Add(label22);
@@ -295,6 +296,15 @@
             panel2.Size = new Size(625, 1247);
             panel2.TabIndex = 14;
             // 
+            // button6
+            // 
+            button6.Location = new Point(33, 1164);
+            button6.Name = "button6";
+            button6.Size = new Size(576, 46);
+            button6.TabIndex = 37;
+            button6.Text = "Confirm Payment";
+            button6.UseVisualStyleBackColor = true;
+            // 
             // panel14
             // 
             panel14.BorderStyle = BorderStyle.Fixed3D;
@@ -303,7 +313,7 @@
             panel14.Controls.Add(radioButton8);
             panel14.Controls.Add(radioButton9);
             panel14.Controls.Add(label39);
-            panel14.Location = new Point(33, 910);
+            panel14.Location = new Point(33, 733);
             panel14.Name = "panel14";
             panel14.Size = new Size(574, 222);
             panel14.TabIndex = 15;
@@ -377,11 +387,11 @@
             // 
             label37.AutoSize = true;
             label37.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label37.Location = new Point(206, 32);
+            label37.Location = new Point(234, 32);
             label37.Name = "label37";
-            label37.Size = new Size(148, 23);
+            label37.Size = new Size(144, 23);
             label37.TabIndex = 8;
-            label37.Text = "BKG-2026-00142";
+            label37.Text = "000-0000-00000";
             // 
             // label36
             // 
@@ -393,108 +403,22 @@
             label36.TabIndex = 7;
             label36.Text = " Booking reference number";
             // 
-            // comboBox2
-            // 
-            comboBox2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(33, 1181);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(567, 36);
-            comboBox2.TabIndex = 13;
-            // 
-            // label26
-            // 
-            label26.AutoSize = true;
-            label26.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label26.Location = new Point(38, 1146);
-            label26.Name = "label26";
-            label26.Size = new Size(166, 23);
-            label26.TabIndex = 12;
-            label26.Text = "Rerservation Status";
-            // 
-            // panel7
-            // 
-            panel7.BorderStyle = BorderStyle.Fixed3D;
-            panel7.Controls.Add(textBox2);
-            panel7.Controls.Add(radioButton3);
-            panel7.Controls.Add(radioButton2);
-            panel7.Controls.Add(radioButton1);
-            panel7.Controls.Add(label25);
-            panel7.Location = new Point(33, 673);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(569, 222);
-            panel7.TabIndex = 11;
-            // 
-            // textBox2
-            // 
-            textBox2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(28, 162);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(519, 34);
-            textBox2.TabIndex = 12;
-            textBox2.Text = "Enter Amount";
-            // 
-            // radioButton3
-            // 
-            radioButton3.AutoSize = true;
-            radioButton3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            radioButton3.Location = new Point(28, 129);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(163, 27);
-            radioButton3.TabIndex = 11;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "Custom Payment";
-            radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            radioButton2.AutoSize = true;
-            radioButton2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            radioButton2.Location = new Point(28, 96);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(136, 27);
-            radioButton2.TabIndex = 10;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "%50 Payment";
-            radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            radioButton1.AutoSize = true;
-            radioButton1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            radioButton1.Location = new Point(28, 63);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(131, 27);
-            radioButton1.TabIndex = 9;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Full Payment";
-            radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // label25
-            // 
-            label25.AutoSize = true;
-            label25.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label25.Location = new Point(21, 25);
-            label25.Name = "label25";
-            label25.Size = new Size(166, 23);
-            label25.TabIndex = 1;
-            label25.Text = "₱ Deposit Required";
-            // 
             // comboBox1
             // 
             comboBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(51, 604);
+            comboBox1.Location = new Point(33, 668);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(545, 36);
             comboBox1.TabIndex = 10;
             comboBox1.Text = "Select Payment";
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label24
             // 
             label24.AutoSize = true;
             label24.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label24.Location = new Point(51, 578);
+            label24.Location = new Point(33, 642);
             label24.Name = "label24";
             label24.Size = new Size(144, 23);
             label24.TabIndex = 9;
@@ -504,17 +428,17 @@
             // 
             label22.AutoSize = true;
             label22.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label22.Location = new Point(488, 529);
+            label22.Location = new Point(481, 596);
             label22.Name = "label22";
-            label22.Size = new Size(108, 28);
+            label22.Size = new Size(72, 28);
             label22.TabIndex = 6;
-            label22.Text = "₱ 4700.00";
+            label22.Text = "₱ 0.00";
             // 
             // label11
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.Location = new Point(51, 534);
+            label11.Location = new Point(33, 601);
             label11.Name = "label11";
             label11.Size = new Size(119, 23);
             label11.TabIndex = 8;
@@ -525,7 +449,7 @@
             panel6.BorderStyle = BorderStyle.Fixed3D;
             panel6.Controls.Add(label21);
             panel6.Controls.Add(label23);
-            panel6.Location = new Point(33, 455);
+            panel6.Location = new Point(33, 529);
             panel6.Name = "panel6";
             panel6.Size = new Size(574, 44);
             panel6.TabIndex = 7;
@@ -536,9 +460,9 @@
             label21.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label21.Location = new Point(480, 8);
             label21.Name = "label21";
-            label21.Size = new Size(81, 23);
+            label21.Size = new Size(61, 23);
             label21.TabIndex = 5;
-            label21.Text = "₱ 350.00";
+            label21.Text = "₱ 0.00";
             label21.Click += label19_Click;
             // 
             // label23
@@ -559,7 +483,7 @@
             panel5.Controls.Add(label12);
             panel5.Controls.Add(label13);
             panel5.Controls.Add(label20);
-            panel5.Location = new Point(33, 297);
+            panel5.Location = new Point(33, 359);
             panel5.Name = "panel5";
             panel5.Size = new Size(574, 146);
             panel5.TabIndex = 6;
@@ -570,9 +494,9 @@
             label10.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.Location = new Point(480, 102);
             label10.Name = "label10";
-            label10.Size = new Size(81, 23);
+            label10.Size = new Size(56, 23);
             label10.TabIndex = 6;
-            label10.Text = "₱ 350.00";
+            label10.Text = "₱0.00";
             label10.Click += label19_Click;
             // 
             // label9
@@ -581,9 +505,9 @@
             label9.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.Location = new Point(480, 58);
             label9.Name = "label9";
-            label9.Size = new Size(81, 23);
+            label9.Size = new Size(61, 23);
             label9.TabIndex = 5;
-            label9.Text = "₱ 350.00";
+            label9.Text = "₱ 0.00";
             label9.Click += label19_Click;
             // 
             // label12
@@ -619,37 +543,59 @@
             // panel4
             // 
             panel4.BorderStyle = BorderStyle.Fixed3D;
+            panel4.Controls.Add(label51);
+            panel4.Controls.Add(label25);
             panel4.Controls.Add(label8);
             panel4.Controls.Add(label7);
             panel4.Controls.Add(label6);
             panel4.Controls.Add(label5);
             panel4.Controls.Add(label4);
             panel4.Controls.Add(label3);
-            panel4.Location = new Point(33, 144);
+            panel4.Location = new Point(33, 150);
             panel4.Name = "panel4";
-            panel4.Size = new Size(574, 141);
+            panel4.Size = new Size(574, 185);
             panel4.TabIndex = 1;
+            // 
+            // label51
+            // 
+            label51.AutoSize = true;
+            label51.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label51.Location = new Point(498, 52);
+            label51.Name = "label51";
+            label51.Size = new Size(20, 23);
+            label51.TabIndex = 7;
+            label51.Text = "0";
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label25.Location = new Point(28, 52);
+            label25.Name = "label25";
+            label25.Size = new Size(143, 23);
+            label25.TabIndex = 6;
+            label25.Text = "Number of Room";
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(480, 102);
+            label8.Location = new Point(482, 142);
             label8.Name = "label8";
-            label8.Size = new Size(86, 23);
+            label8.Size = new Size(56, 23);
             label8.TabIndex = 5;
-            label8.Text = "₱2000.00";
+            label8.Text = "₱0.00";
             label8.Click += label19_Click;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(518, 58);
+            label7.Location = new Point(498, 98);
             label7.Name = "label7";
             label7.Size = new Size(20, 23);
             label7.TabIndex = 4;
-            label7.Text = "3";
+            label7.Text = "0";
             label7.Click += label19_Click;
             // 
             // label6
@@ -658,16 +604,16 @@
             label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.Location = new Point(480, 12);
             label6.Name = "label6";
-            label6.Size = new Size(86, 23);
+            label6.Size = new Size(56, 23);
             label6.TabIndex = 3;
-            label6.Text = "₱2000.00";
+            label6.Text = "₱0.00";
             label6.Click += label19_Click;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(21, 102);
+            label5.Location = new Point(23, 142);
             label5.Name = "label5";
             label5.Size = new Size(124, 23);
             label5.TabIndex = 2;
@@ -677,7 +623,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(21, 61);
+            label4.Location = new Point(23, 98);
             label4.Name = "label4";
             label4.Size = new Size(148, 23);
             label4.TabIndex = 1;
@@ -725,10 +671,35 @@
             label2.TabIndex = 0;
             label2.Text = "Reservation Summary";
             // 
+            // comboBox2
+            // 
+            comboBox2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(22, 283);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(371, 36);
+            comboBox2.TabIndex = 13;
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label26.Location = new Point(22, 255);
+            label26.Name = "label26";
+            label26.Size = new Size(155, 23);
+            label26.TabIndex = 12;
+            label26.Text = "Rerservation Status";
+            // 
             // panel8
             // 
             panel8.BorderStyle = BorderStyle.FixedSingle;
+            panel8.Controls.Add(comboBox8);
+            panel8.Controls.Add(textBox13);
+            panel8.Controls.Add(label50);
+            panel8.Controls.Add(label53);
+            panel8.Controls.Add(comboBox2);
             panel8.Controls.Add(button2);
+            panel8.Controls.Add(label26);
             panel8.Controls.Add(button1);
             panel8.Controls.Add(panel11);
             panel8.Controls.Add(textBox4);
@@ -752,11 +723,48 @@
             panel8.Size = new Size(861, 829);
             panel8.TabIndex = 15;
             // 
+            // comboBox8
+            // 
+            comboBox8.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            comboBox8.FormattingEnabled = true;
+            comboBox8.Location = new Point(470, 288);
+            comboBox8.Name = "comboBox8";
+            comboBox8.Size = new Size(356, 31);
+            comboBox8.TabIndex = 38;
+            // 
+            // textBox13
+            // 
+            textBox13.Location = new Point(468, 223);
+            textBox13.Name = "textBox13";
+            textBox13.Size = new Size(361, 27);
+            textBox13.TabIndex = 38;
+            textBox13.Click += textBox13_Click;
+            // 
+            // label50
+            // 
+            label50.AutoSize = true;
+            label50.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label50.Location = new Point(465, 255);
+            label50.Name = "label50";
+            label50.Size = new Size(138, 23);
+            label50.TabIndex = 39;
+            label50.Text = "Reservation Type";
+            // 
+            // label53
+            // 
+            label53.AutoSize = true;
+            label53.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label53.Location = new Point(466, 194);
+            label53.Name = "label53";
+            label53.Size = new Size(164, 23);
+            label53.TabIndex = 37;
+            label53.Text = "Booking References ";
+            // 
             // button2
             // 
-            button2.Location = new Point(17, 480);
+            button2.Location = new Point(24, 771);
             button2.Name = "button2";
-            button2.Size = new Size(350, 46);
+            button2.Size = new Size(367, 46);
             button2.TabIndex = 36;
             button2.Text = "Save";
             button2.UseVisualStyleBackColor = true;
@@ -764,7 +772,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(452, 480);
+            button1.Location = new Point(459, 773);
             button1.Name = "button1";
             button1.Size = new Size(381, 46);
             button1.TabIndex = 35;
@@ -776,7 +784,7 @@
             // 
             panel11.BackColor = Color.FromArgb(42, 93, 159);
             panel11.Controls.Add(label35);
-            panel11.Location = new Point(0, 549);
+            panel11.Location = new Point(0, 487);
             panel11.Name = "panel11";
             panel11.Size = new Size(860, 50);
             panel11.TabIndex = 22;
@@ -815,12 +823,13 @@
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Columns.AddRange(new DataGridViewColumn[] { RoomNumber, RoomType, RoomStatus, RoomFloor, ViewType });
             dataGridView2.EnableHeadersVisualStyles = false;
-            dataGridView2.Location = new Point(0, 598);
+            dataGridView2.Location = new Point(0, 535);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
+            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.Size = new Size(860, 230);
             dataGridView2.TabIndex = 21;
-            dataGridView2.CellClick += new DataGridViewCellEventHandler(this.dataGridView2_CellClick);
+            dataGridView2.CellClick += dataGridView2_CellClick;
             // 
             // RoomNumber
             // 
@@ -871,9 +880,9 @@
             // 
             comboBox5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox5.FormattingEnabled = true;
-            comboBox5.Location = new Point(21, 278);
+            comboBox5.Location = new Point(22, 221);
             comboBox5.Name = "comboBox5";
-            comboBox5.Size = new Size(812, 31);
+            comboBox5.Size = new Size(372, 31);
             comboBox5.TabIndex = 18;
             comboBox5.SelectedIndexChanged += comboBox5_SelectedIndexChanged;
             // 
@@ -881,7 +890,7 @@
             // 
             label33.AutoSize = true;
             label33.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label33.Location = new Point(21, 244);
+            label33.Location = new Point(21, 195);
             label33.Name = "label33";
             label33.Size = new Size(188, 23);
             label33.TabIndex = 17;
@@ -891,7 +900,7 @@
             // 
             comboBox4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(468, 198);
+            comboBox4.Location = new Point(468, 158);
             comboBox4.Name = "comboBox4";
             comboBox4.Size = new Size(365, 31);
             comboBox4.TabIndex = 16;
@@ -901,7 +910,7 @@
             // 
             comboBox3.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(21, 198);
+            comboBox3.Location = new Point(21, 158);
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(372, 31);
             comboBox3.TabIndex = 15;
@@ -911,7 +920,7 @@
             // 
             label32.AutoSize = true;
             label32.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label32.Location = new Point(468, 172);
+            label32.Location = new Point(468, 132);
             label32.Name = "label32";
             label32.Size = new Size(162, 23);
             label32.TabIndex = 14;
@@ -921,7 +930,7 @@
             // 
             label31.AutoSize = true;
             label31.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label31.Location = new Point(19, 172);
+            label31.Location = new Point(19, 132);
             label31.Name = "label31";
             label31.Size = new Size(146, 23);
             label31.TabIndex = 12;
@@ -929,7 +938,7 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(607, 121);
+            textBox3.Location = new Point(607, 89);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(226, 27);
             textBox3.TabIndex = 11;
@@ -939,7 +948,7 @@
             // 
             label30.AutoSize = true;
             label30.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label30.Location = new Point(607, 95);
+            label30.Location = new Point(607, 63);
             label30.Name = "label30";
             label30.Size = new Size(148, 23);
             label30.TabIndex = 10;
@@ -947,7 +956,7 @@
             // 
             // dateTimePicker2
             // 
-            dateTimePicker2.Location = new Point(308, 121);
+            dateTimePicker2.Location = new Point(308, 89);
             dateTimePicker2.Name = "dateTimePicker2";
             dateTimePicker2.Size = new Size(274, 27);
             dateTimePicker2.TabIndex = 9;
@@ -957,7 +966,7 @@
             // 
             label29.AutoSize = true;
             label29.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label29.Location = new Point(308, 95);
+            label29.Location = new Point(308, 63);
             label29.Name = "label29";
             label29.Size = new Size(133, 23);
             label29.TabIndex = 8;
@@ -965,7 +974,7 @@
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(19, 121);
+            dateTimePicker1.Location = new Point(19, 89);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(274, 27);
             dateTimePicker1.TabIndex = 7;
@@ -975,7 +984,7 @@
             // 
             label28.AutoSize = true;
             label28.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label28.Location = new Point(19, 95);
+            label28.Location = new Point(19, 63);
             label28.Name = "label28";
             label28.Size = new Size(119, 23);
             label28.TabIndex = 6;
@@ -1037,10 +1046,11 @@
             panel10.Controls.Add(label38);
             panel10.Controls.Add(textBox5);
             panel10.Controls.Add(label40);
-            panel10.Location = new Point(48, 124);
+            panel10.Location = new Point(47, 124);
             panel10.Name = "panel10";
             panel10.Size = new Size(861, 407);
             panel10.TabIndex = 16;
+            panel10.Paint += panel10_Paint;
             // 
             // panel1
             // 
@@ -1078,9 +1088,9 @@
             // 
             comboBox7.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox7.FormattingEnabled = true;
-            comboBox7.Location = new Point(451, 358);
+            comboBox7.Location = new Point(592, 358);
             comboBox7.Name = "comboBox7";
-            comboBox7.Size = new Size(372, 31);
+            comboBox7.Size = new Size(231, 31);
             comboBox7.TabIndex = 31;
             comboBox7.SelectedIndexChanged += comboBox7_SelectedIndexChanged;
             // 
@@ -1088,7 +1098,7 @@
             // 
             label48.AutoSize = true;
             label48.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label48.Location = new Point(451, 332);
+            label48.Location = new Point(592, 332);
             label48.Name = "label48";
             label48.Size = new Size(108, 23);
             label48.TabIndex = 32;
@@ -1098,9 +1108,8 @@
             // 
             dateTimePicker3.Location = new Point(21, 358);
             dateTimePicker3.Name = "dateTimePicker3";
-            dateTimePicker3.Size = new Size(281, 27);
+            dateTimePicker3.Size = new Size(245, 27);
             dateTimePicker3.TabIndex = 22;
-            dateTimePicker3.ValueChanged += dateTimePicker3_ValueChanged;
             // 
             // label47
             // 
@@ -1279,14 +1288,16 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { colGuestName, ColRoomNumber, ColRoomType, ColNumberOfNights, colNumberOfOccupants, colSpecialRequest, colReservationStatus });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { colGuestName, colBookingReference, colReservationType, ColRoomNumber, ColRoomType, ColNumberOfNights, colNumberOfOccupants, colSpecialRequest, colReservationStatus, colNumberOfRooms });
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.Location = new Point(0, 61);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(1521, 356);
             dataGridView1.TabIndex = 1;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // colGuestName
             // 
@@ -1294,6 +1305,24 @@
             colGuestName.HeaderText = "Guest Name";
             colGuestName.MinimumWidth = 6;
             colGuestName.Name = "colGuestName";
+            // 
+            // colBookingReference
+            // 
+            colBookingReference.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            colBookingReference.HeaderText = "Booking Reference";
+            colBookingReference.MinimumWidth = 120;
+            colBookingReference.Name = "colBookingReference";
+            colBookingReference.ReadOnly = true;
+            colBookingReference.Width = 149;
+            // 
+            // colReservationType
+            // 
+            colReservationType.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            colReservationType.HeaderText = "Reservation Type";
+            colReservationType.MinimumWidth = 120;
+            colReservationType.Name = "colReservationType";
+            colReservationType.ReadOnly = true;
+            colReservationType.Width = 144;
             // 
             // ColRoomNumber
             // 
@@ -1337,6 +1366,15 @@
             colReservationStatus.MinimumWidth = 6;
             colReservationStatus.Name = "colReservationStatus";
             // 
+            // colNumberOfRooms
+            // 
+            colNumberOfRooms.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            colNumberOfRooms.HeaderText = "Number of Rooms";
+            colNumberOfRooms.MinimumWidth = 120;
+            colNumberOfRooms.Name = "colNumberOfRooms";
+            colNumberOfRooms.ReadOnly = true;
+            colNumberOfRooms.Width = 120;
+            // 
             // panel15
             // 
             panel15.BackColor = Color.FromArgb(42, 93, 159);
@@ -1361,27 +1399,15 @@
             // panel16
             // 
             panel16.BorderStyle = BorderStyle.FixedSingle;
-            panel16.Controls.Add(button6);
             panel16.Controls.Add(button5);
             panel16.Controls.Add(button4);
+            panel16.Controls.Add(button7);
             panel16.Controls.Add(button3);
             panel16.Controls.Add(textBox1);
             panel16.Location = new Point(50, 1396);
             panel16.Name = "panel16";
             panel16.Size = new Size(1520, 63);
             panel16.TabIndex = 18;
-            // 
-            // button6
-            // 
-            button6.BackColor = Color.FromArgb(42, 93, 159);
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.ForeColor = Color.White;
-            button6.Location = new Point(1218, 12);
-            button6.Name = "button6";
-            button6.Size = new Size(94, 34);
-            button6.TabIndex = 4;
-            button6.Text = "Add";
-            button6.UseVisualStyleBackColor = false;
             // 
             // button5
             // 
@@ -1394,6 +1420,7 @@
             button5.TabIndex = 3;
             button5.Text = "Edit";
             button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // button4
             // 
@@ -1406,6 +1433,20 @@
             button4.TabIndex = 2;
             button4.Text = "Delete";
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
+            // 
+            // button7
+            // 
+            button7.BackColor = Color.FromArgb(42, 93, 159);
+            button7.FlatStyle = FlatStyle.Flat;
+            button7.ForeColor = Color.White;
+            button7.Location = new Point(1131, 12);
+            button7.Name = "button7";
+            button7.Size = new Size(178, 34);
+            button7.TabIndex = 5;
+            button7.Text = "Show Summary";
+            button7.UseVisualStyleBackColor = false;
+            button7.Click += button7_Click;
             // 
             // button3
             // 
@@ -1449,8 +1490,6 @@
             panel14.PerformLayout();
             panel12.ResumeLayout(false);
             panel12.PerformLayout();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             panel5.ResumeLayout(false);
@@ -1550,12 +1589,6 @@
         private RadioButton radioButton8;
         private RadioButton radioButton9;
         private Label label39;
-        private Panel panel7;
-        private TextBox textBox2;
-        private RadioButton radioButton3;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
-        private Label label25;
         private TextBox textBox11;
         private Label label45;
         private ComboBox comboBox6;
@@ -1584,12 +1617,15 @@
         private Panel panel15;
         private Label label49;
         private DataGridViewTextBoxColumn colGuestName;
+        private DataGridViewTextBoxColumn colBookingReference;
+        private DataGridViewTextBoxColumn colReservationType;
         private DataGridViewTextBoxColumn ColRoomNumber;
         private DataGridViewTextBoxColumn ColRoomType;
         private DataGridViewTextBoxColumn ColNumberOfNights;
         private DataGridViewTextBoxColumn colNumberOfOccupants;
         private DataGridViewTextBoxColumn colSpecialRequest;
         private DataGridViewTextBoxColumn colReservationStatus;
+        private DataGridViewTextBoxColumn colNumberOfRooms;
         private DataGridViewTextBoxColumn RoomNumber;
         private DataGridViewTextBoxColumn RoomType;
         private DataGridViewTextBoxColumn RoomStatus;
@@ -1597,11 +1633,18 @@
         private DataGridViewTextBoxColumn ViewType;
         private Button button2;
         private Button button1;
+        private Button button6;
         private Panel panel16;
         private Button button4;
         private Button button3;
         private TextBox textBox1;
-        private Button button6;
+        private TextBox textBox13;
+        private Label label53;
+        private Button button7;
         private Button button5;
+        private ComboBox comboBox8;
+        private Label label50;
+        private Label label51;
+        private Label label25;
     }
 }

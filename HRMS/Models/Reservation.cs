@@ -1,4 +1,4 @@
-using System;
+    using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,6 +14,8 @@ namespace HRMS.Models
         public int NumChild { get; set; }
         public string SpecialRequest { get; set; }
         public string ReservationStatus { get; set; }
+        public string ReservationType { get; set; }
+        public string BookingReferences { get; set; }
         public int RoomID { get; set; }
         public int RoomTypeID { get; set; }
         
