@@ -142,6 +142,7 @@ namespace HRMS.Services
             return reservations;
         }
 
+        // Get reservation by ID with guest and room details
         public Reservation GetReservationById(int reservationId)
         {
             using (var conn = DBHelper.GetConnection())
