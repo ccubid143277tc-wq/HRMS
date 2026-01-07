@@ -30,6 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Payment));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel26 = new Panel();
             label14 = new Label();
             label15 = new Label();
@@ -118,6 +119,18 @@
             button5 = new Button();
             button7 = new Button();
             button8 = new Button();
+            colpaymentID = new DataGridViewTextBoxColumn();
+            colBookingReference = new DataGridViewTextBoxColumn();
+            ColPaymentDate = new DataGridViewTextBoxColumn();
+            colGuestName = new DataGridViewTextBoxColumn();
+            colAmountPaid = new DataGridViewTextBoxColumn();
+            colPaymentMethod = new DataGridViewTextBoxColumn();
+            colPaymentStatus = new DataGridViewTextBoxColumn();
+            colProcessedBy = new DataGridViewTextBoxColumn();
+            colTotalDue = new DataGridViewTextBoxColumn();
+            colTotalPaid = new DataGridViewTextBoxColumn();
+            colBalance = new DataGridViewTextBoxColumn();
+            ColReferenceNo = new DataGridViewTextBoxColumn();
             panel26.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             panel2.SuspendLayout();
@@ -1032,8 +1045,18 @@
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = SystemColors.Control;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(42, 93, 159);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { colpaymentID, colBookingReference, ColPaymentDate, colGuestName, colAmountPaid, colPaymentMethod, colPaymentStatus, colProcessedBy, colTotalDue, colTotalPaid, colBalance, ColReferenceNo });
             dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.Location = new Point(0, 68);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
@@ -1099,6 +1122,90 @@
             button8.TabIndex = 58;
             button8.Text = "Save";
             button8.UseVisualStyleBackColor = false;
+            // 
+            // colpaymentID
+            // 
+            colpaymentID.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colpaymentID.HeaderText = "Payment ID";
+            colpaymentID.MinimumWidth = 6;
+            colpaymentID.Name = "colpaymentID";
+            // 
+            // colBookingReference
+            // 
+            colBookingReference.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colBookingReference.HeaderText = "Booking Reference";
+            colBookingReference.MinimumWidth = 6;
+            colBookingReference.Name = "colBookingReference";
+            // 
+            // ColPaymentDate
+            // 
+            ColPaymentDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColPaymentDate.HeaderText = "Payment Date";
+            ColPaymentDate.MinimumWidth = 6;
+            ColPaymentDate.Name = "ColPaymentDate";
+            // 
+            // colGuestName
+            // 
+            colGuestName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colGuestName.HeaderText = "Guest Name";
+            colGuestName.MinimumWidth = 6;
+            colGuestName.Name = "colGuestName";
+            // 
+            // colAmountPaid
+            // 
+            colAmountPaid.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colAmountPaid.HeaderText = "Amount Paid";
+            colAmountPaid.MinimumWidth = 6;
+            colAmountPaid.Name = "colAmountPaid";
+            // 
+            // colPaymentMethod
+            // 
+            colPaymentMethod.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colPaymentMethod.HeaderText = "Payment Method";
+            colPaymentMethod.MinimumWidth = 6;
+            colPaymentMethod.Name = "colPaymentMethod";
+            // 
+            // colPaymentStatus
+            // 
+            colPaymentStatus.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colPaymentStatus.HeaderText = "Payment Status";
+            colPaymentStatus.MinimumWidth = 6;
+            colPaymentStatus.Name = "colPaymentStatus";
+            // 
+            // colProcessedBy
+            // 
+            colProcessedBy.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colProcessedBy.HeaderText = "Processed By";
+            colProcessedBy.MinimumWidth = 6;
+            colProcessedBy.Name = "colProcessedBy";
+            // 
+            // colTotalDue
+            // 
+            colTotalDue.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colTotalDue.HeaderText = "Total Due";
+            colTotalDue.MinimumWidth = 6;
+            colTotalDue.Name = "colTotalDue";
+            // 
+            // colTotalPaid
+            // 
+            colTotalPaid.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colTotalPaid.HeaderText = "Total Paid";
+            colTotalPaid.MinimumWidth = 6;
+            colTotalPaid.Name = "colTotalPaid";
+            // 
+            // colBalance
+            // 
+            colBalance.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colBalance.HeaderText = "Balance";
+            colBalance.MinimumWidth = 6;
+            colBalance.Name = "colBalance";
+            // 
+            // ColReferenceNo
+            // 
+            ColReferenceNo.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColReferenceNo.HeaderText = "Reference Number";
+            ColReferenceNo.MinimumWidth = 6;
+            ColReferenceNo.Name = "ColReferenceNo";
             // 
             // Payment
             // 
@@ -1245,5 +1352,17 @@
         private Button button5;
         private Button button7;
         private Button button8;
+        private DataGridViewTextBoxColumn colpaymentID;
+        private DataGridViewTextBoxColumn colBookingReference;
+        private DataGridViewTextBoxColumn ColPaymentDate;
+        private DataGridViewTextBoxColumn colGuestName;
+        private DataGridViewTextBoxColumn colAmountPaid;
+        private DataGridViewTextBoxColumn colPaymentMethod;
+        private DataGridViewTextBoxColumn colPaymentStatus;
+        private DataGridViewTextBoxColumn colProcessedBy;
+        private DataGridViewTextBoxColumn colTotalDue;
+        private DataGridViewTextBoxColumn colTotalPaid;
+        private DataGridViewTextBoxColumn colBalance;
+        private DataGridViewTextBoxColumn ColReferenceNo;
     }
 }

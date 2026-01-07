@@ -376,7 +376,7 @@ namespace HRMS.Services
                 string query = @"SELECT COUNT(DISTINCT r.ReservationID)
                                  FROM reservations r
                                  WHERE r.ReservationStatus NOT IN ('Cancelled', 'Checked-Out')
-                                   AND r.Check_InDate = @Date";
+                                   AND DATE(r.Check_InDate) = @Date";
 
                 using (var cmd = new MySqlCommand(query, conn))
                 {
@@ -400,7 +400,7 @@ namespace HRMS.Services
                 string query = @"SELECT COUNT(DISTINCT r.ReservationID)
                                  FROM reservations r
                                  WHERE r.ReservationStatus NOT IN ('Cancelled', 'Checked-Out')
-                                   AND r.Check_OutDate = @Date";
+                                   AND DATE(r.Check_OutDate) = @Date";
 
                 using (var cmd = new MySqlCommand(query, conn))
                 {

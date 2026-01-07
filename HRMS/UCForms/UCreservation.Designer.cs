@@ -59,12 +59,6 @@
             panel6 = new Panel();
             label21 = new Label();
             label23 = new Label();
-            panel5 = new Panel();
-            label10 = new Label();
-            label9 = new Label();
-            label12 = new Label();
-            label13 = new Label();
-            label20 = new Label();
             panel4 = new Panel();
             label51 = new Label();
             label25 = new Label();
@@ -161,7 +155,6 @@
             panel14.SuspendLayout();
             panel12.SuspendLayout();
             panel6.SuspendLayout();
-            panel5.SuspendLayout();
             panel4.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -288,22 +281,22 @@
             panel2.Controls.Add(label22);
             panel2.Controls.Add(label11);
             panel2.Controls.Add(panel6);
-            panel2.Controls.Add(panel5);
             panel2.Controls.Add(panel4);
             panel2.Controls.Add(panel3);
-            panel2.Location = new Point(946, 123);
+            panel2.Location = new Point(945, 125);
             panel2.Name = "panel2";
-            panel2.Size = new Size(625, 1247);
+            panel2.Size = new Size(625, 882);
             panel2.TabIndex = 14;
             // 
             // button6
             // 
-            button6.Location = new Point(33, 1164);
+            button6.Location = new Point(23, 789);
             button6.Name = "button6";
-            button6.Size = new Size(576, 46);
+            button6.Size = new Size(584, 46);
             button6.TabIndex = 37;
             button6.Text = "Confirm Payment";
             button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
             // panel14
             // 
@@ -313,9 +306,9 @@
             panel14.Controls.Add(radioButton8);
             panel14.Controls.Add(radioButton9);
             panel14.Controls.Add(label39);
-            panel14.Location = new Point(33, 733);
+            panel14.Location = new Point(23, 541);
             panel14.Name = "panel14";
-            panel14.Size = new Size(574, 222);
+            panel14.Size = new Size(581, 222);
             panel14.TabIndex = 15;
             // 
             // textBox6
@@ -407,7 +400,8 @@
             // 
             comboBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(33, 668);
+            comboBox1.Items.AddRange(new object[] { "Cash", "Credit Card", "Debit Card", "GCash", "Bank Transfer" });
+            comboBox1.Location = new Point(33, 484);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(545, 36);
             comboBox1.TabIndex = 10;
@@ -418,7 +412,7 @@
             // 
             label24.AutoSize = true;
             label24.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label24.Location = new Point(33, 642);
+            label24.Location = new Point(33, 458);
             label24.Name = "label24";
             label24.Size = new Size(144, 23);
             label24.TabIndex = 9;
@@ -428,7 +422,7 @@
             // 
             label22.AutoSize = true;
             label22.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label22.Location = new Point(481, 596);
+            label22.Location = new Point(481, 412);
             label22.Name = "label22";
             label22.Size = new Size(72, 28);
             label22.TabIndex = 6;
@@ -438,7 +432,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.Location = new Point(33, 601);
+            label11.Location = new Point(33, 417);
             label11.Name = "label11";
             label11.Size = new Size(119, 23);
             label11.TabIndex = 8;
@@ -449,7 +443,7 @@
             panel6.BorderStyle = BorderStyle.Fixed3D;
             panel6.Controls.Add(label21);
             panel6.Controls.Add(label23);
-            panel6.Location = new Point(33, 529);
+            panel6.Location = new Point(33, 346);
             panel6.Name = "panel6";
             panel6.Size = new Size(574, 44);
             panel6.TabIndex = 7;
@@ -474,71 +468,6 @@
             label23.Size = new Size(67, 23);
             label23.TabIndex = 1;
             label23.Text = "Tax(5%)";
-            // 
-            // panel5
-            // 
-            panel5.BorderStyle = BorderStyle.Fixed3D;
-            panel5.Controls.Add(label10);
-            panel5.Controls.Add(label9);
-            panel5.Controls.Add(label12);
-            panel5.Controls.Add(label13);
-            panel5.Controls.Add(label20);
-            panel5.Location = new Point(33, 359);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(574, 146);
-            panel5.TabIndex = 6;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.Location = new Point(480, 102);
-            label10.Name = "label10";
-            label10.Size = new Size(56, 23);
-            label10.TabIndex = 6;
-            label10.Text = "₱0.00";
-            label10.Click += label19_Click;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(480, 58);
-            label9.Name = "label9";
-            label9.Size = new Size(61, 23);
-            label9.TabIndex = 5;
-            label9.Text = "₱ 0.00";
-            label9.Click += label19_Click;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label12.Location = new Point(21, 102);
-            label12.Name = "label12";
-            label12.Size = new Size(126, 23);
-            label12.TabIndex = 2;
-            label12.Text = "Late Check-out";
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label13.Location = new Point(21, 58);
-            label13.Name = "label13";
-            label13.Size = new Size(119, 23);
-            label13.TabIndex = 1;
-            label13.Text = "Early Check-In";
-            // 
-            // label20
-            // 
-            label20.AutoSize = true;
-            label20.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label20.Location = new Point(21, 12);
-            label20.Name = "label20";
-            label20.Size = new Size(165, 23);
-            label20.TabIndex = 0;
-            label20.Text = "Additional Services";
             // 
             // panel4
             // 
@@ -1322,7 +1251,7 @@
             colReservationType.MinimumWidth = 120;
             colReservationType.Name = "colReservationType";
             colReservationType.ReadOnly = true;
-            colReservationType.Width = 144;
+            colReservationType.Width = 137;
             // 
             // ColRoomNumber
             // 
@@ -1492,8 +1421,6 @@
             panel12.PerformLayout();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             panel3.ResumeLayout(false);
@@ -1541,11 +1468,6 @@
         private Label label5;
         private Label label4;
         private Label label6;
-        private Panel panel5;
-        private Label label9;
-        private Label label12;
-        private Label label13;
-        private Label label20;
         private Label label8;
         private Label label7;
         private ComboBox comboBox1;
@@ -1555,7 +1477,6 @@
         private Panel panel6;
         private Label label21;
         private Label label23;
-        private Label label10;
         private Label label26;
         private ComboBox comboBox2;
         private Panel panel8;

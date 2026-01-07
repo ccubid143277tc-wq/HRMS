@@ -1,6 +1,7 @@
 ﻿using HRMS.Interfaces;
 using HRMS.Models;
 using HRMS.Services;
+using HRMS.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +26,8 @@ namespace HRMS.UCForms
             _guestService = new GuestService();
             InitializeGuestControls();
 
+            Load += UCGuest_Load;
+
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false;
             dataGridView1.CellClick += dataGridView1_CellClick;
@@ -32,6 +35,31 @@ namespace HRMS.UCForms
             textBox1.TextChanged += textBox1_TextChanged;
 
             RefreshGuestPage();
+        }
+
+        private void UCGuest_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                ApplyCurrentUserToHeader();
+            }
+            catch
+            {
+                // Intentionally ignore here to avoid crashing the page
+            }
+        }
+
+        private void ApplyCurrentUserToHeader()
+        {
+            if (!string.IsNullOrWhiteSpace(UserSession.CurrentUserName))
+            {
+                label15.Text = UserSession.CurrentUserName;
+            }
+
+            if (!string.IsNullOrWhiteSpace(UserSession.CurrentUserRole))
+            {
+                label14.Text = UserSession.CurrentUserRole;
+            }
         }
 
         private void InitializeGuestControls()

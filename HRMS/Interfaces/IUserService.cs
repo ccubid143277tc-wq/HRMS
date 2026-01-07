@@ -18,6 +18,8 @@ namespace HRMS.Interfaces
         IEnumerable<User> GetAllUsers();
         IEnumerable<User> GetUserGridData();
         Dictionary<string, int> GetUserStatusCounts();
+
+        User AuthenticateUser(string username, string password);
         
     }
 }

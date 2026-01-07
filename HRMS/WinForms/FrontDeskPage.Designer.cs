@@ -67,11 +67,11 @@
             // panel4
             // 
             panel4.BackColor = SystemColors.Window;
-            panel4.BorderStyle = BorderStyle.FixedSingle;
             panel4.Controls.Add(button5);
-            panel4.Location = new Point(-9, 959);
+            panel4.Dock = DockStyle.Bottom;
+            panel4.Location = new Point(0, 946);
             panel4.Name = "panel4";
-            panel4.Size = new Size(287, 107);
+            panel4.Size = new Size(277, 107);
             panel4.TabIndex = 5;
             // 
             // button5
@@ -81,7 +81,7 @@
             button5.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button5.Image = (Image)resources.GetObject("button5.Image");
             button5.ImageAlign = ContentAlignment.MiddleLeft;
-            button5.Location = new Point(29, 18);
+            button5.Location = new Point(20, 20);
             button5.Name = "button5";
             button5.Padding = new Padding(10, 0, 0, 0);
             button5.Size = new Size(234, 64);

@@ -1033,11 +1033,11 @@
             // 
             label15.AutoSize = true;
             label15.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label15.Location = new Point(1415, 40);
+            label15.Location = new Point(1455, 40);
             label15.Name = "label15";
-            label15.Size = new Size(131, 28);
+            label15.Size = new Size(46, 28);
             label15.TabIndex = 11;
-            label15.Text = "Carl Christian";
+            label15.Text = "Carl";
             // 
             // pictureBox16
             // 

@@ -1,6 +1,8 @@
 ﻿using HRMS.Interfaces;
 using HRMS.Models;
 using HRMS.Services;
+using HRMS.Helper;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +26,9 @@ namespace HRMS.UCForms
         private object _selectedReservationData;
         private bool _isEditMode = false;
 
+        private int _selectedReservationIdForSummary = 0;
+        private decimal _lastSummaryTotalAmount = 0m;
+
         public UCreservation()
         {
             InitializeComponent();
@@ -32,6 +37,33 @@ namespace HRMS.UCForms
             _roomTypeService = new RoomTypeService();
             _reservationService = new ReservationService(_roomService, _guestService, _roomTypeService);
             InitializeGuestControls();
+
+            Load += UCreservation_Load;
+        }
+
+        private void UCreservation_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                ApplyCurrentUserToHeader();
+            }
+            catch
+            {
+                // Intentionally ignore here to avoid crashing the page
+            }
+        }
+
+        private void ApplyCurrentUserToHeader()
+        {
+            if (!string.IsNullOrWhiteSpace(UserSession.CurrentUserName))
+            {
+                label15.Text = UserSession.CurrentUserName;
+            }
+
+            if (!string.IsNullOrWhiteSpace(UserSession.CurrentUserRole))
+            {
+                label14.Text = UserSession.CurrentUserRole;
+            }
         }
 
         private void label19_Click(object sender, EventArgs e)
@@ -787,6 +819,9 @@ namespace HRMS.UCForms
                 decimal tax = subtotal * 0.05m; // 5% tax
                 decimal total = subtotal + tax;
 
+                _lastSummaryTotalAmount = total;
+                _selectedReservationIdForSummary = GetReservationIdByBookingReference(bookingReference);
+
                 // Update panel4 labels
                 label6.Text = $"₱{totalRoomRatePerNight:F2}"; // Room Rate (per night) for all selected rooms
                 label7.Text = numberOfNights; // Number of Nights
@@ -802,6 +837,190 @@ namespace HRMS.UCForms
             catch (Exception ex)
             {
                 MessageBox.Show($"Error updating summary: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private int GetReservationIdByBookingReference(string bookingReference)
+        {
+            if (string.IsNullOrWhiteSpace(bookingReference))
+            {
+                return 0;
+            }
+
+            try
+            {
+                var reservation = _reservationService.GetAllReservations()
+                    .FirstOrDefault(r => string.Equals(r.BookingReferences, bookingReference, StringComparison.OrdinalIgnoreCase));
+                return reservation?.ReservationID ?? 0;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        private decimal GetTotalPaidForReservation(int reservationId)
+        {
+            if (reservationId <= 0)
+            {
+                return 0m;
+            }
+
+            using (var conn = DBHelper.GetConnection())
+            {
+                conn.Open();
+                string query = @"SELECT COALESCE(SUM(p.amount), 0)
+                                 FROM payment p
+                                 WHERE p.ReservationID = @ReservationID
+                                   AND (p.Payment_Status IS NULL OR p.Payment_Status <> 'Voided')";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ReservationID", reservationId);
+                    object result = cmd.ExecuteScalar();
+                    if (result == null || result == DBNull.Value)
+                    {
+                        return 0m;
+                    }
+                    return Convert.ToDecimal(result);
+                }
+            }
+        }
+
+        private decimal ParseCurrencyLabel(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return 0m;
+            }
+
+            string cleaned = value.Replace("₱", "").Replace(",", "").Trim();
+            if (decimal.TryParse(cleaned, out decimal amount))
+            {
+                return amount;
+            }
+            return 0m;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (_selectedReservationIdForSummary <= 0)
+            {
+                MessageBox.Show("Please select a reservation and open the summary first.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (comboBox1.SelectedItem == null || string.IsNullOrWhiteSpace(comboBox1.SelectedItem.ToString()) || comboBox1.Text == "Select Payment")
+            {
+                MessageBox.Show("Please select a payment method.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (UserSession.CurrentUserId <= 0)
+            {
+                MessageBox.Show("Please login first before processing payments.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                decimal totalDue = _lastSummaryTotalAmount;
+                if (totalDue <= 0m)
+                {
+                    totalDue = ParseCurrencyLabel(label22.Text);
+                }
+
+                decimal alreadyPaid = GetTotalPaidForReservation(_selectedReservationIdForSummary);
+                decimal balance = totalDue - alreadyPaid;
+                if (balance <= 0m)
+                {
+                    MessageBox.Show("This reservation is already fully paid.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                decimal amountToPay;
+                string paymentStatus;
+                if (radioButton9.Checked) // Full Payment
+                {
+                    amountToPay = balance;
+                    paymentStatus = "Paid";
+                }
+                else if (radioButton8.Checked) // 50% Payment
+                {
+                    amountToPay = Math.Round(balance * 0.5m, 2);
+                    paymentStatus = "Pending";
+                }
+                else if (radioButton7.Checked) // Custom Payment
+                {
+                    string customText = (textBox6.Text ?? "").Trim();
+                    if (string.IsNullOrWhiteSpace(customText) || customText.Equals("Enter Amount", StringComparison.OrdinalIgnoreCase))
+                    {
+                        MessageBox.Show("Please enter a custom payment amount.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    if (!decimal.TryParse(customText, out amountToPay))
+                    {
+                        MessageBox.Show("Invalid amount. Please enter a valid number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    paymentStatus = "Pending";
+                }
+                else
+                {
+                    MessageBox.Show("Please choose a payment option (Full / 50% / Custom).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                amountToPay = Math.Round(amountToPay, 2);
+                if (amountToPay <= 0m)
+                {
+                    MessageBox.Show("Payment amount must be greater than 0.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (amountToPay > balance)
+                {
+                    MessageBox.Show($"Payment amount cannot exceed the remaining balance.\n\nBalance: ₱{balance:F2}", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string method = comboBox1.SelectedItem.ToString();
+
+                using (var conn = DBHelper.GetConnection())
+                {
+                    conn.Open();
+                    string insert = @"INSERT INTO payment (amount, ReservationID, Payment_method, Payment_Status, UserID, Payment_Date)
+                                      VALUES (@amount, @ReservationID, @Payment_method, @Payment_Status, @UserID, @Payment_Date)";
+
+                    using (var cmd = new MySqlCommand(insert, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@amount", amountToPay);
+                        cmd.Parameters.AddWithValue("@ReservationID", _selectedReservationIdForSummary);
+                        cmd.Parameters.AddWithValue("@Payment_method", method);
+                        cmd.Parameters.AddWithValue("@Payment_Status", paymentStatus);
+                        cmd.Parameters.AddWithValue("@UserID", UserSession.CurrentUserId);
+                        cmd.Parameters.AddWithValue("@Payment_Date", DateTime.Now);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                decimal updatedPaid = GetTotalPaidForReservation(_selectedReservationIdForSummary);
+                decimal updatedBalance = totalDue - updatedPaid;
+
+                MessageBox.Show($"Payment recorded successfully!\n\nPaid Now: ₱{amountToPay:F2}\nTotal Paid: ₱{updatedPaid:F2}\nBalance: ₱{updatedBalance:F2}",
+                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Reset advance payment UI
+                radioButton7.Checked = false;
+                radioButton8.Checked = false;
+                radioButton9.Checked = false;
+                textBox6.Text = "Enter Amount";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error processing payment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

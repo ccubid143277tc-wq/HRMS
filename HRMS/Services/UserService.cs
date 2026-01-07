@@ -2,6 +2,8 @@
 using HRMS.Interfaces;
 using HRMS.Models;
 using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
 
 
 namespace HRMS.Services
@@ -287,6 +289,58 @@ namespace HRMS.Services
                 }
             }
             return users;
+        }
+
+        public User AuthenticateUser(string username, string password)
+        {
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                return null;
+            }
+
+            using (var conn = DBHelper.GetConnection())
+            {
+                conn.Open();
+                // Note: Password is compared directly to PasswordHash.
+                // If you later implement hashing, replace this comparison with a hash check.
+                string query = @"SELECT u.*, r.RoleName
+                                 FROM Users u
+                                 INNER JOIN Roles r ON u.RoleID = r.RoleID
+                                 WHERE u.Username = @Username
+                                   AND u.PasswordHash = @Password
+                                   AND (u.User_Status IS NULL OR u.User_Status <> 'Inactive')
+                                 LIMIT 1";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Username", username.Trim());
+                    cmd.Parameters.AddWithValue("@Password", password);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new User
+                            {
+                                UserID = Convert.ToInt32(reader["UserID"]),
+                                Username = reader["Username"].ToString(),
+                                PasswordHash = reader["PasswordHash"].ToString(),
+                                FirstName = reader["FirstName"].ToString(),
+                                LastName = reader["LastName"].ToString(),
+                                Email = reader["Email"].ToString(),
+                                Phone = reader["Phone"].ToString(),
+                                RoleID = Convert.ToInt32(reader["RoleID"]),
+                                RoleName = reader["RoleName"].ToString(),
+                                UserStatus = reader["User_Status"].ToString(),
+                                CreatedAt = Convert.ToDateTime(reader["CreatedAt"]),
+                                UpdatedAt = Convert.ToDateTime(reader["UpdatedAt"])
+                            };
+                        }
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }

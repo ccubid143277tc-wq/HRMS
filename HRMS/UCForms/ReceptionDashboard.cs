@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using HRMS.Services;
 using HRMS.Interfaces;
+using HRMS.Helper;
 
 namespace HRMS.UCForms
 {
@@ -30,6 +31,7 @@ namespace HRMS.UCForms
         {
             try
             {
+                ApplyCurrentUserToHeader();
                 LoadOccupancyRate();
                 LoadAvailabilityMetrics();
                 LoadRoomStatusPieChart();
@@ -40,6 +42,19 @@ namespace HRMS.UCForms
             catch
             {
                 // Intentionally ignore here to avoid crashing the dashboard
+            }
+        }
+
+        private void ApplyCurrentUserToHeader()
+        {
+            if (!string.IsNullOrWhiteSpace(UserSession.CurrentUserName))
+            {
+                label15.Text = UserSession.CurrentUserName;
+            }
+
+            if (!string.IsNullOrWhiteSpace(UserSession.CurrentUserRole))
+            {
+                label14.Text = UserSession.CurrentUserRole;
             }
         }
 
