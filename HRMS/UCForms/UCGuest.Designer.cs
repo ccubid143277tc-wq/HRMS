@@ -41,19 +41,22 @@
             label19 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
             panel4 = new Panel();
+            label8 = new Label();
             panel12 = new Panel();
             label4 = new Label();
             panel3 = new Panel();
+            label7 = new Label();
             panel11 = new Panel();
             label3 = new Label();
             panel2 = new Panel();
+            label6 = new Label();
             panel10 = new Panel();
             label2 = new Label();
             panel1 = new Panel();
+            label5 = new Label();
             panel9 = new Panel();
             label1 = new Label();
             panel5 = new Panel();
-            button6 = new Button();
             button5 = new Button();
             button4 = new Button();
             textBox1 = new TextBox();
@@ -206,11 +209,22 @@
             // panel4
             // 
             panel4.BorderStyle = BorderStyle.FixedSingle;
+            panel4.Controls.Add(label8);
             panel4.Controls.Add(panel12);
-            panel4.Location = new Point(1226, 154);
+            panel4.Location = new Point(1226, 139);
             panel4.Name = "panel4";
             panel4.Size = new Size(353, 144);
             panel4.TabIndex = 15;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(170, 90);
+            label8.Name = "label8";
+            label8.Size = new Size(24, 28);
+            label8.TabIndex = 2;
+            label8.Text = "0";
             // 
             // panel12
             // 
@@ -229,18 +243,29 @@
             label4.ForeColor = Color.White;
             label4.Location = new Point(16, 14);
             label4.Name = "label4";
-            label4.Size = new Size(197, 50);
+            label4.Size = new Size(106, 25);
             label4.TabIndex = 1;
-            label4.Text = "Currently Checked - In\r\n\r\n";
+            label4.Text = "Departures";
             // 
             // panel3
             // 
             panel3.BorderStyle = BorderStyle.FixedSingle;
+            panel3.Controls.Add(label7);
             panel3.Controls.Add(panel11);
-            panel3.Location = new Point(808, 154);
+            panel3.Location = new Point(808, 139);
             panel3.Name = "panel3";
             panel3.Size = new Size(421, 144);
             panel3.TabIndex = 17;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Location = new Point(206, 90);
+            label7.Name = "label7";
+            label7.Size = new Size(24, 28);
+            label7.TabIndex = 2;
+            label7.Text = "0";
             // 
             // panel11
             // 
@@ -259,18 +284,29 @@
             label3.ForeColor = Color.White;
             label3.Location = new Point(22, 14);
             label3.Name = "label3";
-            label3.Size = new Size(149, 25);
+            label3.Size = new Size(71, 25);
             label3.TabIndex = 1;
-            label3.Text = "Today's Revenue";
+            label3.Text = "Arrival ";
             // 
             // panel2
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(label6);
             panel2.Controls.Add(panel10);
-            panel2.Location = new Point(421, 154);
+            panel2.Location = new Point(421, 139);
             panel2.Name = "panel2";
             panel2.Size = new Size(388, 144);
             panel2.TabIndex = 16;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(176, 90);
+            label6.Name = "label6";
+            label6.Size = new Size(24, 28);
+            label6.TabIndex = 2;
+            label6.Text = "0";
             // 
             // panel10
             // 
@@ -297,11 +333,22 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(label5);
             panel1.Controls.Add(panel9);
-            panel1.Location = new Point(68, 154);
+            panel1.Location = new Point(68, 139);
             panel1.Name = "panel1";
             panel1.Size = new Size(355, 144);
             panel1.TabIndex = 14;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(143, 90);
+            label5.Name = "label5";
+            label5.Size = new Size(24, 28);
+            label5.TabIndex = 1;
+            label5.Text = "0";
             // 
             // panel9
             // 
@@ -326,7 +373,6 @@
             // 
             // panel5
             // 
-            panel5.Controls.Add(button6);
             panel5.Controls.Add(button5);
             panel5.Controls.Add(button4);
             panel5.Controls.Add(textBox1);
@@ -334,18 +380,6 @@
             panel5.Name = "panel5";
             panel5.Size = new Size(1592, 78);
             panel5.TabIndex = 18;
-            // 
-            // button6
-            // 
-            button6.BackColor = Color.FromArgb(42, 93, 159);
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.ForeColor = Color.White;
-            button6.Location = new Point(1279, 27);
-            button6.Name = "button6";
-            button6.Size = new Size(94, 34);
-            button6.TabIndex = 7;
-            button6.Text = "Add";
-            button6.UseVisualStyleBackColor = false;
             // 
             // button5
             // 
@@ -358,6 +392,7 @@
             button5.TabIndex = 6;
             button5.Text = "Edit";
             button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // button4
             // 
@@ -370,6 +405,7 @@
             button4.TabIndex = 5;
             button4.Text = "Delete";
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // textBox1
             // 
@@ -380,6 +416,7 @@
             textBox1.Size = new Size(645, 41);
             textBox1.TabIndex = 0;
             textBox1.Text = "Search ";
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // dataGridView1
             // 
@@ -502,6 +539,7 @@
             button2.TabIndex = 34;
             button2.Text = "Save";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click_1;
             // 
             // button3
             // 
@@ -511,14 +549,15 @@
             button3.TabIndex = 33;
             button3.Text = "Clear";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click_1;
             // 
             // comboBox7
             // 
             comboBox7.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox7.FormattingEnabled = true;
-            comboBox7.Location = new Point(420, 206);
+            comboBox7.Location = new Point(419, 206);
             comboBox7.Name = "comboBox7";
-            comboBox7.Size = new Size(357, 31);
+            comboBox7.Size = new Size(358, 31);
             comboBox7.TabIndex = 31;
             // 
             // label48
@@ -704,15 +743,19 @@
             panel26.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             panel12.ResumeLayout(false);
             panel12.PerformLayout();
             panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             panel11.ResumeLayout(false);
             panel11.PerformLayout();
             panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             panel10.ResumeLayout(false);
             panel10.PerformLayout();
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
             panel5.ResumeLayout(false);
@@ -781,8 +824,11 @@
         private Label label38;
         private TextBox textBox5;
         private Label label40;
-        private Button button6;
         private Button button5;
         private Button button4;
+        private Label label8;
+        private Label label7;
+        private Label label6;
+        private Label label5;
     }
 }

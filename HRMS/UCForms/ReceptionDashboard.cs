@@ -8,18 +8,21 @@ using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using HRMS.Services;
+using HRMS.Interfaces;
 
 namespace HRMS.UCForms
 {
     public partial class ReceptionDashboard : UserControl
     {
         private readonly RoomService _roomService;
+        private readonly IReservationService _reservationService;
 
         public ReceptionDashboard()
         {
             InitializeComponent();
 
             _roomService = new RoomService();
+            _reservationService = new ReservationService(new RoomService(), new GuestService(), new RoomTypeService());
             Load += ReceptionDashboard_Load;
         }
 
@@ -31,11 +34,50 @@ namespace HRMS.UCForms
                 LoadAvailabilityMetrics();
                 LoadRoomStatusPieChart();
                 LoadWeeklyOccupancyTrendChart();
+                LoadExpectedArrivalsTodayGrid();
+                LoadExpectedDeparturesTodayGrid();
             }
             catch
             {
                 // Intentionally ignore here to avoid crashing the dashboard
             }
+        }
+
+        private void LoadExpectedArrivalsTodayGrid()
+        {
+            var table = _reservationService.GetExpectedArrivalsGridData(DateTime.Today);
+
+            dataGridView1.AutoGenerateColumns = false;
+
+            colReservationID.DataPropertyName = "ReservationID";
+            colGuestName.DataPropertyName = "GuestName";
+            colRoomNumber.DataPropertyName = "RoomNumbers";
+            colRoomType.DataPropertyName = "RoomType";
+            colCheckInDate.DataPropertyName = "Check_InDate";
+            ColCheckOutDate.DataPropertyName = "Check_OutDate";
+            colOccupants.DataPropertyName = "Occupants";
+            ColReservationStatus.DataPropertyName = "ReservationStatus";
+
+            dataGridView1.DataSource = table;
+        }
+
+        private void LoadExpectedDeparturesTodayGrid()
+        {
+            var table = _reservationService.GetExpectedDeparturesGridData(DateTime.Today);
+
+            dataGridView2.AutoGenerateColumns = false;
+            dataGridView2.Columns.Clear();
+
+            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Reservation ID", DataPropertyName = "ReservationID", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
+            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Guest", DataPropertyName = "GuestName", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
+            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Room(s)", DataPropertyName = "RoomNumbers", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
+            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Room Type", DataPropertyName = "RoomType", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
+            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Check-In", DataPropertyName = "Check_InDate", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
+            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Check-Out", DataPropertyName = "Check_OutDate", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
+            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Occupants", DataPropertyName = "Occupants", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
+            dataGridView2.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Status", DataPropertyName = "ReservationStatus", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
+
+            dataGridView2.DataSource = table;
         }
 
         private void LoadOccupancyRate()

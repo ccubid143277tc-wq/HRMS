@@ -10,6 +10,8 @@ namespace HRMS.Interfaces
         int AddGuest(Guest guest);
         void UpdateGuest(Guest guest);
         void DeleteGuest(int guestId);
+
+        bool HasReservationsForGuest(int guestId);
         
         IEnumerable<Guest> SearchGuest(string keyword);
         Guest GetGuestById(int guestId);

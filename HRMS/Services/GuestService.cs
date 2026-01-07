@@ -82,6 +82,22 @@ namespace HRMS.Services
             }
         }
 
+        public bool HasReservationsForGuest(int guestId)
+        {
+            using (var conn = DBHelper.GetConnection())
+            {
+                conn.Open();
+
+                string query = "SELECT COUNT(*) FROM reservations WHERE GuestID = @GuestID";
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@GuestID", guestId);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+
         public IEnumerable<Guest> SearchGuest(string keyword)
         {
             var guests = new List<Guest>();

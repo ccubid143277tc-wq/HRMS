@@ -36,6 +36,8 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             label20 = new Label();
             panel9 = new Panel();
@@ -92,11 +94,27 @@
             label11 = new Label();
             panel22 = new Panel();
             dataGridView1 = new DataGridView();
+            colReservationID = new DataGridViewTextBoxColumn();
+            colGuestName = new DataGridViewTextBoxColumn();
+            colRoomNumber = new DataGridViewTextBoxColumn();
+            colRoomType = new DataGridViewTextBoxColumn();
+            colCheckInDate = new DataGridViewTextBoxColumn();
+            ColCheckOutDate = new DataGridViewTextBoxColumn();
+            colOccupants = new DataGridViewTextBoxColumn();
+            ColReservationStatus = new DataGridViewTextBoxColumn();
             panel23 = new Panel();
             pictureBox13 = new PictureBox();
             label12 = new Label();
             panel24 = new Panel();
             dataGridView2 = new DataGridView();
+            columnID = new DataGridViewTextBoxColumn();
+            ColumnGuestName = new DataGridViewTextBoxColumn();
+            ColumnRoomNumber = new DataGridViewTextBoxColumn();
+            ColumnRoomType = new DataGridViewTextBoxColumn();
+            ColumnCheckIn = new DataGridViewTextBoxColumn();
+            ColumnCheckOut = new DataGridViewTextBoxColumn();
+            ColumnOccupants = new DataGridViewTextBoxColumn();
+            ColumnReservationStatus = new DataGridViewTextBoxColumn();
             panel25 = new Panel();
             pictureBox14 = new PictureBox();
             pictureBox15 = new PictureBox();
@@ -747,13 +765,80 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.BackgroundColor = SystemColors.Control;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(42, 93, 159);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { colReservationID, colGuestName, colRoomNumber, colRoomType, colCheckInDate, ColCheckOutDate, colOccupants, ColReservationStatus });
             dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.Location = new Point(0, 53);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(825, 331);
             dataGridView1.TabIndex = 5;
+            // 
+            // colReservationID
+            // 
+            colReservationID.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colReservationID.HeaderText = "Reservation ID";
+            colReservationID.MinimumWidth = 6;
+            colReservationID.Name = "colReservationID";
+            // 
+            // colGuestName
+            // 
+            colGuestName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colGuestName.HeaderText = "Guest Name";
+            colGuestName.MinimumWidth = 6;
+            colGuestName.Name = "colGuestName";
+            // 
+            // colRoomNumber
+            // 
+            colRoomNumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colRoomNumber.HeaderText = "Room Number";
+            colRoomNumber.MinimumWidth = 6;
+            colRoomNumber.Name = "colRoomNumber";
+            // 
+            // colRoomType
+            // 
+            colRoomType.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colRoomType.HeaderText = "Room Type";
+            colRoomType.MinimumWidth = 6;
+            colRoomType.Name = "colRoomType";
+            // 
+            // colCheckInDate
+            // 
+            colCheckInDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colCheckInDate.HeaderText = "Check-In Date";
+            colCheckInDate.MinimumWidth = 6;
+            colCheckInDate.Name = "colCheckInDate";
+            // 
+            // ColCheckOutDate
+            // 
+            ColCheckOutDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColCheckOutDate.HeaderText = "Check-Out Date";
+            ColCheckOutDate.MinimumWidth = 6;
+            ColCheckOutDate.Name = "ColCheckOutDate";
+            // 
+            // colOccupants
+            // 
+            colOccupants.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colOccupants.HeaderText = "Occupants";
+            colOccupants.MinimumWidth = 6;
+            colOccupants.Name = "colOccupants";
+            // 
+            // ColReservationStatus
+            // 
+            ColReservationStatus.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColReservationStatus.HeaderText = "Reservation Status";
+            ColReservationStatus.MinimumWidth = 6;
+            ColReservationStatus.Name = "ColReservationStatus";
             // 
             // panel23
             // 
@@ -798,13 +883,80 @@
             // 
             // dataGridView2
             // 
+            dataGridView2.BackgroundColor = SystemColors.Control;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(42, 93, 159);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { columnID, ColumnGuestName, ColumnRoomNumber, ColumnRoomType, ColumnCheckIn, ColumnCheckOut, ColumnOccupants, ColumnReservationStatus });
             dataGridView2.Dock = DockStyle.Fill;
+            dataGridView2.EnableHeadersVisualStyles = false;
             dataGridView2.Location = new Point(0, 53);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
             dataGridView2.Size = new Size(648, 331);
             dataGridView2.TabIndex = 5;
+            // 
+            // columnID
+            // 
+            columnID.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columnID.HeaderText = "Reservation ID";
+            columnID.MinimumWidth = 6;
+            columnID.Name = "columnID";
+            // 
+            // ColumnGuestName
+            // 
+            ColumnGuestName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColumnGuestName.HeaderText = "Guest Name";
+            ColumnGuestName.MinimumWidth = 6;
+            ColumnGuestName.Name = "ColumnGuestName";
+            // 
+            // ColumnRoomNumber
+            // 
+            ColumnRoomNumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColumnRoomNumber.HeaderText = "Room Number";
+            ColumnRoomNumber.MinimumWidth = 6;
+            ColumnRoomNumber.Name = "ColumnRoomNumber";
+            // 
+            // ColumnRoomType
+            // 
+            ColumnRoomType.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColumnRoomType.HeaderText = "Room Type";
+            ColumnRoomType.MinimumWidth = 6;
+            ColumnRoomType.Name = "ColumnRoomType";
+            // 
+            // ColumnCheckIn
+            // 
+            ColumnCheckIn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColumnCheckIn.HeaderText = "Check-In Date";
+            ColumnCheckIn.MinimumWidth = 6;
+            ColumnCheckIn.Name = "ColumnCheckIn";
+            // 
+            // ColumnCheckOut
+            // 
+            ColumnCheckOut.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColumnCheckOut.HeaderText = "Check-Out Date";
+            ColumnCheckOut.MinimumWidth = 6;
+            ColumnCheckOut.Name = "ColumnCheckOut";
+            // 
+            // ColumnOccupants
+            // 
+            ColumnOccupants.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColumnOccupants.HeaderText = "Occupants";
+            ColumnOccupants.MinimumWidth = 6;
+            ColumnOccupants.Name = "ColumnOccupants";
+            // 
+            // ColumnReservationStatus
+            // 
+            ColumnReservationStatus.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColumnReservationStatus.HeaderText = "Reservation Status";
+            ColumnReservationStatus.MinimumWidth = 6;
+            ColumnReservationStatus.Name = "ColumnReservationStatus";
             // 
             // panel25
             // 
@@ -1114,5 +1266,21 @@
         private Label label25;
         private Label label26;
         private Label label24;
+        private DataGridViewTextBoxColumn colReservationID;
+        private DataGridViewTextBoxColumn colGuestName;
+        private DataGridViewTextBoxColumn colRoomNumber;
+        private DataGridViewTextBoxColumn colRoomType;
+        private DataGridViewTextBoxColumn colCheckInDate;
+        private DataGridViewTextBoxColumn ColCheckOutDate;
+        private DataGridViewTextBoxColumn colOccupants;
+        private DataGridViewTextBoxColumn ColReservationStatus;
+        private DataGridViewTextBoxColumn columnID;
+        private DataGridViewTextBoxColumn ColumnGuestName;
+        private DataGridViewTextBoxColumn ColumnRoomNumber;
+        private DataGridViewTextBoxColumn ColumnRoomType;
+        private DataGridViewTextBoxColumn ColumnCheckIn;
+        private DataGridViewTextBoxColumn ColumnCheckOut;
+        private DataGridViewTextBoxColumn ColumnOccupants;
+        private DataGridViewTextBoxColumn ColumnReservationStatus;
     }
 }

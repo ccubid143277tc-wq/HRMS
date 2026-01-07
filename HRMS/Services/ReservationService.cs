@@ -4,6 +4,7 @@ using HRMS.Models;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
 
 namespace HRMS.Services
 {
@@ -47,6 +48,46 @@ namespace HRMS.Services
                     cmd.Parameters.AddWithValue("@BookingReferences", reservation.BookingReferences ?? "");
                     int newReservationId = Convert.ToInt32(cmd.ExecuteScalar());
                     return newReservationId;
+                }
+            }
+        }
+
+        public DataTable GetExpectedDeparturesGridData(DateTime date)
+        {
+            using (var conn = DBHelper.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"SELECT
+                                    r.ReservationID,
+                                    r.BookingReferences,
+                                    CONCAT(g.FirstName, ' ', g.LastName) AS GuestName,
+                                    GROUP_CONCAT(DISTINCT rm.RoomNumber ORDER BY rm.RoomNumber SEPARATOR ', ') AS RoomNumbers,
+                                    rt.RoomType AS RoomType,
+                                    r.Check_InDate,
+                                    r.Check_OutDate,
+                                    r.NumAdult,
+                                    r.NumChildren,
+                                    (COALESCE(r.NumAdult, 0) + COALESCE(r.NumChildren, 0)) AS Occupants,
+                                    r.ReservationStatus
+                                 FROM reservations r
+                                 LEFT JOIN Guest g ON r.GuestID = g.GuestID
+                                 LEFT JOIN ReservationRooms rr ON r.ReservationID = rr.ReservationID
+                                 LEFT JOIN Rooms rm ON rm.RoomID = COALESCE(rr.RoomID, r.RoomID)
+                                 LEFT JOIN RoomType rt ON rm.RoomTypeID = rt.RoomTypeID
+                                 WHERE r.ReservationStatus NOT IN ('Cancelled', 'Checked-Out')
+                                   AND DATE(r.Check_OutDate) = @Date
+                                 GROUP BY r.ReservationID, r.BookingReferences, g.FirstName, g.LastName, rt.RoomType,
+                                          r.Check_InDate, r.Check_OutDate, r.NumAdult, r.NumChildren, r.ReservationStatus
+                                 ORDER BY r.Check_OutDate, GuestName";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                using (var adapter = new MySqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue("@Date", date.Date);
+                    var table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
                 }
             }
         }
@@ -248,6 +289,46 @@ namespace HRMS.Services
             }
 
             return reservations;
+        }
+
+        public DataTable GetExpectedArrivalsGridData(DateTime date)
+        {
+            using (var conn = DBHelper.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"SELECT
+                                    r.ReservationID,
+                                    r.BookingReferences,
+                                    CONCAT(g.FirstName, ' ', g.LastName) AS GuestName,
+                                    GROUP_CONCAT(DISTINCT rm.RoomNumber ORDER BY rm.RoomNumber SEPARATOR ', ') AS RoomNumbers,
+                                    rt.RoomType AS RoomType,
+                                    r.Check_InDate,
+                                    r.Check_OutDate,
+                                    r.NumAdult,
+                                    r.NumChildren,
+                                    (COALESCE(r.NumAdult, 0) + COALESCE(r.NumChildren, 0)) AS Occupants,
+                                    r.ReservationStatus
+                                 FROM reservations r
+                                 LEFT JOIN Guest g ON r.GuestID = g.GuestID
+                                 LEFT JOIN ReservationRooms rr ON r.ReservationID = rr.ReservationID
+                                 LEFT JOIN Rooms rm ON rm.RoomID = COALESCE(rr.RoomID, r.RoomID)
+                                 LEFT JOIN RoomType rt ON rm.RoomTypeID = rt.RoomTypeID
+                                 WHERE r.ReservationStatus NOT IN ('Cancelled', 'Checked-Out')
+                                   AND DATE(r.Check_InDate) = @Date
+                                 GROUP BY r.ReservationID, r.BookingReferences, g.FirstName, g.LastName, rt.RoomType,
+                                          r.Check_InDate, r.Check_OutDate, r.NumAdult, r.NumChildren, r.ReservationStatus
+                                 ORDER BY r.Check_InDate, GuestName";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                using (var adapter = new MySqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue("@Date", date.Date);
+                    var table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
+                }
+            }
         }
 
         // Get reservation by ID with guest and room details

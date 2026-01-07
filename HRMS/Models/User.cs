@@ -21,10 +21,7 @@ namespace HRMS.Models
         public DateTime UpdatedAt { get; set; }
 
         // Common behavior
-        public virtual void DisplayInfo()
-        {
-            Console.WriteLine($"{FirstName} {LastName} ({Username}) - {UserStatus}");
-         }
+     
 
     }
 }

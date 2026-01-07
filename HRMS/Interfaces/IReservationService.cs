@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using HRMS.Models;
 
@@ -16,6 +17,8 @@ namespace HRMS.Interfaces
         Reservation GetReservationById(int reservationId);
         IEnumerable<Reservation> GetAllReservations();
         IEnumerable<Reservation> GetReservationGridData();
+        DataTable GetExpectedArrivalsGridData(DateTime date);
+        DataTable GetExpectedDeparturesGridData(DateTime date);
         Dictionary<string, int> GetReservationStatusCounts();
         bool CheckRoomAvailability(int roomId, DateTime checkIn, DateTime checkOut);
         decimal CalculateReservationAmount(int roomId, DateTime checkIn, DateTime checkOut, int numAdults, int numChildren);

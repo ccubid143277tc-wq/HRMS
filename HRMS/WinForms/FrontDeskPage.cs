@@ -47,7 +47,13 @@ namespace HRMS.WinForms
         private void button3_Click(object sender, EventArgs e)
         {
             UCGuest ucg = new UCGuest();
-            UserControl(ucg);   
+            UserControl(ucg);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Payment p = new Payment();
+            UserControl(p);
         }
     }
 }

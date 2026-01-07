@@ -36,10 +36,10 @@
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
-            panel3 = new Panel();
             label1 = new Label();
             label2 = new Label();
             panel1 = new Panel();
+            panel3 = new Panel();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -157,21 +157,12 @@
             button1.TextAlign = ContentAlignment.MiddleRight;
             button1.UseVisualStyleBackColor = true;
             // 
-            // panel3
-            // 
-            panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(0, 164);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(1924, 891);
-            panel3.TabIndex = 4;
-            panel3.Paint += panel3_Paint;
-            // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(12, 19);
+            label1.Location = new Point(24, 9);
             label1.Name = "label1";
             label1.Size = new Size(626, 46);
             label1.TabIndex = 0;
@@ -199,6 +190,14 @@
             panel1.Size = new Size(1924, 106);
             panel1.TabIndex = 2;
             // 
+            // panel3
+            // 
+            panel3.Dock = DockStyle.Fill;
+            panel3.Location = new Point(0, 164);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1924, 891);
+            panel3.TabIndex = 4;
+            // 
             // AdminPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -224,9 +223,9 @@
         private Button button3;
         private Button button2;
         private Button button1;
-        private Panel panel3;
         private Label label1;
         private Label label2;
         private Panel panel1;
+        private Panel panel3;
     }
 }
