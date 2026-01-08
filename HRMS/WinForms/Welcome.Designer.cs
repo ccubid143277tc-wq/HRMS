@@ -41,11 +41,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(42, 93, 159);
             label1.Location = new Point(109, 281);
             label1.Name = "label1";
-            label1.Size = new Size(718, 54);
+            label1.Size = new Size(771, 54);
             label1.TabIndex = 0;
             label1.Text = "Hotel Reservation Management System";
             // 

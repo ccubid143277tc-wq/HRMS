@@ -55,5 +55,10 @@ namespace HRMS.WinForms
             Payment p = new Payment();
             UserControl(p);
         }
+
+        private void receptionDashboard1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

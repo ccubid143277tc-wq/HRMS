@@ -148,6 +148,8 @@
             button1.TabIndex = 7;
             button1.Text = "Login";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click_1;
+            button1.Enter += button1_Click_1;
             // 
             // chckRememberMe
             // 
@@ -165,6 +167,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(698, 614);
             Controls.Add(chckRememberMe);
             Controls.Add(button1);

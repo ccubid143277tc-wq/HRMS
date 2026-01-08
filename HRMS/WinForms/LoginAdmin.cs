@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using HRMS.Helper;
 using HRMS.Services;
@@ -17,30 +12,12 @@ namespace HRMS.WinForms
             InitializeComponent();
 
             txtPassword.UseSystemPasswordChar = true;
-            button1.Click += button1_Click;
-            chckShowPassword.CheckedChanged += chckShowPassword_CheckedChanged;
-            txtPassword.KeyDown += TxtPassword_KeyDown;
         }
-
-        private void TxtPassword_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                button1_Click(sender, EventArgs.Empty);
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-            }
-        }
-
-        private void chckShowPassword_CheckedChanged(object sender, EventArgs e)
-        {
-            txtPassword.UseSystemPasswordChar = !chckShowPassword.Checked;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
             string username = txtUsername.Text?.Trim() ?? "";
             string password = txtPassword.Text ?? "";
+            // Validate that both username and password are provided before attempting login.
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
@@ -57,12 +34,10 @@ namespace HRMS.WinForms
                     MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
-                UserSession.CurrentUserId = user.UserID;
+                // stores user information in Usersession  
+                    UserSession.CurrentUserId = user.UserID;
                 UserSession.CurrentUserName = user.Username;
                 UserSession.CurrentUserRole = string.IsNullOrWhiteSpace(user.RoleName) ? "Admin" : user.RoleName;
-
-                // Prefer AdminPage if present; fallback to FrontDeskPage
                 Form next;
                 try
                 {

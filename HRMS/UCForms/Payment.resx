@@ -229,6 +229,17 @@
   <metadata name="ColReferenceNo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="button9.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABGdBTUEAALGPC/xhBQAAATdJREFUSEvl
+        loFNw0AMRTtCR2AENqAbwAZlA9gARugGZQQ2aDeADegGsMFDX7KR9S9tLlGpkHhSpCjfvn/n3DlZLP4K
+        wBK4AR6AddwvPW42wArYcZwtcOV5kwA2Nug7sI/rYNq953cBvJRBdN/MWs+A1xL36DEnUUJJvnPdsfiV
+        64PES/+MpO4Zlgq8uTaIah0JB9dOERP8itxr1xtKzbtXk5RVPbvWEDtK9NW6IIPI3bvWEIFzjXTmuo0u
+        tqKs88a1MSa937LrPqb0sji8SXO4ByntZevaMUrJx8uWqBuU2T25Xonzo8aa9K0mKSUU6t63pstAnwuV
+        uNJdhR/CLE97ooGzRSUeM8tMM9e29c+C0DM1VMXUbi+mmyUxoA6lrmZHntVsjH9jpl+AptRnI8x+1yS5
+        iMkQ3yYTo1ZAcfc1AAAAAElFTkSuQmCC
+</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>76</value>
   </metadata>

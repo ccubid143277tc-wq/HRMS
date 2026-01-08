@@ -203,6 +203,7 @@
             receptionDashboard1.Name = "receptionDashboard1";
             receptionDashboard1.Size = new Size(1645, 1055);
             receptionDashboard1.TabIndex = 0;
+            receptionDashboard1.Load += receptionDashboard1_Load;
             // 
             // FrontDeskPage
             // 
