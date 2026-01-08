@@ -54,7 +54,6 @@
             label36 = new Label();
             comboBox1 = new ComboBox();
             label24 = new Label();
-            label22 = new Label();
             label11 = new Label();
             panel6 = new Panel();
             label21 = new Label();
@@ -149,6 +148,7 @@
             button7 = new Button();
             button3 = new Button();
             textBox1 = new TextBox();
+            label22 = new Label();
             panel26.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             panel2.SuspendLayout();
@@ -417,16 +417,6 @@
             label24.Size = new Size(144, 23);
             label24.TabIndex = 9;
             label24.Text = "Payment Method";
-            // 
-            // label22
-            // 
-            label22.AutoSize = true;
-            label22.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label22.Location = new Point(481, 412);
-            label22.Name = "label22";
-            label22.Size = new Size(72, 28);
-            label22.TabIndex = 6;
-            label22.Text = "₱ 0.00";
             // 
             // label11
             // 
@@ -1397,6 +1387,16 @@
             textBox1.Size = new Size(329, 34);
             textBox1.TabIndex = 0;
             // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label22.Location = new Point(481, 412);
+            label22.Name = "label22";
+            label22.Size = new Size(72, 28);
+            label22.TabIndex = 6;
+            label22.Text = "₱ 0.00";
+            // 
             // UCreservation
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1472,7 +1472,6 @@
         private Label label7;
         private ComboBox comboBox1;
         private Label label24;
-        private Label label22;
         private Label label11;
         private Panel panel6;
         private Label label21;
@@ -1567,5 +1566,6 @@
         private Label label50;
         private Label label51;
         private Label label25;
+        private Label label22;
     }
 }

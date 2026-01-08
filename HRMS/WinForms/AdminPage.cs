@@ -19,7 +19,7 @@ namespace HRMS.WinForms
         {
             uc.Dock = DockStyle.Fill;
             this.panel3.Controls.Clear();
-            this.panel3.Controls.Add(uc); 
+            this.panel3.Controls.Add(uc);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -42,6 +42,12 @@ namespace HRMS.WinForms
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AdminDashboard Ad = new AdminDashboard();
+            UserControl(Ad);
         }
     }
 }

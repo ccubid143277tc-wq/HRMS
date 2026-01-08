@@ -35,16 +35,19 @@
             button2 = new Button();
             button1 = new Button();
             panel1 = new Panel();
-            panel3 = new Panel();
+            panel2 = new Panel();
+            button6 = new Button();
             panel4 = new Panel();
             label1 = new Label();
             pictureBox1 = new PictureBox();
-            panel2 = new Panel();
-            button6 = new Button();
+            panel3 = new Panel();
+            adminDashboard1 = new HRMS.UCForms.AdminDashboard();
+            button7 = new Button();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // button5
@@ -133,10 +136,12 @@
             button1.Text = "Dashboard";
             button1.TextAlign = ContentAlignment.MiddleRight;
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ControlLightLight;
+            panel1.Controls.Add(button7);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(panel4);
             panel1.Controls.Add(button5);
@@ -150,13 +155,30 @@
             panel1.Size = new Size(250, 1055);
             panel1.TabIndex = 4;
             // 
-            // panel3
+            // panel2
             // 
-            panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(250, 0);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(1674, 1055);
-            panel3.TabIndex = 5;
+            panel2.BackColor = SystemColors.Window;
+            panel2.Controls.Add(button6);
+            panel2.Dock = DockStyle.Bottom;
+            panel2.Location = new Point(0, 948);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(250, 107);
+            panel2.TabIndex = 6;
+            // 
+            // button6
+            // 
+            button6.FlatAppearance.BorderSize = 0;
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button6.Image = (Image)resources.GetObject("button6.Image");
+            button6.ImageAlign = ContentAlignment.MiddleLeft;
+            button6.Location = new Point(20, 20);
+            button6.Name = "button6";
+            button6.Padding = new Padding(10, 0, 0, 0);
+            button6.Size = new Size(234, 64);
+            button6.TabIndex = 6;
+            button6.Text = "Settings";
+            button6.UseVisualStyleBackColor = true;
             // 
             // panel4
             // 
@@ -190,30 +212,40 @@
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
-            // panel2
+            // panel3
             // 
-            panel2.BackColor = SystemColors.Window;
-            panel2.Controls.Add(button6);
-            panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 948);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(250, 107);
-            panel2.TabIndex = 6;
+            panel3.Controls.Add(adminDashboard1);
+            panel3.Dock = DockStyle.Fill;
+            panel3.Location = new Point(250, 0);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1674, 1055);
+            panel3.TabIndex = 5;
             // 
-            // button6
+            // adminDashboard1
             // 
-            button6.FlatAppearance.BorderSize = 0;
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button6.Image = (Image)resources.GetObject("button6.Image");
-            button6.ImageAlign = ContentAlignment.MiddleLeft;
-            button6.Location = new Point(20, 20);
-            button6.Name = "button6";
-            button6.Padding = new Padding(10, 0, 0, 0);
-            button6.Size = new Size(234, 64);
-            button6.TabIndex = 6;
-            button6.Text = "Settings";
-            button6.UseVisualStyleBackColor = true;
+            adminDashboard1.AutoScroll = true;
+            adminDashboard1.Dock = DockStyle.Fill;
+            adminDashboard1.Location = new Point(0, 0);
+            adminDashboard1.Name = "adminDashboard1";
+            adminDashboard1.Size = new Size(1674, 1055);
+            adminDashboard1.TabIndex = 0;
+            // 
+            // button7
+            // 
+            button7.FlatAppearance.BorderSize = 0;
+            button7.FlatStyle = FlatStyle.Flat;
+            button7.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button7.ForeColor = Color.Black;
+            button7.Image = (Image)resources.GetObject("button7.Image");
+            button7.ImageAlign = ContentAlignment.MiddleLeft;
+            button7.Location = new Point(10, 529);
+            button7.Name = "button7";
+            button7.Padding = new Padding(20, 0, 65, 0);
+            button7.Size = new Size(234, 64);
+            button7.TabIndex = 7;
+            button7.Text = "Reports";
+            button7.TextAlign = ContentAlignment.MiddleRight;
+            button7.UseVisualStyleBackColor = true;
             // 
             // AdminPage
             // 
@@ -226,10 +258,11 @@
             Text = "AdminPage";
             Load += AdminPage_Load;
             panel1.ResumeLayout(false);
+            panel2.ResumeLayout(false);
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel2.ResumeLayout(false);
+            panel3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -246,5 +279,7 @@
         private PictureBox pictureBox1;
         private Panel panel2;
         private Button button6;
+        private UCForms.AdminDashboard adminDashboard1;
+        private Button button7;
     }
 }
