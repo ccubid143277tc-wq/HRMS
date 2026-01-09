@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using HRMS.Helper;
+using HRMS.WinForms;
 using MySql.Data.MySqlClient;
 
 namespace HRMS.UCForms
@@ -701,6 +702,12 @@ namespace HRMS.UCForms
         private void panel10_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            PrintReceipt pr = new PrintReceipt();
+            pr.ShowDialog();
         }
     }
 }

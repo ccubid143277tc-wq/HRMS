@@ -191,7 +191,7 @@
             label15.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label15.Location = new Point(1415, 40);
             label15.Name = "label15";
-            label15.Size = new Size(131, 28);
+            label15.Size = new Size(105, 21);
             label15.TabIndex = 11;
             label15.Text = "Carl Christian";
             // 
@@ -212,7 +212,7 @@
             label16.ForeColor = SystemColors.ControlDarkDark;
             label16.Location = new Point(132, 66);
             label16.Name = "label16";
-            label16.Size = new Size(76, 23);
+            label16.Size = new Size(63, 19);
             label16.TabIndex = 8;
             label16.Text = "Payment";
             // 
@@ -223,7 +223,7 @@
             label17.ForeColor = SystemColors.ControlDarkDark;
             label17.Location = new Point(27, 66);
             label17.Name = "label17";
-            label17.Size = new Size(108, 23);
+            label17.Size = new Size(90, 19);
             label17.TabIndex = 7;
             label17.Text = " Front Desk -";
             // 
@@ -233,7 +233,7 @@
             label18.Font = new Font("Cambria", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label18.Location = new Point(20, 27);
             label18.Name = "label18";
-            label18.Size = new Size(553, 36);
+            label18.Size = new Size(442, 28);
             label18.TabIndex = 6;
             label18.Text = "Hotel Reservation Management System";
             // 
@@ -244,7 +244,7 @@
             label19.ForeColor = Color.Black;
             label19.Location = new Point(969, 47);
             label19.Name = "label19";
-            label19.Size = new Size(59, 28);
+            label19.Size = new Size(48, 21);
             label19.TabIndex = 5;
             label19.Text = "Time";
             label19.Click += label19_Click;
@@ -379,7 +379,7 @@
             label2.ForeColor = Color.White;
             label2.Location = new Point(3, 3);
             label2.Name = "label2";
-            label2.Size = new Size(289, 41);
+            label2.Size = new Size(234, 32);
             label2.TabIndex = 0;
             label2.Text = "Reservation Details";
             label2.Click += label2_Click;
@@ -489,7 +489,7 @@
             label1.ForeColor = Color.White;
             label1.Location = new Point(3, 3);
             label1.Name = "label1";
-            label1.Size = new Size(221, 41);
+            label1.Size = new Size(179, 32);
             label1.TabIndex = 0;
             label1.Text = "Room Charges";
             // 
@@ -537,7 +537,7 @@
             checkBox7.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             checkBox7.Location = new Point(12, 277);
             checkBox7.Name = "checkBox7";
-            checkBox7.Size = new Size(156, 29);
+            checkBox7.Size = new Size(128, 24);
             checkBox7.TabIndex = 29;
             checkBox7.Text = "Room Services";
             checkBox7.UseVisualStyleBackColor = true;
@@ -548,7 +548,7 @@
             checkBox6.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             checkBox6.Location = new Point(9, 213);
             checkBox6.Name = "checkBox6";
-            checkBox6.Size = new Size(167, 29);
+            checkBox6.Size = new Size(139, 24);
             checkBox6.TabIndex = 28;
             checkBox6.Text = "Laundry Service";
             checkBox6.UseVisualStyleBackColor = true;
@@ -559,7 +559,7 @@
             checkBox5.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             checkBox5.Location = new Point(10, 155);
             checkBox5.Name = "checkBox5";
-            checkBox5.Size = new Size(112, 29);
+            checkBox5.Size = new Size(93, 24);
             checkBox5.TabIndex = 27;
             checkBox5.Text = "Extra Bed";
             checkBox5.UseVisualStyleBackColor = true;
@@ -570,7 +570,7 @@
             checkBox4.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             checkBox4.Location = new Point(10, 94);
             checkBox4.Name = "checkBox4";
-            checkBox4.Size = new Size(160, 29);
+            checkBox4.Size = new Size(131, 24);
             checkBox4.TabIndex = 26;
             checkBox4.Text = "Late Check-Out";
             checkBox4.UseVisualStyleBackColor = true;
@@ -581,7 +581,7 @@
             checkBox3.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             checkBox3.Location = new Point(12, 34);
             checkBox3.Name = "checkBox3";
-            checkBox3.Size = new Size(148, 29);
+            checkBox3.Size = new Size(125, 24);
             checkBox3.TabIndex = 25;
             checkBox3.Text = "Early Check-In";
             checkBox3.UseVisualStyleBackColor = true;
@@ -591,7 +591,7 @@
             textBox9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox9.Location = new Point(185, 272);
             textBox9.Name = "textBox9";
-            textBox9.Size = new Size(171, 34);
+            textBox9.Size = new Size(171, 29);
             textBox9.TabIndex = 19;
             textBox9.Text = "Enter Amount";
             // 
@@ -600,7 +600,7 @@
             textBox16.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox16.Location = new Point(185, 213);
             textBox16.Name = "textBox16";
-            textBox16.Size = new Size(171, 34);
+            textBox16.Size = new Size(171, 29);
             textBox16.TabIndex = 18;
             textBox16.Text = "Enter Amount";
             // 
@@ -609,7 +609,7 @@
             textBox15.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox15.Location = new Point(185, 153);
             textBox15.Name = "textBox15";
-            textBox15.Size = new Size(171, 34);
+            textBox15.Size = new Size(171, 29);
             textBox15.TabIndex = 17;
             textBox15.Text = "Enter Amount";
             // 
@@ -618,7 +618,7 @@
             textBox14.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox14.Location = new Point(185, 92);
             textBox14.Name = "textBox14";
-            textBox14.Size = new Size(171, 34);
+            textBox14.Size = new Size(171, 29);
             textBox14.TabIndex = 14;
             textBox14.Text = "Enter Amount";
             // 
@@ -627,7 +627,7 @@
             textBox10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox10.Location = new Point(185, 31);
             textBox10.Name = "textBox10";
-            textBox10.Size = new Size(171, 34);
+            textBox10.Size = new Size(171, 29);
             textBox10.TabIndex = 13;
             textBox10.Text = "Enter Amount";
             // 
@@ -659,7 +659,7 @@
             label26.ForeColor = Color.White;
             label26.Location = new Point(9, 8);
             label26.Name = "label26";
-            label26.Size = new Size(290, 41);
+            label26.Size = new Size(234, 32);
             label26.TabIndex = 0;
             label26.Text = "Additional Services";
             // 
@@ -710,7 +710,7 @@
             label21.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label21.Location = new Point(60, 237);
             label21.Name = "label21";
-            label21.Size = new Size(84, 25);
+            label21.Size = new Size(68, 20);
             label21.TabIndex = 30;
             label21.Text = "Subtotal";
             // 
@@ -720,7 +720,7 @@
             label10.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             label10.Location = new Point(60, 186);
             label10.Name = "label10";
-            label10.Size = new Size(87, 25);
+            label10.Size = new Size(71, 20);
             label10.TabIndex = 29;
             label10.Text = "Discount";
             // 
@@ -731,7 +731,7 @@
             label6.Location = new Point(59, 133);
             label6.Name = "label6";
             label6.RightToLeft = RightToLeft.No;
-            label6.Size = new Size(86, 25);
+            label6.Size = new Size(71, 20);
             label6.TabIndex = 28;
             label6.Text = "Tax (5%)";
             // 
@@ -741,7 +741,7 @@
             label4.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.Location = new Point(35, 27);
             label4.Name = "label4";
-            label4.Size = new Size(135, 25);
+            label4.Size = new Size(111, 20);
             label4.TabIndex = 27;
             label4.Text = "Room Charges";
             // 
@@ -751,7 +751,7 @@
             label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.Location = new Point(16, 80);
             label5.Name = "label5";
-            label5.Size = new Size(176, 25);
+            label5.Size = new Size(143, 20);
             label5.TabIndex = 26;
             label5.Text = "Additional Services";
             // 
@@ -760,7 +760,7 @@
             textBox22.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox22.Location = new Point(196, 232);
             textBox22.Name = "textBox22";
-            textBox22.Size = new Size(160, 34);
+            textBox22.Size = new Size(160, 29);
             textBox22.TabIndex = 25;
             textBox22.Text = "Enter Amount";
             textBox22.TextChanged += textBox22_TextChanged;
@@ -771,7 +771,7 @@
             label8.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.Location = new Point(41, 247);
             label8.Name = "label8";
-            label8.Size = new Size(0, 37);
+            label8.Size = new Size(0, 30);
             label8.TabIndex = 24;
             // 
             // label7
@@ -780,7 +780,7 @@
             label7.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.Location = new Point(41, 204);
             label7.Name = "label7";
-            label7.Size = new Size(0, 37);
+            label7.Size = new Size(0, 30);
             label7.TabIndex = 23;
             label7.Click += label7_Click;
             // 
@@ -802,7 +802,7 @@
             textBox18.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox18.Location = new Point(198, 180);
             textBox18.Name = "textBox18";
-            textBox18.Size = new Size(160, 34);
+            textBox18.Size = new Size(160, 29);
             textBox18.TabIndex = 18;
             textBox18.Text = "Enter Amount";
             textBox18.TextChanged += textBox18_TextChanged;
@@ -812,7 +812,7 @@
             textBox19.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox19.Location = new Point(198, 128);
             textBox19.Name = "textBox19";
-            textBox19.Size = new Size(160, 34);
+            textBox19.Size = new Size(160, 29);
             textBox19.TabIndex = 17;
             textBox19.Text = "Enter Amount";
             textBox19.TextChanged += textBox19_TextChanged;
@@ -822,7 +822,7 @@
             textBox20.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox20.Location = new Point(198, 74);
             textBox20.Name = "textBox20";
-            textBox20.Size = new Size(158, 34);
+            textBox20.Size = new Size(158, 29);
             textBox20.TabIndex = 14;
             textBox20.Text = "Enter Amount";
             textBox20.TextChanged += textBox20_TextChanged;
@@ -832,7 +832,7 @@
             textBox21.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox21.Location = new Point(198, 20);
             textBox21.Name = "textBox21";
-            textBox21.Size = new Size(158, 34);
+            textBox21.Size = new Size(158, 29);
             textBox21.TabIndex = 13;
             textBox21.Text = "Enter Amount";
             textBox21.TextChanged += textBox21_TextChanged;
@@ -865,7 +865,7 @@
             label3.ForeColor = Color.White;
             label3.Location = new Point(14, 9);
             label3.Name = "label3";
-            label3.Size = new Size(243, 41);
+            label3.Size = new Size(192, 32);
             label3.TabIndex = 0;
             label3.Text = "Billing Summary";
             // 
@@ -913,7 +913,7 @@
             checkBox2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             checkBox2.Location = new Point(552, 205);
             checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(98, 32);
+            checkBox2.Size = new Size(79, 25);
             checkBox2.TabIndex = 27;
             checkBox2.Text = "Unpaid";
             checkBox2.UseVisualStyleBackColor = true;
@@ -924,7 +924,7 @@
             checkBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             checkBox1.Location = new Point(409, 205);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(71, 32);
+            checkBox1.Size = new Size(58, 25);
             checkBox1.TabIndex = 26;
             checkBox1.Text = "Paid";
             checkBox1.UseVisualStyleBackColor = true;
@@ -935,7 +935,7 @@
             label9.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.Location = new Point(147, 203);
             label9.Name = "label9";
-            label9.Size = new Size(172, 31);
+            label9.Size = new Size(144, 25);
             label9.TabIndex = 25;
             label9.Text = "Payment Status";
             label9.Click += label9_Click;
@@ -955,7 +955,7 @@
             label11.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.Location = new Point(186, 143);
             label11.Name = "label11";
-            label11.Size = new Size(92, 31);
+            label11.Size = new Size(77, 25);
             label11.TabIndex = 22;
             label11.Text = "Change";
             // 
@@ -965,7 +965,7 @@
             label12.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.Location = new Point(132, 86);
             label12.Name = "label12";
-            label12.Size = new Size(195, 31);
+            label12.Size = new Size(163, 25);
             label12.TabIndex = 21;
             label12.Text = "Amount Received";
             // 
@@ -975,7 +975,7 @@
             label13.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label13.Location = new Point(134, 31);
             label13.Name = "label13";
-            label13.Size = new Size(191, 31);
+            label13.Size = new Size(160, 25);
             label13.TabIndex = 20;
             label13.Text = "Payment Method";
             // 
@@ -984,7 +984,7 @@
             textBox26.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox26.Location = new Point(392, 142);
             textBox26.Name = "textBox26";
-            textBox26.Size = new Size(262, 34);
+            textBox26.Size = new Size(262, 29);
             textBox26.TabIndex = 17;
             textBox26.Text = "Enter Amount";
             // 
@@ -993,7 +993,7 @@
             textBox27.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox27.Location = new Point(392, 85);
             textBox27.Name = "textBox27";
-            textBox27.Size = new Size(262, 34);
+            textBox27.Size = new Size(262, 29);
             textBox27.TabIndex = 14;
             textBox27.Text = "Enter Amount";
             // 
@@ -1025,7 +1025,7 @@
             label20.ForeColor = Color.White;
             label20.Location = new Point(10, 8);
             label20.Name = "label20";
-            label20.Size = new Size(252, 41);
+            label20.Size = new Size(203, 32);
             label20.TabIndex = 0;
             label20.Text = "Billing Summary";
             // 
@@ -1160,7 +1160,7 @@
             label22.ForeColor = Color.White;
             label22.Location = new Point(11, 14);
             label22.Name = "label22";
-            label22.Size = new Size(127, 38);
+            label22.Size = new Size(99, 30);
             label22.TabIndex = 0;
             label22.Text = "Payment";
             // 
@@ -1176,6 +1176,7 @@
             button7.TabIndex = 57;
             button7.Text = "Print Receipt";
             button7.UseVisualStyleBackColor = false;
+            button7.Click += button7_Click;
             // 
             // button8
             // 
@@ -1206,7 +1207,7 @@
             txtSearchBar.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSearchBar.Location = new Point(22, 1007);
             txtSearchBar.Name = "txtSearchBar";
-            txtSearchBar.Size = new Size(302, 30);
+            txtSearchBar.Size = new Size(302, 26);
             txtSearchBar.TabIndex = 59;
             txtSearchBar.Text = "Search";
             // 
