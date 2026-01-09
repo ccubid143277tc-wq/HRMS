@@ -63,6 +63,17 @@
             label1 = new Label();
             panel5 = new Panel();
             button2 = new Button();
+            panel14 = new Panel();
+            checkBox7 = new CheckBox();
+            checkBox6 = new CheckBox();
+            checkBox5 = new CheckBox();
+            checkBox4 = new CheckBox();
+            checkBox3 = new CheckBox();
+            textBox9 = new TextBox();
+            textBox16 = new TextBox();
+            textBox15 = new TextBox();
+            textBox14 = new TextBox();
+            textBox10 = new TextBox();
             panel9 = new Panel();
             pictureBox3 = new PictureBox();
             label26 = new Label();
@@ -122,17 +133,6 @@
             button8 = new Button();
             button9 = new Button();
             txtSearchBar = new TextBox();
-            textBox10 = new TextBox();
-            textBox14 = new TextBox();
-            textBox15 = new TextBox();
-            textBox16 = new TextBox();
-            textBox9 = new TextBox();
-            checkBox3 = new CheckBox();
-            panel14 = new Panel();
-            checkBox4 = new CheckBox();
-            checkBox5 = new CheckBox();
-            checkBox6 = new CheckBox();
-            checkBox7 = new CheckBox();
             panel26.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             panel2.SuspendLayout();
@@ -142,6 +142,7 @@
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel5.SuspendLayout();
+            panel14.SuspendLayout();
             panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             panel6.SuspendLayout();
@@ -155,7 +156,6 @@
             panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel15.SuspendLayout();
-            panel14.SuspendLayout();
             SuspendLayout();
             // 
             // panel26
@@ -520,6 +520,124 @@
             button2.Text = "Confirm Payment";
             button2.UseVisualStyleBackColor = true;
             // 
+            // panel14
+            // 
+            panel14.BorderStyle = BorderStyle.Fixed3D;
+            panel14.Controls.Add(checkBox7);
+            panel14.Controls.Add(checkBox6);
+            panel14.Controls.Add(checkBox5);
+            panel14.Controls.Add(checkBox4);
+            panel14.Controls.Add(checkBox3);
+            panel14.Controls.Add(textBox9);
+            panel14.Controls.Add(textBox16);
+            panel14.Controls.Add(textBox15);
+            panel14.Controls.Add(textBox14);
+            panel14.Controls.Add(textBox10);
+            panel14.Location = new Point(19, 62);
+            panel14.Name = "panel14";
+            panel14.Size = new Size(365, 334);
+            panel14.TabIndex = 15;
+            // 
+            // checkBox7
+            // 
+            checkBox7.AutoSize = true;
+            checkBox7.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkBox7.Location = new Point(12, 277);
+            checkBox7.Name = "checkBox7";
+            checkBox7.Size = new Size(156, 29);
+            checkBox7.TabIndex = 29;
+            checkBox7.Text = "Room Services";
+            checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            checkBox6.AutoSize = true;
+            checkBox6.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkBox6.Location = new Point(9, 213);
+            checkBox6.Name = "checkBox6";
+            checkBox6.Size = new Size(167, 29);
+            checkBox6.TabIndex = 28;
+            checkBox6.Text = "Laundry Service";
+            checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            checkBox5.AutoSize = true;
+            checkBox5.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkBox5.Location = new Point(10, 155);
+            checkBox5.Name = "checkBox5";
+            checkBox5.Size = new Size(112, 29);
+            checkBox5.TabIndex = 27;
+            checkBox5.Text = "Extra Bed";
+            checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            checkBox4.AutoSize = true;
+            checkBox4.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkBox4.Location = new Point(10, 94);
+            checkBox4.Name = "checkBox4";
+            checkBox4.Size = new Size(160, 29);
+            checkBox4.TabIndex = 26;
+            checkBox4.Text = "Late Check-Out";
+            checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            checkBox3.AutoSize = true;
+            checkBox3.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkBox3.Location = new Point(12, 34);
+            checkBox3.Name = "checkBox3";
+            checkBox3.Size = new Size(148, 29);
+            checkBox3.TabIndex = 25;
+            checkBox3.Text = "Early Check-In";
+            checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // textBox9
+            // 
+            textBox9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox9.Location = new Point(185, 272);
+            textBox9.Name = "textBox9";
+            textBox9.Size = new Size(171, 34);
+            textBox9.TabIndex = 19;
+            textBox9.Text = "Enter Amount";
+            // 
+            // textBox16
+            // 
+            textBox16.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox16.Location = new Point(185, 213);
+            textBox16.Name = "textBox16";
+            textBox16.Size = new Size(171, 34);
+            textBox16.TabIndex = 18;
+            textBox16.Text = "Enter Amount";
+            // 
+            // textBox15
+            // 
+            textBox15.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox15.Location = new Point(185, 153);
+            textBox15.Name = "textBox15";
+            textBox15.Size = new Size(171, 34);
+            textBox15.TabIndex = 17;
+            textBox15.Text = "Enter Amount";
+            // 
+            // textBox14
+            // 
+            textBox14.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox14.Location = new Point(185, 92);
+            textBox14.Name = "textBox14";
+            textBox14.Size = new Size(171, 34);
+            textBox14.TabIndex = 14;
+            textBox14.Text = "Enter Amount";
+            // 
+            // textBox10
+            // 
+            textBox10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox10.Location = new Point(185, 31);
+            textBox10.Name = "textBox10";
+            textBox10.Size = new Size(171, 34);
+            textBox10.TabIndex = 13;
+            textBox10.Text = "Enter Amount";
+            // 
             // panel9
             // 
             panel9.BackColor = Color.FromArgb(42, 93, 159);
@@ -597,7 +715,7 @@
             // 
             label21.AutoSize = true;
             label21.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label21.Location = new Point(64, 256);
+            label21.Location = new Point(60, 237);
             label21.Name = "label21";
             label21.Size = new Size(84, 25);
             label21.TabIndex = 30;
@@ -606,10 +724,10 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.Location = new Point(71, 217);
+            label10.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
+            label10.Location = new Point(60, 186);
             label10.Name = "label10";
-            label10.Size = new Size(71, 20);
+            label10.Size = new Size(87, 25);
             label10.TabIndex = 29;
             label10.Text = "Discount";
             // 
@@ -617,7 +735,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(62, 160);
+            label6.Location = new Point(59, 133);
             label6.Name = "label6";
             label6.RightToLeft = RightToLeft.No;
             label6.Size = new Size(86, 25);
@@ -628,7 +746,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(29, 43);
+            label4.Location = new Point(35, 27);
             label4.Name = "label4";
             label4.Size = new Size(135, 25);
             label4.TabIndex = 27;
@@ -638,7 +756,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(16, 107);
+            label5.Location = new Point(16, 80);
             label5.Name = "label5";
             label5.Size = new Size(176, 25);
             label5.TabIndex = 26;
@@ -647,7 +765,7 @@
             // textBox22
             // 
             textBox22.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox22.Location = new Point(196, 251);
+            textBox22.Location = new Point(196, 232);
             textBox22.Name = "textBox22";
             textBox22.Size = new Size(160, 34);
             textBox22.TabIndex = 25;
@@ -689,7 +807,7 @@
             // textBox18
             // 
             textBox18.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox18.Location = new Point(198, 208);
+            textBox18.Location = new Point(198, 180);
             textBox18.Name = "textBox18";
             textBox18.Size = new Size(160, 34);
             textBox18.TabIndex = 18;
@@ -699,7 +817,7 @@
             // textBox19
             // 
             textBox19.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox19.Location = new Point(198, 159);
+            textBox19.Location = new Point(198, 128);
             textBox19.Name = "textBox19";
             textBox19.Size = new Size(160, 34);
             textBox19.TabIndex = 17;
@@ -709,9 +827,9 @@
             // textBox20
             // 
             textBox20.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox20.Location = new Point(198, 101);
+            textBox20.Location = new Point(198, 74);
             textBox20.Name = "textBox20";
-            textBox20.Size = new Size(166, 34);
+            textBox20.Size = new Size(158, 34);
             textBox20.TabIndex = 14;
             textBox20.Text = "Enter Amount";
             textBox20.TextChanged += textBox20_TextChanged;
@@ -719,9 +837,9 @@
             // textBox21
             // 
             textBox21.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox21.Location = new Point(198, 36);
+            textBox21.Location = new Point(198, 20);
             textBox21.Name = "textBox21";
-            textBox21.Size = new Size(166, 34);
+            textBox21.Size = new Size(158, 34);
             textBox21.TabIndex = 13;
             textBox21.Text = "Enter Amount";
             textBox21.TextChanged += textBox21_TextChanged;
@@ -768,6 +886,7 @@
             panel10.Name = "panel10";
             panel10.Size = new Size(834, 341);
             panel10.TabIndex = 50;
+            panel10.Paint += panel10_Paint;
             // 
             // button4
             // 
@@ -799,7 +918,7 @@
             // 
             checkBox2.AutoSize = true;
             checkBox2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            checkBox2.Location = new Point(427, 205);
+            checkBox2.Location = new Point(552, 205);
             checkBox2.Name = "checkBox2";
             checkBox2.Size = new Size(98, 32);
             checkBox2.TabIndex = 27;
@@ -810,7 +929,7 @@
             // 
             checkBox1.AutoSize = true;
             checkBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            checkBox1.Location = new Point(271, 209);
+            checkBox1.Location = new Point(409, 205);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(71, 32);
             checkBox1.TabIndex = 26;
@@ -821,17 +940,18 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(21, 204);
+            label9.Location = new Point(147, 203);
             label9.Name = "label9";
             label9.Size = new Size(172, 31);
             label9.TabIndex = 25;
             label9.Text = "Payment Status";
+            label9.Click += label9_Click;
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Select payment", "Cash", "Bank Transfer", "G-cash" });
-            comboBox1.Location = new Point(271, 37);
+            comboBox1.Location = new Point(392, 31);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(262, 28);
             comboBox1.TabIndex = 24;
@@ -840,7 +960,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.Location = new Point(63, 155);
+            label11.Location = new Point(186, 143);
             label11.Name = "label11";
             label11.Size = new Size(92, 31);
             label11.TabIndex = 22;
@@ -850,7 +970,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.Location = new Point(21, 102);
+            label12.Location = new Point(132, 86);
             label12.Name = "label12";
             label12.Size = new Size(195, 31);
             label12.TabIndex = 21;
@@ -860,7 +980,7 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label13.Location = new Point(21, 31);
+            label13.Location = new Point(134, 31);
             label13.Name = "label13";
             label13.Size = new Size(191, 31);
             label13.TabIndex = 20;
@@ -869,7 +989,7 @@
             // textBox26
             // 
             textBox26.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox26.Location = new Point(271, 155);
+            textBox26.Location = new Point(392, 142);
             textBox26.Name = "textBox26";
             textBox26.Size = new Size(262, 34);
             textBox26.TabIndex = 17;
@@ -878,7 +998,7 @@
             // textBox27
             // 
             textBox27.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox27.Location = new Point(271, 101);
+            textBox27.Location = new Point(392, 85);
             textBox27.Name = "textBox27";
             textBox27.Size = new Size(262, 34);
             textBox27.TabIndex = 14;
@@ -1071,7 +1191,7 @@
             button7.FlatStyle = FlatStyle.Flat;
             button7.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button7.ForeColor = Color.FromArgb(42, 93, 159);
-            button7.Location = new Point(1115, 936);
+            button7.Location = new Point(1089, 935);
             button7.Name = "button7";
             button7.Size = new Size(220, 51);
             button7.TabIndex = 57;
@@ -1083,9 +1203,9 @@
             button8.BackColor = Color.LightGreen;
             button8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button8.ForeColor = Color.Black;
-            button8.Location = new Point(1391, 936);
+            button8.Location = new Point(1391, 931);
             button8.Name = "button8";
-            button8.Size = new Size(232, 50);
+            button8.Size = new Size(233, 60);
             button8.TabIndex = 58;
             button8.Text = "Save";
             button8.UseVisualStyleBackColor = false;
@@ -1110,124 +1230,6 @@
             txtSearchBar.Size = new Size(302, 30);
             txtSearchBar.TabIndex = 59;
             txtSearchBar.Text = "Search";
-            // 
-            // textBox10
-            // 
-            textBox10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox10.Location = new Point(185, 34);
-            textBox10.Name = "textBox10";
-            textBox10.Size = new Size(171, 34);
-            textBox10.TabIndex = 13;
-            textBox10.Text = "Enter Amount";
-            // 
-            // textBox14
-            // 
-            textBox14.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox14.Location = new Point(190, 102);
-            textBox14.Name = "textBox14";
-            textBox14.Size = new Size(166, 34);
-            textBox14.TabIndex = 14;
-            textBox14.Text = "Enter Amount";
-            // 
-            // textBox15
-            // 
-            textBox15.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox15.Location = new Point(191, 161);
-            textBox15.Name = "textBox15";
-            textBox15.Size = new Size(165, 34);
-            textBox15.TabIndex = 17;
-            textBox15.Text = "Enter Amount";
-            // 
-            // textBox16
-            // 
-            textBox16.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox16.Location = new Point(191, 218);
-            textBox16.Name = "textBox16";
-            textBox16.Size = new Size(165, 34);
-            textBox16.TabIndex = 18;
-            textBox16.Text = "Enter Amount";
-            // 
-            // textBox9
-            // 
-            textBox9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox9.Location = new Point(191, 272);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(165, 34);
-            textBox9.TabIndex = 19;
-            textBox9.Text = "Enter Amount";
-            // 
-            // checkBox3
-            // 
-            checkBox3.AutoSize = true;
-            checkBox3.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            checkBox3.Location = new Point(12, 40);
-            checkBox3.Name = "checkBox3";
-            checkBox3.Size = new Size(148, 29);
-            checkBox3.TabIndex = 25;
-            checkBox3.Text = "Early Check-In";
-            checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // panel14
-            // 
-            panel14.BorderStyle = BorderStyle.Fixed3D;
-            panel14.Controls.Add(checkBox7);
-            panel14.Controls.Add(checkBox6);
-            panel14.Controls.Add(checkBox5);
-            panel14.Controls.Add(checkBox4);
-            panel14.Controls.Add(checkBox3);
-            panel14.Controls.Add(textBox9);
-            panel14.Controls.Add(textBox16);
-            panel14.Controls.Add(textBox15);
-            panel14.Controls.Add(textBox14);
-            panel14.Controls.Add(textBox10);
-            panel14.Location = new Point(19, 62);
-            panel14.Name = "panel14";
-            panel14.Size = new Size(365, 334);
-            panel14.TabIndex = 15;
-            // 
-            // checkBox4
-            // 
-            checkBox4.AutoSize = true;
-            checkBox4.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            checkBox4.Location = new Point(13, 104);
-            checkBox4.Name = "checkBox4";
-            checkBox4.Size = new Size(160, 29);
-            checkBox4.TabIndex = 26;
-            checkBox4.Text = "Late Check-Out";
-            checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            checkBox5.AutoSize = true;
-            checkBox5.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            checkBox5.Location = new Point(13, 161);
-            checkBox5.Name = "checkBox5";
-            checkBox5.Size = new Size(112, 29);
-            checkBox5.TabIndex = 27;
-            checkBox5.Text = "Extra Bed";
-            checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            checkBox6.AutoSize = true;
-            checkBox6.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            checkBox6.Location = new Point(12, 223);
-            checkBox6.Name = "checkBox6";
-            checkBox6.Size = new Size(167, 29);
-            checkBox6.TabIndex = 28;
-            checkBox6.Text = "Laundry Service";
-            checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox7
-            // 
-            checkBox7.AutoSize = true;
-            checkBox7.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            checkBox7.Location = new Point(12, 277);
-            checkBox7.Name = "checkBox7";
-            checkBox7.Size = new Size(156, 29);
-            checkBox7.TabIndex = 29;
-            checkBox7.Text = "Room Services";
-            checkBox7.UseVisualStyleBackColor = true;
             // 
             // Payment
             // 
@@ -1263,6 +1265,8 @@
             panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel5.ResumeLayout(false);
+            panel14.ResumeLayout(false);
+            panel14.PerformLayout();
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -1282,8 +1286,6 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel15.ResumeLayout(false);
             panel15.PerformLayout();
-            panel14.ResumeLayout(false);
-            panel14.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
