@@ -43,6 +43,8 @@
             label12 = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
+            label22 = new Label();
+            label21 = new Label();
             label13 = new Label();
             label14 = new Label();
             label15 = new Label();
@@ -51,52 +53,38 @@
             label18 = new Label();
             label19 = new Label();
             label20 = new Label();
-            label21 = new Label();
-            label22 = new Label();
             label23 = new Label();
             label24 = new Label();
             label25 = new Label();
             label26 = new Label();
             label27 = new Label();
             label28 = new Label();
-            panel5 = new Panel();
-            panel6 = new Panel();
-            panel7 = new Panel();
-            panel4 = new Panel();
-            panel8 = new Panel();
-            panel9 = new Panel();
-            panel10 = new Panel();
-            panel11 = new Panel();
             panel3 = new Panel();
-            panel12 = new Panel();
-            panel13 = new Panel();
-            panel14 = new Panel();
-            panel15 = new Panel();
-            panel16 = new Panel();
-            panel17 = new Panel();
-            panel18 = new Panel();
-            panel19 = new Panel();
-            panel20 = new Panel();
-            panel21 = new Panel();
-            panel22 = new Panel();
-            panel23 = new Panel();
-            panel24 = new Panel();
-            panel25 = new Panel();
-            panel26 = new Panel();
+            label29 = new Label();
+            label30 = new Label();
+            label31 = new Label();
+            label32 = new Label();
+            label33 = new Label();
+            label34 = new Label();
+            label35 = new Label();
+            label36 = new Label();
+            label37 = new Label();
+            label38 = new Label();
+            label39 = new Label();
+            label40 = new Label();
+            label41 = new Label();
+            label42 = new Label();
+            label43 = new Label();
+            label44 = new Label();
+            label45 = new Label();
+            label46 = new Label();
+            label47 = new Label();
+            label48 = new Label();
+            label49 = new Label();
+            linkLabel2 = new LinkLabel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            panel6.SuspendLayout();
-            panel4.SuspendLayout();
-            panel8.SuspendLayout();
-            panel9.SuspendLayout();
             panel3.SuspendLayout();
-            panel12.SuspendLayout();
-            panel15.SuspendLayout();
-            panel16.SuspendLayout();
-            panel19.SuspendLayout();
-            panel20.SuspendLayout();
-            panel23.SuspendLayout();
-            panel24.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -147,7 +135,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Stencil", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.FromArgb(42, 93, 159);
-            label4.Location = new Point(294, 167);
+            label4.Location = new Point(292, 167);
             label4.Name = "label4";
             label4.Size = new Size(242, 47);
             label4.TabIndex = 4;
@@ -235,17 +223,15 @@
             label12.Name = "label12";
             label12.Size = new Size(115, 25);
             label12.TabIndex = 12;
-            label12.Text = "Jan-04-2026";
+            label12.Text = "Jan-01-2026";
             // 
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(panel23);
-            panel1.Controls.Add(panel8);
-            panel1.Controls.Add(panel4);
-            panel1.Location = new Point(24, 571);
+            panel1.Controls.Add(panel3);
+            panel1.Location = new Point(25, 567);
             panel1.Name = "panel1";
-            panel1.Size = new Size(760, 257);
+            panel1.Size = new Size(819, 278);
             panel1.TabIndex = 13;
             // 
             // panel2
@@ -254,10 +240,32 @@
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(label22);
             panel2.Controls.Add(label21);
-            panel2.Location = new Point(24, 571);
+            panel2.Location = new Point(25, 567);
             panel2.Name = "panel2";
-            panel2.Size = new Size(760, 44);
+            panel2.Size = new Size(819, 44);
             panel2.TabIndex = 0;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label22.ForeColor = SystemColors.ButtonFace;
+            label22.Location = new Point(668, 7);
+            label22.Name = "label22";
+            label22.Size = new Size(81, 25);
+            label22.TabIndex = 23;
+            label22.Text = "Amount";
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label21.ForeColor = SystemColors.ButtonFace;
+            label21.Location = new Point(132, 7);
+            label21.Name = "label21";
+            label21.Size = new Size(109, 25);
+            label21.TabIndex = 22;
+            label21.Text = "Description";
             // 
             // label13
             // 
@@ -325,7 +333,7 @@
             // 
             label19.AutoSize = true;
             label19.Font = new Font("Segoe UI", 10.8F);
-            label19.Location = new Point(484, 474);
+            label19.Location = new Point(485, 474);
             label19.Name = "label19";
             label19.Size = new Size(160, 25);
             label19.TabIndex = 20;
@@ -336,39 +344,17 @@
             label20.AutoSize = true;
             label20.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label20.ForeColor = Color.FromArgb(42, 93, 159);
-            label20.Location = new Point(20, 533);
+            label20.Location = new Point(21, 530);
             label20.Name = "label20";
             label20.Size = new Size(226, 31);
             label20.TabIndex = 21;
             label20.Text = "Charges Breakdown";
             // 
-            // label21
-            // 
-            label21.AutoSize = true;
-            label21.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label21.ForeColor = SystemColors.ButtonFace;
-            label21.Location = new Point(132, 7);
-            label21.Name = "label21";
-            label21.Size = new Size(109, 25);
-            label21.TabIndex = 22;
-            label21.Text = "Description";
-            // 
-            // label22
-            // 
-            label22.AutoSize = true;
-            label22.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label22.ForeColor = SystemColors.ButtonFace;
-            label22.Location = new Point(575, 7);
-            label22.Name = "label22";
-            label22.Size = new Size(81, 25);
-            label22.TabIndex = 23;
-            label22.Text = "Amount";
-            // 
             // label23
             // 
             label23.AutoSize = true;
             label23.Font = new Font("Segoe UI", 10.8F);
-            label23.Location = new Point(656, 410);
+            label23.Location = new Point(657, 410);
             label23.Name = "label23";
             label23.Size = new Size(111, 25);
             label23.TabIndex = 22;
@@ -388,7 +374,7 @@
             // 
             label25.AutoSize = true;
             label25.Font = new Font("Segoe UI", 10.8F);
-            label25.Location = new Point(656, 474);
+            label25.Location = new Point(654, 474);
             label25.Name = "label25";
             label25.Size = new Size(22, 25);
             label25.TabIndex = 24;
@@ -424,224 +410,262 @@
             label28.TabIndex = 27;
             label28.Text = "1 Child, 2 Adults";
             // 
-            // panel5
-            // 
-            panel5.BorderStyle = BorderStyle.FixedSingle;
-            panel5.Location = new Point(-1, 41);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(760, 44);
-            panel5.TabIndex = 16;
-            // 
-            // panel6
-            // 
-            panel6.BorderStyle = BorderStyle.FixedSingle;
-            panel6.Controls.Add(panel7);
-            panel6.Location = new Point(-1, 42);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(760, 44);
-            panel6.TabIndex = 17;
-            // 
-            // panel7
-            // 
-            panel7.BorderStyle = BorderStyle.FixedSingle;
-            panel7.Location = new Point(-1, 41);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(760, 44);
-            panel7.TabIndex = 16;
-            // 
-            // panel4
-            // 
-            panel4.BorderStyle = BorderStyle.FixedSingle;
-            panel4.Controls.Add(panel6);
-            panel4.Controls.Add(panel5);
-            panel4.Location = new Point(0, 86);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(759, 44);
-            panel4.TabIndex = 15;
-            // 
-            // panel8
-            // 
-            panel8.BorderStyle = BorderStyle.FixedSingle;
-            panel8.Controls.Add(panel15);
-            panel8.Controls.Add(panel9);
-            panel8.Controls.Add(panel11);
-            panel8.Location = new Point(0, 129);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(760, 44);
-            panel8.TabIndex = 18;
-            // 
-            // panel9
-            // 
-            panel9.BorderStyle = BorderStyle.FixedSingle;
-            panel9.Controls.Add(panel10);
-            panel9.Location = new Point(-1, 42);
-            panel9.Name = "panel9";
-            panel9.Size = new Size(760, 44);
-            panel9.TabIndex = 17;
-            // 
-            // panel10
-            // 
-            panel10.BorderStyle = BorderStyle.FixedSingle;
-            panel10.Location = new Point(-1, 41);
-            panel10.Name = "panel10";
-            panel10.Size = new Size(760, 44);
-            panel10.TabIndex = 16;
-            // 
-            // panel11
-            // 
-            panel11.BorderStyle = BorderStyle.FixedSingle;
-            panel11.Location = new Point(-1, 41);
-            panel11.Name = "panel11";
-            panel11.Size = new Size(760, 44);
-            panel11.TabIndex = 16;
-            // 
             // panel3
             // 
-            panel3.BorderStyle = BorderStyle.FixedSingle;
-            panel3.Controls.Add(panel12);
-            panel3.Controls.Add(panel14);
-            panel3.Location = new Point(25, 615);
+            panel3.BorderStyle = BorderStyle.Fixed3D;
+            panel3.Controls.Add(label39);
+            panel3.Controls.Add(label38);
+            panel3.Controls.Add(label37);
+            panel3.Controls.Add(label36);
+            panel3.Controls.Add(label35);
+            panel3.Controls.Add(label34);
+            panel3.Controls.Add(label33);
+            panel3.Controls.Add(label30);
+            panel3.Controls.Add(label32);
+            panel3.Controls.Add(label31);
+            panel3.Controls.Add(label29);
+            panel3.Location = new Point(10, 49);
             panel3.Name = "panel3";
-            panel3.Size = new Size(759, 44);
+            panel3.Size = new Size(798, 220);
             panel3.TabIndex = 18;
             // 
-            // panel12
+            // label29
             // 
-            panel12.BorderStyle = BorderStyle.FixedSingle;
-            panel12.Controls.Add(panel13);
-            panel12.Location = new Point(-1, 42);
-            panel12.Name = "panel12";
-            panel12.Size = new Size(760, 44);
-            panel12.TabIndex = 17;
+            label29.AutoSize = true;
+            label29.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label29.Location = new Point(72, 17);
+            label29.Name = "label29";
+            label29.Size = new Size(195, 28);
+            label29.TabIndex = 18;
+            label29.Text = "Room Rate (3 nights)";
             // 
-            // panel13
+            // label30
             // 
-            panel13.BorderStyle = BorderStyle.FixedSingle;
-            panel13.Location = new Point(-1, 41);
-            panel13.Name = "panel13";
-            panel13.Size = new Size(760, 44);
-            panel13.TabIndex = 16;
+            label30.AutoSize = true;
+            label30.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label30.Location = new Point(659, 17);
+            label30.Name = "label30";
+            label30.Size = new Size(72, 28);
+            label30.TabIndex = 19;
+            label30.Text = "₱6,600";
             // 
-            // panel14
+            // label31
             // 
-            panel14.BorderStyle = BorderStyle.FixedSingle;
-            panel14.Location = new Point(-1, 41);
-            panel14.Name = "panel14";
-            panel14.Size = new Size(760, 44);
-            panel14.TabIndex = 16;
+            label31.AutoSize = true;
+            label31.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label31.Location = new Point(25, 56);
+            label31.Name = "label31";
+            label31.Size = new Size(277, 28);
+            label31.TabIndex = 20;
+            label31.Text = "Additional Services (Extra Bed)";
             // 
-            // panel15
+            // label32
             // 
-            panel15.BorderStyle = BorderStyle.FixedSingle;
-            panel15.Controls.Add(panel19);
-            panel15.Controls.Add(panel16);
-            panel15.Controls.Add(panel18);
-            panel15.Location = new Point(-1, -1);
-            panel15.Name = "panel15";
-            panel15.Size = new Size(760, 44);
-            panel15.TabIndex = 19;
+            label32.AutoSize = true;
+            label32.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label32.Location = new Point(493, 97);
+            label32.Name = "label32";
+            label32.Size = new Size(92, 28);
+            label32.TabIndex = 20;
+            label32.Text = "Subtotal";
             // 
-            // panel16
+            // label33
             // 
-            panel16.BorderStyle = BorderStyle.FixedSingle;
-            panel16.Controls.Add(panel17);
-            panel16.Location = new Point(-1, 42);
-            panel16.Name = "panel16";
-            panel16.Size = new Size(760, 44);
-            panel16.TabIndex = 17;
+            label33.AutoSize = true;
+            label33.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label33.Location = new Point(666, 56);
+            label33.Name = "label33";
+            label33.Size = new Size(57, 28);
+            label33.TabIndex = 21;
+            label33.Text = "₱500";
             // 
-            // panel17
+            // label34
             // 
-            panel17.BorderStyle = BorderStyle.FixedSingle;
-            panel17.Location = new Point(-1, 41);
-            panel17.Name = "panel17";
-            panel17.Size = new Size(760, 44);
-            panel17.TabIndex = 16;
+            label34.AutoSize = true;
+            label34.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label34.Location = new Point(659, 96);
+            label34.Name = "label34";
+            label34.Size = new Size(72, 28);
+            label34.TabIndex = 22;
+            label34.Text = "₱7,100";
             // 
-            // panel18
+            // label35
             // 
-            panel18.BorderStyle = BorderStyle.FixedSingle;
-            panel18.Location = new Point(-1, 41);
-            panel18.Name = "panel18";
-            panel18.Size = new Size(760, 44);
-            panel18.TabIndex = 16;
+            label35.AutoSize = true;
+            label35.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label35.Location = new Point(494, 133);
+            label35.Name = "label35";
+            label35.Size = new Size(89, 28);
+            label35.TabIndex = 23;
+            label35.Text = "Discount";
             // 
-            // panel19
+            // label36
             // 
-            panel19.BorderStyle = BorderStyle.FixedSingle;
-            panel19.Controls.Add(panel20);
-            panel19.Controls.Add(panel22);
-            panel19.Location = new Point(-13, -1);
-            panel19.Name = "panel19";
-            panel19.Size = new Size(771, 44);
-            panel19.TabIndex = 20;
+            label36.AutoSize = true;
+            label36.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label36.Location = new Point(666, 133);
+            label36.Name = "label36";
+            label36.Size = new Size(57, 28);
+            label36.TabIndex = 24;
+            label36.Text = "₱100";
             // 
-            // panel20
+            // label37
             // 
-            panel20.BorderStyle = BorderStyle.FixedSingle;
-            panel20.Controls.Add(panel21);
-            panel20.Location = new Point(-1, 42);
-            panel20.Name = "panel20";
-            panel20.Size = new Size(760, 44);
-            panel20.TabIndex = 17;
+            label37.AutoSize = true;
+            label37.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label37.Location = new Point(430, 173);
+            label37.Name = "label37";
+            label37.Size = new Size(0, 28);
+            label37.TabIndex = 25;
             // 
-            // panel21
+            // label38
             // 
-            panel21.BorderStyle = BorderStyle.FixedSingle;
-            panel21.Location = new Point(-1, 41);
-            panel21.Name = "panel21";
-            panel21.Size = new Size(760, 44);
-            panel21.TabIndex = 16;
+            label38.AutoSize = true;
+            label38.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label38.Location = new Point(397, 171);
+            label38.Name = "label38";
+            label38.Size = new Size(188, 28);
+            label38.TabIndex = 26;
+            label38.Text = "Total Amount Paid";
             // 
-            // panel22
+            // label39
             // 
-            panel22.BorderStyle = BorderStyle.FixedSingle;
-            panel22.Location = new Point(-1, 41);
-            panel22.Name = "panel22";
-            panel22.Size = new Size(760, 44);
-            panel22.TabIndex = 16;
+            label39.AutoSize = true;
+            label39.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label39.Location = new Point(659, 171);
+            label39.Name = "label39";
+            label39.Size = new Size(72, 28);
+            label39.TabIndex = 27;
+            label39.Text = "₱7,000";
             // 
-            // panel23
+            // label40
             // 
-            panel23.BorderStyle = BorderStyle.FixedSingle;
-            panel23.Controls.Add(panel24);
-            panel23.Controls.Add(panel26);
-            panel23.Location = new Point(0, 172);
-            panel23.Name = "panel23";
-            panel23.Size = new Size(759, 44);
-            panel23.TabIndex = 20;
+            label40.AutoSize = true;
+            label40.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label40.ForeColor = Color.FromArgb(42, 93, 159);
+            label40.Location = new Point(25, 878);
+            label40.Name = "label40";
+            label40.Size = new Size(200, 31);
+            label40.TabIndex = 28;
+            label40.Text = "Note and Policies";
             // 
-            // panel24
+            // label41
             // 
-            panel24.BorderStyle = BorderStyle.FixedSingle;
-            panel24.Controls.Add(panel25);
-            panel24.Location = new Point(-1, 42);
-            panel24.Name = "panel24";
-            panel24.Size = new Size(760, 44);
-            panel24.TabIndex = 17;
+            label41.AutoSize = true;
+            label41.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label41.Location = new Point(27, 917);
+            label41.Name = "label41";
+            label41.Size = new Size(228, 25);
+            label41.TabIndex = 29;
+            label41.Text = "• Check-in Time: 12:00PM";
             // 
-            // panel25
+            // label42
             // 
-            panel25.BorderStyle = BorderStyle.FixedSingle;
-            panel25.Location = new Point(-1, 41);
-            panel25.Name = "panel25";
-            panel25.Size = new Size(760, 44);
-            panel25.TabIndex = 16;
+            label42.AutoSize = true;
+            label42.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label42.Location = new Point(27, 950);
+            label42.Name = "label42";
+            label42.Size = new Size(228, 25);
+            label42.TabIndex = 30;
+            label42.Text = "• Check-in Time: 12:00PM";
             // 
-            // panel26
+            // label43
             // 
-            panel26.BorderStyle = BorderStyle.FixedSingle;
-            panel26.Location = new Point(-1, 41);
-            panel26.Name = "panel26";
-            panel26.Size = new Size(760, 44);
-            panel26.TabIndex = 16;
+            label43.AutoSize = true;
+            label43.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label43.Location = new Point(27, 984);
+            label43.Name = "label43";
+            label43.Size = new Size(297, 25);
+            label43.TabIndex = 31;
+            label43.Text = "• Present VALID ID upon Check-in";
+            // 
+            // label44
+            // 
+            label44.AutoSize = true;
+            label44.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label44.Location = new Point(27, 1017);
+            label44.Name = "label44";
+            label44.Size = new Size(228, 25);
+            label44.TabIndex = 32;
+            label44.Text = "• No refund for no-shows";
+            // 
+            // label45
+            // 
+            label45.AutoSize = true;
+            label45.Font = new Font("Segoe UI", 10.8F);
+            label45.Location = new Point(307, 1072);
+            label45.Name = "label45";
+            label45.Size = new Size(0, 25);
+            label45.TabIndex = 33;
+            // 
+            // label46
+            // 
+            label46.AutoSize = true;
+            label46.Font = new Font("Segoe UI", 10.8F);
+            label46.Location = new Point(248, 1091);
+            label46.Name = "label46";
+            label46.Size = new Size(347, 25);
+            label46.TabIndex = 34;
+            label46.Text = "Thank you for choosing TresMarias Hotels.\r\n";
+            // 
+            // label47
+            // 
+            label47.AutoSize = true;
+            label47.Font = new Font("Segoe UI", 10.8F);
+            label47.Location = new Point(35, 1116);
+            label47.Name = "label47";
+            label47.Size = new Size(337, 25);
+            label47.TabIndex = 35;
+            label47.Text = "For further inquiries, please contact us at ";
+            // 
+            // label48
+            // 
+            label48.AutoSize = true;
+            label48.Font = new Font("Segoe UI", 10.8F);
+            label48.Location = new Point(361, 1116);
+            label48.Name = "label48";
+            label48.Size = new Size(142, 25);
+            label48.TabIndex = 36;
+            label48.Text = "(0912) 345 6789";
+            // 
+            // label49
+            // 
+            label49.AutoSize = true;
+            label49.Font = new Font("Segoe UI", 10.8F);
+            label49.Location = new Point(496, 1116);
+            label49.Name = "label49";
+            label49.Size = new Size(119, 25);
+            label49.TabIndex = 37;
+            label49.Text = "or email us at";
+            // 
+            // linkLabel2
+            // 
+            linkLabel2.AutoSize = true;
+            linkLabel2.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            linkLabel2.LinkColor = Color.Black;
+            linkLabel2.Location = new Point(609, 1116);
+            linkLabel2.Name = "linkLabel2";
+            linkLabel2.Size = new Size(233, 25);
+            linkLabel2.TabIndex = 38;
+            linkLabel2.TabStop = true;
+            linkLabel2.Text = "tresmarias@tmhotels.com";
             // 
             // PrintReceipt
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(811, 1175);
-            Controls.Add(panel3);
+            ClientSize = new Size(868, 1175);
+            Controls.Add(linkLabel2);
+            Controls.Add(label49);
+            Controls.Add(label48);
+            Controls.Add(label47);
+            Controls.Add(label46);
+            Controls.Add(label45);
+            Controls.Add(label44);
+            Controls.Add(label43);
+            Controls.Add(label42);
+            Controls.Add(label41);
+            Controls.Add(label40);
             Controls.Add(label28);
             Controls.Add(label27);
             Controls.Add(label26);
@@ -676,18 +700,8 @@
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            panel6.ResumeLayout(false);
-            panel4.ResumeLayout(false);
-            panel8.ResumeLayout(false);
-            panel9.ResumeLayout(false);
             panel3.ResumeLayout(false);
-            panel12.ResumeLayout(false);
-            panel15.ResumeLayout(false);
-            panel16.ResumeLayout(false);
-            panel19.ResumeLayout(false);
-            panel20.ResumeLayout(false);
-            panel23.ResumeLayout(false);
-            panel24.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -725,29 +739,28 @@
         private Label label26;
         private Label label27;
         private Label label28;
-        private Panel panel23;
-        private Panel panel24;
-        private Panel panel25;
-        private Panel panel26;
-        private Panel panel8;
-        private Panel panel15;
-        private Panel panel19;
-        private Panel panel20;
-        private Panel panel21;
-        private Panel panel22;
-        private Panel panel16;
-        private Panel panel17;
-        private Panel panel18;
-        private Panel panel9;
-        private Panel panel10;
-        private Panel panel11;
-        private Panel panel4;
-        private Panel panel6;
-        private Panel panel7;
-        private Panel panel5;
         private Panel panel3;
-        private Panel panel12;
-        private Panel panel13;
-        private Panel panel14;
+        private Label label29;
+        private Label label30;
+        private Label label33;
+        private Label label32;
+        private Label label31;
+        private Label label39;
+        private Label label38;
+        private Label label37;
+        private Label label36;
+        private Label label35;
+        private Label label34;
+        private Label label40;
+        private Label label41;
+        private Label label42;
+        private Label label43;
+        private Label label44;
+        private Label label45;
+        private Label label46;
+        private Label label47;
+        private Label label48;
+        private Label label49;
+        private LinkLabel linkLabel2;
     }
 }

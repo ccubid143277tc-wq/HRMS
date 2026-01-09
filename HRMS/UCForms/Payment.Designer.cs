@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Payment));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel26 = new Panel();
             label14 = new Label();
             label15 = new Label();
@@ -128,7 +128,6 @@
             ColReferenceNo = new DataGridViewTextBoxColumn();
             panel15 = new Panel();
             label22 = new Label();
-            button5 = new Button();
             button7 = new Button();
             button8 = new Button();
             button9 = new Button();
@@ -287,7 +286,7 @@
             textBox1.Location = new Point(11, 76);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(720, 45);
+            textBox1.Size = new Size(717, 45);
             textBox1.TabIndex = 46;
             textBox1.Text = "Billing Reference No.";
             // 
@@ -299,7 +298,7 @@
             textBox7.Location = new Point(11, 336);
             textBox7.Multiline = true;
             textBox7.Name = "textBox7";
-            textBox7.Size = new Size(720, 49);
+            textBox7.Size = new Size(717, 49);
             textBox7.TabIndex = 45;
             textBox7.Text = "Check-out";
             // 
@@ -311,7 +310,7 @@
             textBox5.Location = new Point(11, 282);
             textBox5.Multiline = true;
             textBox5.Name = "textBox5";
-            textBox5.Size = new Size(720, 51);
+            textBox5.Size = new Size(717, 51);
             textBox5.TabIndex = 44;
             textBox5.Text = "Check-in";
             textBox5.TextChanged += textBox5_TextChanged;
@@ -324,7 +323,7 @@
             textBox4.Location = new Point(11, 176);
             textBox4.Multiline = true;
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(720, 42);
+            textBox4.Size = new Size(717, 42);
             textBox4.TabIndex = 43;
             textBox4.Text = "Room Type";
             // 
@@ -336,7 +335,7 @@
             textBox3.Location = new Point(11, 224);
             textBox3.Multiline = true;
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(720, 52);
+            textBox3.Size = new Size(717, 52);
             textBox3.TabIndex = 42;
             textBox3.Text = "Room Number";
             // 
@@ -348,7 +347,7 @@
             textBox2.Location = new Point(11, 127);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(720, 43);
+            textBox2.Size = new Size(717, 43);
             textBox2.TabIndex = 41;
             textBox2.Text = "Guest Name";
             // 
@@ -390,7 +389,7 @@
             textBox8.BackColor = SystemColors.Control;
             textBox8.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox8.ForeColor = SystemColors.InactiveCaptionText;
-            textBox8.Location = new Point(11, 218);
+            textBox8.Location = new Point(30, 800);
             textBox8.Multiline = true;
             textBox8.Name = "textBox8";
             textBox8.Size = new Size(720, 49);
@@ -400,14 +399,8 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(textBox6);
-            panel1.Controls.Add(textBox8);
-            panel1.Controls.Add(textBox11);
-            panel1.Controls.Add(textBox12);
-            panel1.Controls.Add(textBox13);
             panel1.Controls.Add(button1);
-            panel1.Controls.Add(panel4);
-            panel1.Location = new Point(21, 595);
+            panel1.Location = new Point(22, 577);
             panel1.Name = "panel1";
             panel1.Size = new Size(735, 341);
             panel1.TabIndex = 16;
@@ -417,7 +410,7 @@
             textBox6.BackColor = SystemColors.Control;
             textBox6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox6.ForeColor = SystemColors.InactiveCaptionText;
-            textBox6.Location = new Point(11, 273);
+            textBox6.Location = new Point(30, 855);
             textBox6.Multiline = true;
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(720, 49);
@@ -429,7 +422,7 @@
             textBox11.BackColor = SystemColors.Control;
             textBox11.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox11.ForeColor = SystemColors.InactiveCaptionText;
-            textBox11.Location = new Point(11, 112);
+            textBox11.Location = new Point(30, 694);
             textBox11.Multiline = true;
             textBox11.Name = "textBox11";
             textBox11.Size = new Size(719, 42);
@@ -441,7 +434,7 @@
             textBox12.BackColor = SystemColors.Control;
             textBox12.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox12.ForeColor = SystemColors.InactiveCaptionText;
-            textBox12.Location = new Point(11, 160);
+            textBox12.Location = new Point(30, 742);
             textBox12.Multiline = true;
             textBox12.Name = "textBox12";
             textBox12.Size = new Size(719, 52);
@@ -453,7 +446,7 @@
             textBox13.BackColor = SystemColors.Control;
             textBox13.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox13.ForeColor = SystemColors.InactiveCaptionText;
-            textBox13.Location = new Point(11, 63);
+            textBox13.Location = new Point(30, 645);
             textBox13.Multiline = true;
             textBox13.Name = "textBox13";
             textBox13.Size = new Size(719, 43);
@@ -474,9 +467,9 @@
             panel4.BackColor = Color.FromArgb(42, 93, 159);
             panel4.Controls.Add(pictureBox1);
             panel4.Controls.Add(label1);
-            panel4.Location = new Point(0, 0);
+            panel4.Location = new Point(23, 577);
             panel4.Name = "panel4";
-            panel4.Size = new Size(806, 57);
+            panel4.Size = new Size(734, 57);
             panel4.TabIndex = 0;
             // 
             // pictureBox1
@@ -533,9 +526,9 @@
             panel14.Controls.Add(textBox15);
             panel14.Controls.Add(textBox14);
             panel14.Controls.Add(textBox10);
-            panel14.Location = new Point(19, 62);
+            panel14.Location = new Point(19, 63);
             panel14.Name = "panel14";
-            panel14.Size = new Size(365, 334);
+            panel14.Size = new Size(365, 333);
             panel14.TabIndex = 15;
             // 
             // checkBox7
@@ -796,7 +789,7 @@
             textBox17.BackColor = Color.FromArgb(42, 93, 159);
             textBox17.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox17.ForeColor = SystemColors.Window;
-            textBox17.Location = new Point(-2, 284);
+            textBox17.Location = new Point(-2, 285);
             textBox17.Multiline = true;
             textBox17.Name = "textBox17";
             textBox17.Size = new Size(371, 47);
@@ -1048,14 +1041,14 @@
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(42, 93, 159);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(42, 93, 159);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { colpaymentID, colBookingReference, ColPaymentDate, colGuestName, colAmountPaid, colPaymentMethod, colPaymentStatus, colProcessedBy, colTotalDue, colTotalPaid, colBalance, ColReferenceNo });
             dataGridView1.Dock = DockStyle.Fill;
@@ -1171,27 +1164,13 @@
             label22.TabIndex = 0;
             label22.Text = "Payment";
             // 
-            // button5
-            // 
-            button5.BackColor = Color.FromArgb(42, 93, 159);
-            button5.FlatAppearance.BorderSize = 0;
-            button5.FlatStyle = FlatStyle.Flat;
-            button5.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button5.ForeColor = Color.White;
-            button5.Location = new Point(789, 936);
-            button5.Name = "button5";
-            button5.Size = new Size(225, 51);
-            button5.TabIndex = 56;
-            button5.Text = "Process Payment";
-            button5.UseVisualStyleBackColor = false;
-            // 
             // button7
             // 
             button7.BackColor = Color.White;
             button7.FlatStyle = FlatStyle.Flat;
             button7.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button7.ForeColor = Color.FromArgb(42, 93, 159);
-            button7.Location = new Point(1089, 935);
+            button7.Location = new Point(1404, 931);
             button7.Name = "button7";
             button7.Size = new Size(220, 51);
             button7.TabIndex = 57;
@@ -1203,7 +1182,7 @@
             button8.BackColor = Color.LightGreen;
             button8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button8.ForeColor = Color.Black;
-            button8.Location = new Point(1391, 931);
+            button8.Location = new Point(1155, 927);
             button8.Name = "button8";
             button8.Size = new Size(233, 60);
             button8.TabIndex = 58;
@@ -1236,12 +1215,17 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
+            Controls.Add(textBox6);
             Controls.Add(button9);
+            Controls.Add(textBox8);
             Controls.Add(txtSearchBar);
+            Controls.Add(textBox11);
             Controls.Add(button8);
+            Controls.Add(textBox12);
             Controls.Add(button7);
-            Controls.Add(button5);
+            Controls.Add(textBox13);
             Controls.Add(panel13);
+            Controls.Add(panel4);
             Controls.Add(panel10);
             Controls.Add(panel6);
             Controls.Add(panel5);
@@ -1260,7 +1244,6 @@
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -1366,7 +1349,6 @@
         private DataGridView dataGridView1;
         private Panel panel15;
         private Label label22;
-        private Button button5;
         private Button button7;
         private Button button8;
         private DataGridViewTextBoxColumn colpaymentID;
