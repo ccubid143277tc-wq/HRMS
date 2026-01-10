@@ -49,5 +49,29 @@ namespace HRMS.WinForms
             AdminDashboard Ad = new AdminDashboard();
             UserControl(Ad);
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            UCGuest uCGuest = new UCGuest();
+            UserControl(uCGuest);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            UCreservation uCReservation = new UCreservation();
+            UserControl(uCReservation);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Payment p = new Payment();
+            UserControl(p);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            UCReports UCR = new UCReports();
+            UserControl(UCR);  
+        }
     }
 }

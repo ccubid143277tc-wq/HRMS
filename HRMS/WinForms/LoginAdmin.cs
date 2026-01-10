@@ -17,7 +17,7 @@ namespace HRMS.WinForms
         {
             string username = txtUsername.Text?.Trim() ?? "";
             string password = txtPassword.Text ?? "";
-            // Validate that both username and password are provided before attempting login.
+           
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
@@ -34,19 +34,12 @@ namespace HRMS.WinForms
                     MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                // stores user information in Usersession  
-                    UserSession.CurrentUserId = user.UserID;
+                
+                UserSession.CurrentUserId = user.UserID;
                 UserSession.CurrentUserName = user.Username;
-                UserSession.CurrentUserRole = string.IsNullOrWhiteSpace(user.RoleName) ? "Admin" : user.RoleName;
-                Form next;
-                try
-                {
-                    next = new AdminPage();
-                }
-                catch
-                {
-                    next = new FrontDeskPage();
-                }
+                UserSession.CurrentUserRole = string.IsNullOrWhiteSpace(user.RoleName) ? "" : user.RoleName;
+
+                Form next = CreateNextFormByRole(UserSession.CurrentUserRole);
 
                 next.Show();
                 Hide();
@@ -54,6 +47,36 @@ namespace HRMS.WinForms
             catch (Exception ex)
             {
                 MessageBox.Show($"Login error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private Form CreateNextFormByRole(string roleName)
+        {
+            string role = (roleName ?? "").Trim();
+
+            if (string.Equals(role, "Hotel Manager", StringComparison.OrdinalIgnoreCase))
+            {
+                return new AdminPage();
+            }
+
+            if (string.Equals(role, "Receptionist", StringComparison.OrdinalIgnoreCase))
+            {
+                return new FrontDeskPage();
+            }
+
+            // Fallback: if role not recognized, send to front desk (safer default)
+            return new FrontDeskPage();
+        }
+
+        private void chckShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chckShowPassword.Checked)
+            {
+                txtPassword.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txtPassword.UseSystemPasswordChar = true;
             }
         }
     }

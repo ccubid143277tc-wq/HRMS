@@ -753,12 +753,15 @@
             chart2.Location = new Point(0, 74);
             chart2.Name = "chart2";
             series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
             series2.Legend = "Legend1";
             series2.Name = "Series1";
+            series2.YValuesPerPoint = 2;
             chart2.Series.Add(series2);
             chart2.Size = new Size(879, 378);
             chart2.TabIndex = 0;
             chart2.Text = "chart2";
+            chart2.Click += chart2_Click;
             // 
             // AdminDashboard
             // 

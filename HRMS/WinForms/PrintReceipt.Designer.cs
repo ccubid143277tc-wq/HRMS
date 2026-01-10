@@ -42,6 +42,18 @@
             label11 = new Label();
             label12 = new Label();
             panel1 = new Panel();
+            panel3 = new Panel();
+            label39 = new Label();
+            label38 = new Label();
+            label37 = new Label();
+            label36 = new Label();
+            label35 = new Label();
+            label34 = new Label();
+            label33 = new Label();
+            label30 = new Label();
+            label32 = new Label();
+            label31 = new Label();
+            label29 = new Label();
             panel2 = new Panel();
             label22 = new Label();
             label21 = new Label();
@@ -59,18 +71,6 @@
             label26 = new Label();
             label27 = new Label();
             label28 = new Label();
-            panel3 = new Panel();
-            label29 = new Label();
-            label30 = new Label();
-            label31 = new Label();
-            label32 = new Label();
-            label33 = new Label();
-            label34 = new Label();
-            label35 = new Label();
-            label36 = new Label();
-            label37 = new Label();
-            label38 = new Label();
-            label39 = new Label();
             label40 = new Label();
             label41 = new Label();
             label42 = new Label();
@@ -83,8 +83,8 @@
             label49 = new Label();
             linkLabel2 = new LinkLabel();
             panel1.SuspendLayout();
-            panel2.SuspendLayout();
             panel3.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -233,6 +233,134 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(819, 278);
             panel1.TabIndex = 13;
+            // 
+            // panel3
+            // 
+            panel3.BorderStyle = BorderStyle.Fixed3D;
+            panel3.Controls.Add(label39);
+            panel3.Controls.Add(label38);
+            panel3.Controls.Add(label37);
+            panel3.Controls.Add(label36);
+            panel3.Controls.Add(label35);
+            panel3.Controls.Add(label34);
+            panel3.Controls.Add(label33);
+            panel3.Controls.Add(label30);
+            panel3.Controls.Add(label32);
+            panel3.Controls.Add(label31);
+            panel3.Controls.Add(label29);
+            panel3.Location = new Point(10, 49);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(798, 220);
+            panel3.TabIndex = 18;
+            // 
+            // label39
+            // 
+            label39.AutoSize = true;
+            label39.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label39.Location = new Point(659, 171);
+            label39.Name = "label39";
+            label39.Size = new Size(72, 28);
+            label39.TabIndex = 27;
+            label39.Text = "₱7,000";
+            // 
+            // label38
+            // 
+            label38.AutoSize = true;
+            label38.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label38.Location = new Point(397, 171);
+            label38.Name = "label38";
+            label38.Size = new Size(188, 28);
+            label38.TabIndex = 26;
+            label38.Text = "Total Amount Paid";
+            // 
+            // label37
+            // 
+            label37.AutoSize = true;
+            label37.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label37.Location = new Point(430, 173);
+            label37.Name = "label37";
+            label37.Size = new Size(0, 28);
+            label37.TabIndex = 25;
+            // 
+            // label36
+            // 
+            label36.AutoSize = true;
+            label36.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label36.Location = new Point(666, 133);
+            label36.Name = "label36";
+            label36.Size = new Size(57, 28);
+            label36.TabIndex = 24;
+            label36.Text = "₱100";
+            // 
+            // label35
+            // 
+            label35.AutoSize = true;
+            label35.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label35.Location = new Point(494, 133);
+            label35.Name = "label35";
+            label35.Size = new Size(89, 28);
+            label35.TabIndex = 23;
+            label35.Text = "Discount";
+            // 
+            // label34
+            // 
+            label34.AutoSize = true;
+            label34.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label34.Location = new Point(659, 96);
+            label34.Name = "label34";
+            label34.Size = new Size(72, 28);
+            label34.TabIndex = 22;
+            label34.Text = "₱7,100";
+            // 
+            // label33
+            // 
+            label33.AutoSize = true;
+            label33.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label33.Location = new Point(666, 56);
+            label33.Name = "label33";
+            label33.Size = new Size(57, 28);
+            label33.TabIndex = 21;
+            label33.Text = "₱500";
+            // 
+            // label30
+            // 
+            label30.AutoSize = true;
+            label30.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label30.Location = new Point(659, 17);
+            label30.Name = "label30";
+            label30.Size = new Size(72, 28);
+            label30.TabIndex = 19;
+            label30.Text = "₱6,600";
+            // 
+            // label32
+            // 
+            label32.AutoSize = true;
+            label32.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label32.Location = new Point(493, 97);
+            label32.Name = "label32";
+            label32.Size = new Size(92, 28);
+            label32.TabIndex = 20;
+            label32.Text = "Subtotal";
+            // 
+            // label31
+            // 
+            label31.AutoSize = true;
+            label31.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label31.Location = new Point(25, 56);
+            label31.Name = "label31";
+            label31.Size = new Size(277, 28);
+            label31.TabIndex = 20;
+            label31.Text = "Additional Services (Extra Bed)";
+            // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label29.Location = new Point(72, 17);
+            label29.Name = "label29";
+            label29.Size = new Size(195, 28);
+            label29.TabIndex = 18;
+            label29.Text = "Room Rate (3 nights)";
             // 
             // panel2
             // 
@@ -410,134 +538,6 @@
             label28.TabIndex = 27;
             label28.Text = "1 Child, 2 Adults";
             // 
-            // panel3
-            // 
-            panel3.BorderStyle = BorderStyle.Fixed3D;
-            panel3.Controls.Add(label39);
-            panel3.Controls.Add(label38);
-            panel3.Controls.Add(label37);
-            panel3.Controls.Add(label36);
-            panel3.Controls.Add(label35);
-            panel3.Controls.Add(label34);
-            panel3.Controls.Add(label33);
-            panel3.Controls.Add(label30);
-            panel3.Controls.Add(label32);
-            panel3.Controls.Add(label31);
-            panel3.Controls.Add(label29);
-            panel3.Location = new Point(10, 49);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(798, 220);
-            panel3.TabIndex = 18;
-            // 
-            // label29
-            // 
-            label29.AutoSize = true;
-            label29.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label29.Location = new Point(72, 17);
-            label29.Name = "label29";
-            label29.Size = new Size(195, 28);
-            label29.TabIndex = 18;
-            label29.Text = "Room Rate (3 nights)";
-            // 
-            // label30
-            // 
-            label30.AutoSize = true;
-            label30.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label30.Location = new Point(659, 17);
-            label30.Name = "label30";
-            label30.Size = new Size(72, 28);
-            label30.TabIndex = 19;
-            label30.Text = "₱6,600";
-            // 
-            // label31
-            // 
-            label31.AutoSize = true;
-            label31.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label31.Location = new Point(25, 56);
-            label31.Name = "label31";
-            label31.Size = new Size(277, 28);
-            label31.TabIndex = 20;
-            label31.Text = "Additional Services (Extra Bed)";
-            // 
-            // label32
-            // 
-            label32.AutoSize = true;
-            label32.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label32.Location = new Point(493, 97);
-            label32.Name = "label32";
-            label32.Size = new Size(92, 28);
-            label32.TabIndex = 20;
-            label32.Text = "Subtotal";
-            // 
-            // label33
-            // 
-            label33.AutoSize = true;
-            label33.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label33.Location = new Point(666, 56);
-            label33.Name = "label33";
-            label33.Size = new Size(57, 28);
-            label33.TabIndex = 21;
-            label33.Text = "₱500";
-            // 
-            // label34
-            // 
-            label34.AutoSize = true;
-            label34.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label34.Location = new Point(659, 96);
-            label34.Name = "label34";
-            label34.Size = new Size(72, 28);
-            label34.TabIndex = 22;
-            label34.Text = "₱7,100";
-            // 
-            // label35
-            // 
-            label35.AutoSize = true;
-            label35.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label35.Location = new Point(494, 133);
-            label35.Name = "label35";
-            label35.Size = new Size(89, 28);
-            label35.TabIndex = 23;
-            label35.Text = "Discount";
-            // 
-            // label36
-            // 
-            label36.AutoSize = true;
-            label36.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label36.Location = new Point(666, 133);
-            label36.Name = "label36";
-            label36.Size = new Size(57, 28);
-            label36.TabIndex = 24;
-            label36.Text = "₱100";
-            // 
-            // label37
-            // 
-            label37.AutoSize = true;
-            label37.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label37.Location = new Point(430, 173);
-            label37.Name = "label37";
-            label37.Size = new Size(0, 28);
-            label37.TabIndex = 25;
-            // 
-            // label38
-            // 
-            label38.AutoSize = true;
-            label38.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label38.Location = new Point(397, 171);
-            label38.Name = "label38";
-            label38.Size = new Size(188, 28);
-            label38.TabIndex = 26;
-            label38.Text = "Total Amount Paid";
-            // 
-            // label39
-            // 
-            label39.AutoSize = true;
-            label39.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label39.Location = new Point(659, 171);
-            label39.Name = "label39";
-            label39.Size = new Size(72, 28);
-            label39.TabIndex = 27;
-            label39.Text = "₱7,000";
-            // 
             // label40
             // 
             label40.AutoSize = true;
@@ -654,7 +654,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(868, 1175);
+            AutoScroll = true;
+            ClientSize = new Size(868, 1055);
             Controls.Add(linkLabel2);
             Controls.Add(label49);
             Controls.Add(label48);
@@ -698,10 +699,10 @@
             Name = "PrintReceipt";
             Text = "PrintReceipt";
             panel1.ResumeLayout(false);
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }

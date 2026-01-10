@@ -86,7 +86,7 @@
             panel1.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1924, 104);
+            panel1.Size = new Size(1674, 104);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
@@ -178,7 +178,7 @@
             dataGridView1.Location = new Point(25, 237);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1866, 628);
+            dataGridView1.Size = new Size(1625, 628);
             dataGridView1.TabIndex = 6;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -253,7 +253,7 @@
             BtnDelete.ForeColor = Color.White;
             BtnDelete.Image = (Image)resources.GetObject("BtnDelete.Image");
             BtnDelete.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnDelete.Location = new Point(1803, 185);
+            BtnDelete.Location = new Point(1561, 204);
             BtnDelete.Name = "BtnDelete";
             BtnDelete.Size = new Size(88, 29);
             BtnDelete.TabIndex = 7;
@@ -269,7 +269,7 @@
             BtnEdit.ForeColor = Color.FromArgb(42, 93, 159);
             BtnEdit.Image = (Image)resources.GetObject("BtnEdit.Image");
             BtnEdit.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnEdit.Location = new Point(1709, 185);
+            BtnEdit.Location = new Point(1467, 204);
             BtnEdit.Name = "BtnEdit";
             BtnEdit.Padding = new Padding(0, 0, 10, 0);
             BtnEdit.Size = new Size(88, 29);
@@ -443,7 +443,7 @@
             Controls.Add(txtSearchBar);
             Controls.Add(panel1);
             Name = "UCRooms";
-            Size = new Size(1924, 891);
+            Size = new Size(1674, 1055);
             Load += UCRooms_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

@@ -134,6 +134,7 @@
             chckShowPassword.TabIndex = 6;
             chckShowPassword.Text = "Show Password";
             chckShowPassword.UseVisualStyleBackColor = false;
+            chckShowPassword.CheckedChanged += chckShowPassword_CheckedChanged;
             // 
             // button1
             // 

@@ -947,7 +947,23 @@ namespace HRMS.UCForms
                 }
                 else if (radioButton8.Checked) // 50% Payment
                 {
-                    amountToPay = Math.Round(balance * 0.5m, 2);
+                    // Pay enough so that TotalPaid becomes 50% of TotalDue.
+                    // Example: TotalDue=1000, alreadyPaid=200 => target=500 => pay 300.
+                    decimal targetPaid = Math.Round(totalDue * 0.5m, 2);
+                    amountToPay = Math.Round(targetPaid - alreadyPaid, 2);
+
+                    if (amountToPay <= 0m)
+                    {
+                        MessageBox.Show("This reservation already has at least 50% paid.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    // Never allow paying more than the remaining balance
+                    if (amountToPay > balance)
+                    {
+                        amountToPay = balance;
+                    }
+
                     paymentStatus = "Pending";
                 }
                 else if (radioButton7.Checked) // Custom Payment

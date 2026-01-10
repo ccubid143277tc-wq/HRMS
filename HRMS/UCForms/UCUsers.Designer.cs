@@ -83,7 +83,7 @@
             panel1.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1924, 104);
+            panel1.Size = new Size(1704, 104);
             panel1.TabIndex = 1;
             // 
             // label1
@@ -104,7 +104,7 @@
             BtnEdit.ForeColor = Color.FromArgb(42, 93, 159);
             BtnEdit.Image = (Image)resources.GetObject("BtnEdit.Image");
             BtnEdit.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnEdit.Location = new Point(1702, 205);
+            BtnEdit.Location = new Point(1472, 205);
             BtnEdit.Name = "BtnEdit";
             BtnEdit.Padding = new Padding(0, 0, 10, 0);
             BtnEdit.Size = new Size(88, 29);
@@ -122,7 +122,7 @@
             BtnDelete.ForeColor = Color.White;
             BtnDelete.Image = (Image)resources.GetObject("BtnDelete.Image");
             BtnDelete.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnDelete.Location = new Point(1796, 205);
+            BtnDelete.Location = new Point(1566, 205);
             BtnDelete.Name = "BtnDelete";
             BtnDelete.Size = new Size(88, 29);
             BtnDelete.TabIndex = 13;
@@ -148,7 +148,7 @@
             dataGridView1.Location = new Point(18, 240);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1866, 628);
+            dataGridView1.Size = new Size(1637, 628);
             dataGridView1.TabIndex = 12;
             // 
             // colUsername
@@ -258,7 +258,7 @@
             panel8.BorderStyle = BorderStyle.FixedSingle;
             panel8.Controls.Add(panel9);
             panel8.Controls.Add(label9);
-            panel8.Location = new Point(924, 120);
+            panel8.Location = new Point(883, 120);
             panel8.Name = "panel8";
             panel8.Size = new Size(391, 65);
             panel8.TabIndex = 17;
@@ -299,7 +299,7 @@
             panel4.BorderStyle = BorderStyle.FixedSingle;
             panel4.Controls.Add(panel5);
             panel4.Controls.Add(label5);
-            panel4.Location = new Point(615, 120);
+            panel4.Location = new Point(574, 120);
             panel4.Name = "panel4";
             panel4.Size = new Size(310, 65);
             panel4.TabIndex = 16;
@@ -340,7 +340,7 @@
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(panel3);
             panel2.Controls.Add(label3);
-            panel2.Location = new Point(230, 120);
+            panel2.Location = new Point(189, 120);
             panel2.Name = "panel2";
             panel2.Size = new Size(417, 65);
             panel2.TabIndex = 15;
@@ -381,7 +381,7 @@
             panel6.BorderStyle = BorderStyle.FixedSingle;
             panel6.Controls.Add(panel7);
             panel6.Controls.Add(label7);
-            panel6.Location = new Point(1304, 120);
+            panel6.Location = new Point(1263, 120);
             panel6.Name = "panel6";
             panel6.Size = new Size(392, 65);
             panel6.TabIndex = 18;
@@ -433,7 +433,7 @@
             Controls.Add(txtSearchBar);
             Controls.Add(panel1);
             Name = "UCUsers";
-            Size = new Size(1924, 891);
+            Size = new Size(1704, 891);
             Load += UCUsers_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

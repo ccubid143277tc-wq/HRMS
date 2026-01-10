@@ -35,6 +35,8 @@
             button2 = new Button();
             button1 = new Button();
             panel1 = new Panel();
+            button8 = new Button();
+            button7 = new Button();
             panel2 = new Panel();
             button6 = new Button();
             panel4 = new Panel();
@@ -42,7 +44,6 @@
             pictureBox1 = new PictureBox();
             panel3 = new Panel();
             adminDashboard1 = new HRMS.UCForms.AdminDashboard();
-            button7 = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel4.SuspendLayout();
@@ -84,6 +85,7 @@
             button4.Text = "Reservation";
             button4.TextAlign = ContentAlignment.MiddleRight;
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
@@ -93,7 +95,7 @@
             button3.ForeColor = Color.Black;
             button3.Image = (Image)resources.GetObject("button3.Image");
             button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(10, 319);
+            button3.Location = new Point(13, 319);
             button3.Name = "button3";
             button3.Padding = new Padding(20, 0, 70, 0);
             button3.Size = new Size(234, 64);
@@ -101,6 +103,7 @@
             button3.Text = "Guest";
             button3.TextAlign = ContentAlignment.MiddleRight;
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button2
             // 
@@ -141,6 +144,7 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ControlLightLight;
+            panel1.Controls.Add(button8);
             panel1.Controls.Add(button7);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(panel4);
@@ -154,6 +158,42 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(250, 1055);
             panel1.TabIndex = 4;
+            // 
+            // button8
+            // 
+            button8.FlatAppearance.BorderSize = 0;
+            button8.FlatStyle = FlatStyle.Flat;
+            button8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button8.ForeColor = Color.Black;
+            button8.Image = (Image)resources.GetObject("button8.Image");
+            button8.ImageAlign = ContentAlignment.MiddleLeft;
+            button8.Location = new Point(10, 529);
+            button8.Name = "button8";
+            button8.Padding = new Padding(20, 0, 70, 0);
+            button8.Size = new Size(234, 64);
+            button8.TabIndex = 8;
+            button8.Text = "Billing";
+            button8.TextAlign = ContentAlignment.MiddleRight;
+            button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
+            // 
+            // button7
+            // 
+            button7.FlatAppearance.BorderSize = 0;
+            button7.FlatStyle = FlatStyle.Flat;
+            button7.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button7.ForeColor = Color.Black;
+            button7.Image = (Image)resources.GetObject("button7.Image");
+            button7.ImageAlign = ContentAlignment.MiddleLeft;
+            button7.Location = new Point(13, 599);
+            button7.Name = "button7";
+            button7.Padding = new Padding(20, 0, 65, 0);
+            button7.Size = new Size(234, 64);
+            button7.TabIndex = 7;
+            button7.Text = "Reports";
+            button7.TextAlign = ContentAlignment.MiddleRight;
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
             // 
             // panel2
             // 
@@ -230,23 +270,6 @@
             adminDashboard1.Size = new Size(1674, 1055);
             adminDashboard1.TabIndex = 0;
             // 
-            // button7
-            // 
-            button7.FlatAppearance.BorderSize = 0;
-            button7.FlatStyle = FlatStyle.Flat;
-            button7.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button7.ForeColor = Color.Black;
-            button7.Image = (Image)resources.GetObject("button7.Image");
-            button7.ImageAlign = ContentAlignment.MiddleLeft;
-            button7.Location = new Point(10, 529);
-            button7.Name = "button7";
-            button7.Padding = new Padding(20, 0, 65, 0);
-            button7.Size = new Size(234, 64);
-            button7.TabIndex = 7;
-            button7.Text = "Reports";
-            button7.TextAlign = ContentAlignment.MiddleRight;
-            button7.UseVisualStyleBackColor = true;
-            // 
             // AdminPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -281,5 +304,6 @@
         private Button button6;
         private UCForms.AdminDashboard adminDashboard1;
         private Button button7;
+        private Button button8;
     }
 }

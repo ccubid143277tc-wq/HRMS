@@ -706,8 +706,51 @@ namespace HRMS.UCForms
 
         private void button7_Click(object sender, EventArgs e)
         {
-            PrintReceipt pr = new PrintReceipt();
-            pr.ShowDialog();
+            try
+            {
+                if (dataGridView1.CurrentRow == null)
+                {
+                    MessageBox.Show("Please select a row to print receipt.", "Print Receipt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                var rowView = dataGridView1.CurrentRow.DataBoundItem as DataRowView;
+                if (rowView == null)
+                {
+                    MessageBox.Show("Please select a valid row to print receipt.", "Print Receipt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                int reservationId = 0;
+                int paymentId = 0;
+
+                if (rowView.Row.Table.Columns.Contains("ReservationID")
+                    && rowView["ReservationID"] != DBNull.Value)
+                {
+                    int.TryParse(rowView["ReservationID"].ToString(), out reservationId);
+                }
+
+                if (rowView.Row.Table.Columns.Contains("PaymentID")
+                    && rowView["PaymentID"] != DBNull.Value)
+                {
+                    int.TryParse(rowView["PaymentID"].ToString(), out paymentId);
+                }
+
+                if (reservationId <= 0)
+                {
+                    MessageBox.Show("Please select a reservation row to print receipt.", "Print Receipt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                using (var pr = new PrintReceipt(reservationId, paymentId))
+                {
+                    pr.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Unable to print receipt: {ex.Message}", "Print Receipt", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
