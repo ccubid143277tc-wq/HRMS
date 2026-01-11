@@ -270,10 +270,24 @@ namespace HRMS.WinForms
                 // Charges breakdown
                 decimal roomSubtotal = nightlyRoomRateSum * Math.Max(0, nights);
 
+                // Tax breakdown:
+                // - Room total due (rtcalc.TotalDue) is roomSubtotal * 1.05
+                // - Additional services are stored as already-taxed charges (amount includes the 5%)
+                decimal roomTax = Math.Round(roomSubtotal * 0.05m, 2);
+                decimal serviceChargesBase = 0m;
+                if (serviceCharges > 0m)
+                {
+                    serviceChargesBase = Math.Round(serviceCharges / 1.05m, 2);
+                }
+                decimal serviceTax = Math.Round(serviceCharges - serviceChargesBase, 2);
+                decimal taxTotal = Math.Round(roomTax + serviceTax, 2);
+
                 label29.Text = $"Room Rate ({Math.Max(0, nights)} nights)";
                 label30.Text = MoneyHelper.Format(roomSubtotal);
                 label31.Text = "Additional Services";
                 label33.Text = MoneyHelper.Format(serviceCharges);
+
+                label51.Text = MoneyHelper.Format(taxTotal);
 
                 // Discount is not stored in DB (based on current code), so default to 0
                 label36.Text = MoneyHelper.Format(0m);

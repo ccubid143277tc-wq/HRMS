@@ -767,6 +767,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             Controls.Add(panel19);
             Controls.Add(panel17);
             Controls.Add(panel9);

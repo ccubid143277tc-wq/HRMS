@@ -43,6 +43,8 @@
             label12 = new Label();
             panel1 = new Panel();
             panel3 = new Panel();
+            label51 = new Label();
+            label50 = new Label();
             label39 = new Label();
             label38 = new Label();
             label37 = new Label();
@@ -230,12 +232,14 @@
             panel1.Controls.Add(panel3);
             panel1.Location = new Point(25, 567);
             panel1.Name = "panel1";
-            panel1.Size = new Size(819, 278);
+            panel1.Size = new Size(819, 308);
             panel1.TabIndex = 13;
             // 
             // panel3
             // 
             panel3.BorderStyle = BorderStyle.Fixed3D;
+            panel3.Controls.Add(label51);
+            panel3.Controls.Add(label50);
             panel3.Controls.Add(label39);
             panel3.Controls.Add(label38);
             panel3.Controls.Add(label37);
@@ -249,14 +253,34 @@
             panel3.Controls.Add(label29);
             panel3.Location = new Point(10, 49);
             panel3.Name = "panel3";
-            panel3.Size = new Size(798, 220);
+            panel3.Size = new Size(798, 241);
             panel3.TabIndex = 18;
+            // 
+            // label51
+            // 
+            label51.AutoSize = true;
+            label51.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label51.Location = new Point(666, 170);
+            label51.Name = "label51";
+            label51.Size = new Size(57, 28);
+            label51.TabIndex = 29;
+            label51.Text = "₱100";
+            // 
+            // label50
+            // 
+            label50.AutoSize = true;
+            label50.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label50.Location = new Point(493, 170);
+            label50.Name = "label50";
+            label50.Size = new Size(78, 28);
+            label50.TabIndex = 28;
+            label50.Text = "Tax(5%)";
             // 
             // label39
             // 
             label39.AutoSize = true;
             label39.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label39.Location = new Point(659, 171);
+            label39.Location = new Point(661, 209);
             label39.Name = "label39";
             label39.Size = new Size(72, 28);
             label39.TabIndex = 27;
@@ -266,7 +290,7 @@
             // 
             label38.AutoSize = true;
             label38.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label38.Location = new Point(397, 171);
+            label38.Location = new Point(399, 209);
             label38.Name = "label38";
             label38.Size = new Size(188, 28);
             label38.TabIndex = 26;
@@ -276,7 +300,7 @@
             // 
             label37.AutoSize = true;
             label37.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label37.Location = new Point(430, 173);
+            label37.Location = new Point(432, 211);
             label37.Name = "label37";
             label37.Size = new Size(0, 28);
             label37.TabIndex = 25;
@@ -330,6 +354,7 @@
             label30.Size = new Size(72, 28);
             label30.TabIndex = 19;
             label30.Text = "₱6,600";
+           
             // 
             // label32
             // 
@@ -761,5 +786,7 @@
         private Label label48;
         private Label label49;
         private LinkLabel linkLabel2;
+        private Label label51;
+        private Label label50;
     }
 }

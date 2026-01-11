@@ -40,6 +40,7 @@ namespace HRMS.UCForms
             comboBox1.SelectedIndexChanged += PaymentInputs_Changed;
 
             textBox26.ReadOnly = true;
+            textBox24.ReadOnly = true;
             checkBox1.Enabled = false;
             checkBox2.Enabled = false;
 
@@ -498,6 +499,7 @@ namespace HRMS.UCForms
             textBox20.Text = additionalServices.ToString("0.00");
             textBox19.Text = tax.ToString("0.00");
             textBox22.Text = subtotalBeforeTax.ToString("0.00");
+            textBox24.Text = totalAmount.ToString("0.00");
         }
 
         private void LoadReservationDetailsAndCharges(int reservationId)
