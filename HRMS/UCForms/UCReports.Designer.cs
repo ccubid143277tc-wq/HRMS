@@ -32,9 +32,7 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel26 = new Panel();
             pictureBox16 = new PictureBox();
             label19 = new Label();
@@ -93,15 +91,17 @@
             panel10 = new Panel();
             chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             panel11 = new Panel();
-            chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             panel13 = new Panel();
             pictureBox10 = new PictureBox();
             label36 = new Label();
             label32 = new Label();
-            label34 = new Label();
             pictureBox9 = new PictureBox();
             panel12 = new Panel();
-            panel14 = new Panel();
+            dataGridView1 = new DataGridView();
+            ColID = new DataGridViewTextBoxColumn();
+            ColGuest = new DataGridViewTextBoxColumn();
+            colTotalpayment = new DataGridViewTextBoxColumn();
+            ColRevenue = new DataGridViewTextBoxColumn();
             panel26.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             panel2.SuspendLayout();
@@ -125,12 +125,11 @@
             panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chart2).BeginInit();
             panel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
             panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             panel12.SuspendLayout();
-            panel14.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel26
@@ -753,33 +752,12 @@
             // panel11
             // 
             panel11.BorderStyle = BorderStyle.Fixed3D;
-            panel11.Controls.Add(chart1);
+            panel11.Controls.Add(dataGridView1);
             panel11.Controls.Add(panel13);
             panel11.Location = new Point(902, 538);
             panel11.Name = "panel11";
             panel11.Size = new Size(743, 445);
             panel11.TabIndex = 27;
-            // 
-            // chart1
-            // 
-            chart1.BorderlineColor = Color.Transparent;
-            chartArea2.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            chart1.Legends.Add(legend2);
-            chart1.Location = new Point(6, 69);
-            chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
-            series2.Color = Color.FromArgb(42, 93, 159);
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            series2.ShadowColor = Color.Transparent;
-            series2.YValuesPerPoint = 4;
-            chart1.Series.Add(series2);
-            chart1.Size = new Size(715, 341);
-            chart1.TabIndex = 1;
-            chart1.Text = "chart1";
             // 
             // panel13
             // 
@@ -823,16 +801,6 @@
             label32.TabIndex = 1;
             label32.Text = "Sales Chart";
             // 
-            // label34
-            // 
-            label34.AutoSize = true;
-            label34.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label34.Location = new Point(9, 4);
-            label34.Name = "label34";
-            label34.Size = new Size(231, 41);
-            label34.TabIndex = 28;
-            label34.Text = "Total Revenue :";
-            // 
             // pictureBox9
             // 
             pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
@@ -853,22 +821,59 @@
             panel12.Size = new Size(868, 65);
             panel12.TabIndex = 3;
             // 
-            // panel14
+            // dataGridView1
             // 
-            panel14.BackColor = Color.FromArgb(42, 93, 159);
-            panel14.Controls.Add(label34);
-            panel14.ForeColor = SystemColors.ButtonHighlight;
-            panel14.Location = new Point(21, 989);
-            panel14.Name = "panel14";
-            panel14.Size = new Size(920, 49);
-            panel14.TabIndex = 30;
+            dataGridView1.BackgroundColor = SystemColors.Control;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(42, 93, 159);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ColID, ColGuest, colTotalpayment, ColRevenue });
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.Location = new Point(-2, 63);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(743, 380);
+            dataGridView1.TabIndex = 5;
+            // 
+            // ColID
+            // 
+            ColID.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColID.HeaderText = "ID";
+            ColID.MinimumWidth = 6;
+            ColID.Name = "ColID";
+            // 
+            // ColGuest
+            // 
+            ColGuest.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColGuest.HeaderText = "Guest";
+            ColGuest.MinimumWidth = 6;
+            ColGuest.Name = "ColGuest";
+            // 
+            // colTotalpayment
+            // 
+            colTotalpayment.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colTotalpayment.HeaderText = "Total Payment";
+            colTotalpayment.MinimumWidth = 6;
+            colTotalpayment.Name = "colTotalpayment";
+            // 
+            // ColRevenue
+            // 
+            ColRevenue.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColRevenue.HeaderText = "Revenue";
+            ColRevenue.MinimumWidth = 6;
+            ColRevenue.Name = "ColRevenue";
             // 
             // UCReports
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            Controls.Add(panel14);
             Controls.Add(panel12);
             Controls.Add(panel11);
             Controls.Add(panel10);
@@ -885,7 +890,7 @@
             Controls.Add(panel2);
             Controls.Add(panel26);
             Name = "UCReports";
-            Size = new Size(1622, 908);
+            Size = new Size(1601, 887);
             panel26.ResumeLayout(false);
             panel26.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
@@ -919,15 +924,13 @@
             panel10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)chart2).EndInit();
             panel11.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
             panel13.ResumeLayout(false);
             panel13.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             panel12.ResumeLayout(false);
             panel12.PerformLayout();
-            panel14.ResumeLayout(false);
-            panel14.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -991,14 +994,16 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private PictureBox pictureBox8;
         private PictureBox pictureBox9;
-        private Label label34;
         private Panel panel12;
         private Panel panel13;
         private PictureBox pictureBox10;
         private Label label36;
-        private Panel panel14;
         private ComboBox cmbViewType;
         private PictureBox pictureBox11;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn ColID;
+        private DataGridViewTextBoxColumn ColGuest;
+        private DataGridViewTextBoxColumn colTotalpayment;
+        private DataGridViewTextBoxColumn ColRevenue;
     }
 }

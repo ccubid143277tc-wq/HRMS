@@ -652,5 +652,20 @@ namespace HRMS.UCForms
                 MessageBox.Show($"Unable to print receipt: {ex.Message}", "Print Receipt", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void checkBox7_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox27_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -22,12 +22,87 @@ namespace HRMS.UCForms
             Load += UCReports_Load;
         }
 
+        private void ConfigureReportGrid()
+        {
+            if (dataGridView1 == null)
+            {
+                return;
+            }
+
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ReadOnly = true;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
+
+            // Ensure the existing designer columns bind to known field names.
+            if (ColID != null) ColID.DataPropertyName = "ReservationID";
+            if (ColGuest != null) ColGuest.DataPropertyName = "GuestName";
+            if (colTotalpayment != null) colTotalpayment.DataPropertyName = "TotalPayment";
+            if (ColRevenue != null) ColRevenue.DataPropertyName = "Revenue";
+
+            if (colTotalpayment != null) colTotalpayment.DefaultCellStyle.Format = "₱ #,##0.00";
+            if (ColRevenue != null) ColRevenue.DefaultCellStyle.Format = "₱ #,##0.00";
+        }
+
+        private string GetPaymentMethodSqlCondition(string paymentFilter)
+        {
+            return paymentFilter switch
+            {
+                "CASH" => "p.Payment_method = 'Cash'",
+                "GCASH" => "(p.Payment_method = 'G-cash' OR p.Payment_method = 'GCash')",
+                "CARD" => "(p.Payment_method LIKE '%Card%' OR p.Payment_method = 'Credit Card' OR p.Payment_method = 'Debit Card')",
+                _ => "1=1"
+            };
+        }
+
+        private DataTable LoadReportGridData(MySqlConnection conn, DateTime fromInclusive, DateTime toExclusive, string paymentFilter)
+        {
+            string paymentMethodCondition = GetPaymentMethodSqlCondition(paymentFilter);
+
+            string query = $@"SELECT
+                                r.ReservationID,
+                                CONCAT(g.FirstName, ' ', g.LastName) AS GuestName,
+                                ROUND(COALESCE(SUM(CASE
+                                    WHEN (p.Payment_method IS NULL OR p.Payment_method <> 'Additional Service')
+                                         AND (p.Payment_Status IS NULL OR p.Payment_Status <> 'Charge')
+                                    THEN p.amount
+                                    ELSE 0
+                                END), 0), 2) AS TotalPayment,
+                                ROUND(COALESCE(SUM(p.amount), 0), 2) AS Revenue
+                             FROM reservations r
+                             LEFT JOIN Guest g ON r.GuestID = g.GuestID
+                             LEFT JOIN payment p ON p.ReservationID = r.ReservationID
+                                AND p.Payment_Date >= @fromDate
+                                AND p.Payment_Date < @toDate
+                                AND (p.Payment_Status IS NULL OR p.Payment_Status <> 'Voided')
+                                AND ({paymentMethodCondition})
+                             WHERE r.Check_InDate >= @fromDate
+                               AND r.Check_InDate < @toDate
+                             GROUP BY r.ReservationID, g.FirstName, g.LastName
+                             ORDER BY r.ReservationID DESC";
+
+            using (var cmd = new MySqlCommand(query, conn))
+            using (var adapter = new MySqlDataAdapter(cmd))
+            {
+                cmd.Parameters.AddWithValue("@fromDate", fromInclusive);
+                cmd.Parameters.AddWithValue("@toDate", toExclusive);
+                var table = new DataTable();
+                adapter.Fill(table);
+                return table;
+            }
+        }
+
         private void ConfigureAreaChart()
         {
- 
+            if (chart2 == null)
+            {
+                return;
+            }
 
-            chart1.Dock = DockStyle.Fill;
-            chart1.BringToFront();
+            chart2.Dock = DockStyle.Fill;
+            chart2.BringToFront();
         }
 
         private void ApplyCurrentUserToHeader()
@@ -51,12 +126,12 @@ namespace HRMS.UCForms
 
         private void PopulateRevenueAreaChart(List<(DateTime day, decimal revenue)> points)
         {
-            if (chart1 == null)
+            if (chart2 == null)
             {
                 return;
             }
 
-            chart1.Series.Clear();
+            chart2.Series.Clear();
 
             var series = new Series("Cumulative Revenue")
             {
@@ -74,11 +149,11 @@ namespace HRMS.UCForms
                 series.Points[idx].AxisLabel = p.day.ToString("MMM-dd");
             }
 
-            chart1.Series.Add(series);
+            chart2.Series.Add(series);
 
-            if (chart1.ChartAreas.Count > 0)
+            if (chart2.ChartAreas.Count > 0)
             {
-                var area = chart1.ChartAreas[0];
+                var area = chart2.ChartAreas[0];
                 area.AxisX.Interval = 1;
                 area.AxisX.MajorGrid.Enabled = false;
                 area.AxisY.MajorGrid.LineColor = Color.Gainsboro;
@@ -257,6 +332,12 @@ namespace HRMS.UCForms
                     }
                 }
 
+                // Grid
+                ConfigureReportGrid();
+                var gridTable = LoadReportGridData(conn, fromInclusive, toExclusive, paymentFilter);
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = gridTable;
+
                 label6.Text = totalBookings.ToString();
                 label7.Text = totalNights.ToString();
                 label9.Text = $"₱ {additionalServicesRevenue:0,0.00}";
@@ -268,7 +349,6 @@ namespace HRMS.UCForms
                 label3.Text = $"Last update : {DateTime.Now:MMM-dd-yyyy hh:mm tt}";
 
                 PopulateSalesChart(points);
-                PopulateRevenueAreaChart(points);
             }
         }
 
@@ -318,6 +398,7 @@ namespace HRMS.UCForms
             {
                 ApplyCurrentUserToHeader();
                 ConfigureAreaChart();
+                ConfigureReportGrid();
                 EnsureDefaults();
                 LoadReport();
             }
