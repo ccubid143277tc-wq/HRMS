@@ -32,6 +32,9 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panel26 = new Panel();
             pictureBox16 = new PictureBox();
             label19 = new Label();
@@ -90,6 +93,7 @@
             panel10 = new Panel();
             chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             panel11 = new Panel();
+            chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             panel13 = new Panel();
             pictureBox10 = new PictureBox();
             label36 = new Label();
@@ -121,6 +125,7 @@
             panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chart2).BeginInit();
             panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
             panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
@@ -177,7 +182,6 @@
             label14.Size = new Size(91, 20);
             label14.TabIndex = 12;
             label14.Text = "Receptionist";
-            label14.Click += label14_Click;
             // 
             // label15
             // 
@@ -250,7 +254,6 @@
             label2.Size = new Size(41, 28);
             label2.TabIndex = 15;
             label2.Text = "To :";
-            label2.Click += label2_Click;
             // 
             // dateTimePicker2
             // 
@@ -258,6 +261,7 @@
             dateTimePicker2.Name = "dateTimePicker2";
             dateTimePicker2.Size = new Size(261, 27);
             dateTimePicker2.TabIndex = 16;
+            dateTimePicker2.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // mySqlCommand1
             // 
@@ -275,7 +279,6 @@
             label3.Size = new Size(196, 25);
             label3.TabIndex = 17;
             label3.Text = "Last update : Just now";
-            label3.Click += label3_Click;
             // 
             // panel2
             // 
@@ -325,7 +328,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(360, 98);
             panel1.TabIndex = 0;
-            panel1.Paint += panel1_Paint;
             // 
             // pictureBox2
             // 
@@ -337,7 +339,6 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 24;
             pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
             // 
             // label6
             // 
@@ -358,7 +359,6 @@
             label5.Size = new Size(196, 37);
             label5.TabIndex = 19;
             label5.Text = "Total Bookings";
-            label5.Click += label5_Click;
             // 
             // label4
             // 
@@ -369,7 +369,6 @@
             label4.Size = new Size(278, 41);
             label4.TabIndex = 0;
             label4.Text = "Booking Summary";
-            label4.Click += label4_Click;
             // 
             // panel3
             // 
@@ -392,7 +391,6 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 20;
             pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
             // 
             // label7
             // 
@@ -413,7 +411,6 @@
             label8.Size = new Size(160, 37);
             label8.TabIndex = 19;
             label8.Text = "Total nights";
-            label8.Click += label8_Click;
             // 
             // panel4
             // 
@@ -437,7 +434,6 @@
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox4.TabIndex = 24;
             pictureBox4.TabStop = false;
-            pictureBox4.Click += pictureBox4_Click;
             // 
             // label9
             // 
@@ -458,7 +454,6 @@
             label10.Size = new Size(362, 37);
             label10.TabIndex = 19;
             label10.Text = "Additional Services Revenue";
-            label10.Click += label10_Click;
             // 
             // panel5
             // 
@@ -502,7 +497,6 @@
             label12.Size = new Size(200, 37);
             label12.TabIndex = 19;
             label12.Text = "Room Revenue";
-            label12.Click += label12_Click;
             // 
             // label13
             // 
@@ -547,7 +541,6 @@
             label24.Size = new Size(144, 37);
             label24.TabIndex = 20;
             label24.Text = "₱ 250,000";
-            label24.Click += label24_Click;
             // 
             // label20
             // 
@@ -601,7 +594,6 @@
             label25.Size = new Size(144, 37);
             label25.TabIndex = 20;
             label25.Text = "₱ 100,000";
-            label25.Click += label25_Click;
             // 
             // label22
             // 
@@ -646,7 +638,6 @@
             pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox5.TabIndex = 21;
             pictureBox5.TabStop = false;
-            pictureBox5.Click += pictureBox5_Click;
             // 
             // label26
             // 
@@ -676,7 +667,6 @@
             label28.Size = new Size(228, 37);
             label28.TabIndex = 19;
             label28.Text = "G-cash Payments";
-            label28.Click += label28_Click;
             // 
             // panel9
             // 
@@ -731,7 +721,6 @@
             label31.Size = new Size(200, 37);
             label31.TabIndex = 19;
             label31.Text = "Card Payments";
-            label31.Click += label31_Click;
             // 
             // panel10
             // 
@@ -764,12 +753,33 @@
             // panel11
             // 
             panel11.BorderStyle = BorderStyle.Fixed3D;
+            panel11.Controls.Add(chart1);
             panel11.Controls.Add(panel13);
             panel11.Location = new Point(902, 538);
             panel11.Name = "panel11";
             panel11.Size = new Size(743, 445);
             panel11.TabIndex = 27;
-            panel11.Paint += panel11_Paint;
+            // 
+            // chart1
+            // 
+            chart1.BorderlineColor = Color.Transparent;
+            chartArea2.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            chart1.Legends.Add(legend2);
+            chart1.Location = new Point(6, 69);
+            chart1.Name = "chart1";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area;
+            series2.Color = Color.FromArgb(42, 93, 159);
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            series2.ShadowColor = Color.Transparent;
+            series2.YValuesPerPoint = 4;
+            chart1.Series.Add(series2);
+            chart1.Size = new Size(715, 341);
+            chart1.TabIndex = 1;
+            chart1.Text = "chart1";
             // 
             // panel13
             // 
@@ -832,7 +842,6 @@
             pictureBox9.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox9.TabIndex = 2;
             pictureBox9.TabStop = false;
-            pictureBox9.Click += pictureBox9_Click;
             // 
             // panel12
             // 
@@ -876,7 +885,7 @@
             Controls.Add(panel2);
             Controls.Add(panel26);
             Name = "UCReports";
-            Size = new Size(1440, 1013);
+            Size = new Size(1622, 908);
             panel26.ResumeLayout(false);
             panel26.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
@@ -910,6 +919,7 @@
             panel10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)chart2).EndInit();
             panel11.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
             panel13.ResumeLayout(false);
             panel13.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
@@ -989,5 +999,6 @@
         private Panel panel14;
         private ComboBox cmbViewType;
         private PictureBox pictureBox11;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }

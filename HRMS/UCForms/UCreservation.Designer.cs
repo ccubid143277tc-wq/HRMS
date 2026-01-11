@@ -406,7 +406,6 @@
             comboBox1.Size = new Size(545, 36);
             comboBox1.TabIndex = 10;
             comboBox1.Text = "Select Payment";
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label24
             // 
@@ -736,10 +735,10 @@
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(814, 108);
             textBox4.TabIndex = 20;
-            textBox4.TextChanged += textBox4_TextChanged;
             // 
             // dataGridView2
             // 
+            dataGridView2.AllowUserToAddRows = false;
             dataGridView2.BackgroundColor = SystemColors.Control;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(42, 93, 159);
@@ -833,7 +832,6 @@
             comboBox4.Name = "comboBox4";
             comboBox4.Size = new Size(365, 31);
             comboBox4.TabIndex = 16;
-            comboBox4.SelectedIndexChanged += comboBox7_SelectedIndexChanged;
             // 
             // comboBox3
             // 
@@ -843,7 +841,6 @@
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(372, 31);
             comboBox3.TabIndex = 15;
-            comboBox3.SelectedIndexChanged += comboBox6_SelectedIndexChanged;
             // 
             // label32
             // 
@@ -871,7 +868,6 @@
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(226, 27);
             textBox3.TabIndex = 11;
-            textBox3.TextChanged += textBox4_TextChanged;
             // 
             // label30
             // 
@@ -889,7 +885,7 @@
             dateTimePicker2.Name = "dateTimePicker2";
             dateTimePicker2.Size = new Size(274, 27);
             dateTimePicker2.TabIndex = 9;
-            dateTimePicker2.ValueChanged += dateTimePicker1_ValueChanged;
+            dateTimePicker2.ValueChanged += dateTimePicker2_ValueChanged;
             // 
             // label29
             // 
@@ -979,7 +975,6 @@
             panel10.Name = "panel10";
             panel10.Size = new Size(861, 407);
             panel10.TabIndex = 16;
-            panel10.Paint += panel10_Paint;
             // 
             // panel1
             // 
@@ -1021,7 +1016,6 @@
             comboBox7.Name = "comboBox7";
             comboBox7.Size = new Size(231, 31);
             comboBox7.TabIndex = 31;
-            comboBox7.SelectedIndexChanged += comboBox7_SelectedIndexChanged;
             // 
             // label48
             // 
@@ -1056,7 +1050,6 @@
             textBox12.Name = "textBox12";
             textBox12.Size = new Size(231, 27);
             textBox12.TabIndex = 28;
-            textBox12.TextChanged += textBox12_TextChanged;
             // 
             // label46
             // 
@@ -1074,7 +1067,6 @@
             textBox11.Name = "textBox11";
             textBox11.Size = new Size(282, 27);
             textBox11.TabIndex = 26;
-            textBox11.TextChanged += textBox11_TextChanged;
             // 
             // label45
             // 
@@ -1094,7 +1086,6 @@
             comboBox6.Name = "comboBox6";
             comboBox6.Size = new Size(245, 31);
             comboBox6.TabIndex = 22;
-            comboBox6.SelectedIndexChanged += comboBox6_SelectedIndexChanged;
             // 
             // label44
             // 
@@ -1112,7 +1103,6 @@
             textBox10.Name = "textBox10";
             textBox10.Size = new Size(802, 27);
             textBox10.TabIndex = 22;
-            textBox10.TextChanged += textBox10_TextChanged;
             // 
             // label43
             // 
@@ -1130,7 +1120,6 @@
             textBox9.Name = "textBox9";
             textBox9.Size = new Size(355, 27);
             textBox9.TabIndex = 20;
-            textBox9.TextChanged += textBox9_TextChanged;
             // 
             // label42
             // 
@@ -1148,7 +1137,6 @@
             textBox8.Name = "textBox8";
             textBox8.Size = new Size(355, 27);
             textBox8.TabIndex = 18;
-            textBox8.TextChanged += textBox8_TextChanged;
             // 
             // label41
             // 
@@ -1166,7 +1154,6 @@
             textBox7.Name = "textBox7";
             textBox7.Size = new Size(355, 27);
             textBox7.TabIndex = 16;
-            textBox7.TextChanged += textBox7_TextChanged;
             // 
             // label38
             // 
@@ -1184,7 +1171,6 @@
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(355, 27);
             textBox5.TabIndex = 14;
-            textBox5.TextChanged += textBox5_TextChanged;
             // 
             // label40
             // 

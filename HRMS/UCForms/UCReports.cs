@@ -22,6 +22,14 @@ namespace HRMS.UCForms
             Load += UCReports_Load;
         }
 
+        private void ConfigureAreaChart()
+        {
+ 
+
+            chart1.Dock = DockStyle.Fill;
+            chart1.BringToFront();
+        }
+
         private void ApplyCurrentUserToHeader()
         {
             try
@@ -38,6 +46,42 @@ namespace HRMS.UCForms
             }
             catch
             {
+            }
+        }
+
+        private void PopulateRevenueAreaChart(List<(DateTime day, decimal revenue)> points)
+        {
+            if (chart1 == null)
+            {
+                return;
+            }
+
+            chart1.Series.Clear();
+
+            var series = new Series("Cumulative Revenue")
+            {
+                ChartType = SeriesChartType.Area,
+                XValueType = ChartValueType.Date,
+                YValueType = ChartValueType.Double,
+                Color = Color.FromArgb(42, 93, 159)
+            };
+
+            decimal running = 0m;
+            foreach (var p in points.OrderBy(p => p.day))
+            {
+                running += p.revenue;
+                int idx = series.Points.AddXY(p.day, (double)running);
+                series.Points[idx].AxisLabel = p.day.ToString("MMM-dd");
+            }
+
+            chart1.Series.Add(series);
+
+            if (chart1.ChartAreas.Count > 0)
+            {
+                var area = chart1.ChartAreas[0];
+                area.AxisX.Interval = 1;
+                area.AxisX.MajorGrid.Enabled = false;
+                area.AxisY.MajorGrid.LineColor = Color.Gainsboro;
             }
         }
 
@@ -224,6 +268,7 @@ namespace HRMS.UCForms
                 label3.Text = $"Last update : {DateTime.Now:MMM-dd-yyyy hh:mm tt}";
 
                 PopulateSalesChart(points);
+                PopulateRevenueAreaChart(points);
             }
         }
 
@@ -267,126 +312,12 @@ namespace HRMS.UCForms
             }
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label25_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label14_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chart1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chart2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label31_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label28_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label24_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label35_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel11_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void UCReports_Load(object sender, EventArgs e)
         {
             try
             {
                 ApplyCurrentUserToHeader();
+                ConfigureAreaChart();
                 EnsureDefaults();
                 LoadReport();
             }

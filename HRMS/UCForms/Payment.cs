@@ -63,11 +63,11 @@ namespace HRMS.UCForms
         private decimal GetSelectedAdditionalServicesSubtotal()
         {
             decimal additionalServices = 0m;
-            if (checkBox3.Checked) additionalServices += ParseMoney(textBox10.Text);
-            if (checkBox4.Checked) additionalServices += ParseMoney(textBox14.Text);
-            if (checkBox5.Checked) additionalServices += ParseMoney(textBox15.Text);
-            if (checkBox6.Checked) additionalServices += ParseMoney(textBox16.Text);
-            if (checkBox7.Checked) additionalServices += ParseMoney(textBox9.Text);
+            if (checkBox3.Checked) additionalServices += MoneyHelper.Parse(textBox10.Text);
+            if (checkBox4.Checked) additionalServices += MoneyHelper.Parse(textBox14.Text);
+            if (checkBox5.Checked) additionalServices += MoneyHelper.Parse(textBox15.Text);
+            if (checkBox6.Checked) additionalServices += MoneyHelper.Parse(textBox16.Text);
+            if (checkBox7.Checked) additionalServices += MoneyHelper.Parse(textBox9.Text);
             return additionalServices;
         }
 
@@ -111,7 +111,7 @@ namespace HRMS.UCForms
                                             && !string.IsNullOrWhiteSpace(comboBox1.SelectedItem.ToString())
                                             && !string.Equals(comboBox1.SelectedItem.ToString(), "Select payment", StringComparison.OrdinalIgnoreCase);
 
-                    decimal amountReceived = ParseMoney(textBox27.Text);
+                    decimal amountReceived = MoneyHelper.Parse(textBox27.Text);
                     decimal amountToPay = 0m;
                     string method = hasPaymentMethod ? comboBox1.SelectedItem.ToString() : "";
                     string paymentStatus = "";
@@ -413,7 +413,7 @@ namespace HRMS.UCForms
             int idx = t.IndexOf('₱');
             if (idx >= 0)
             {
-                return ParseMoney(t.Substring(idx));
+                return MoneyHelper.Parse(t.Substring(idx));
             }
 
             return 0m;
@@ -430,7 +430,7 @@ namespace HRMS.UCForms
             }
 
             decimal effectiveBalance = balance + additionalServicesCharge;
-            decimal amountReceived = ParseMoney(textBox27.Text);
+            decimal amountReceived = MoneyHelper.Parse(textBox27.Text);
 
             decimal amountToPay = Math.Min(amountReceived, effectiveBalance);
             decimal change = amountReceived - amountToPay;
@@ -470,40 +470,20 @@ namespace HRMS.UCForms
             textBox9.Enabled = checkBox7.Checked;
         }
 
-        private decimal ParseMoney(string value)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                return 0m;
-            }
-
-            string cleaned = value.Replace("₱", "").Replace(",", "").Trim();
-            if (cleaned.Equals("Enter Amount", StringComparison.OrdinalIgnoreCase))
-            {
-                return 0m;
-            }
-
-            if (decimal.TryParse(cleaned, out decimal amount))
-            {
-                return amount;
-            }
-
-            return 0m;
-        }
 
         private void RecalculateBillingSummary()
         {
-            decimal roomCharges = ParseMoney(textBox6.Text);
+            decimal roomCharges = MoneyHelper.Parse(textBox6.Text);
 
             decimal additionalServices = 0m;
 
-            if (checkBox3.Checked) additionalServices += ParseMoney(textBox10.Text);
-            if (checkBox4.Checked) additionalServices += ParseMoney(textBox14.Text);
-            if (checkBox5.Checked) additionalServices += ParseMoney(textBox15.Text);
-            if (checkBox6.Checked) additionalServices += ParseMoney(textBox16.Text);
-            if (checkBox7.Checked) additionalServices += ParseMoney(textBox9.Text);
+            if (checkBox3.Checked) additionalServices += MoneyHelper.Parse(textBox10.Text);
+            if (checkBox4.Checked) additionalServices += MoneyHelper.Parse(textBox14.Text);
+            if (checkBox5.Checked) additionalServices += MoneyHelper.Parse(textBox15.Text);
+            if (checkBox6.Checked) additionalServices += MoneyHelper.Parse(textBox16.Text);
+            if (checkBox7.Checked) additionalServices += MoneyHelper.Parse(textBox9.Text);
 
-            decimal discount = ParseMoney(textBox18.Text);
+            decimal discount = MoneyHelper.Parse(textBox18.Text);
 
             decimal subtotalBeforeTax = roomCharges + additionalServices - discount;
             if (subtotalBeforeTax < 0m)
@@ -622,86 +602,6 @@ namespace HRMS.UCForms
         private void textBox21_TextChanged(object sender, EventArgs e)
         {
             BillingInputs_Changed(sender, e);
-        }
-
-        private void panel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
-        }
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox9_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label39_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton9_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox20_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox17_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel10_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void button7_Click(object sender, EventArgs e)

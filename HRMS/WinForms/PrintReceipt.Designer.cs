@@ -161,7 +161,6 @@
             label6.Size = new Size(134, 38);
             label6.TabIndex = 6;
             label6.Text = "John Doe";
-            label6.Click += label6_Click;
             // 
             // label7
             // 
@@ -405,7 +404,6 @@
             label13.Size = new Size(220, 31);
             label13.TabIndex = 14;
             label13.Text = "Reservation Details";
-            label13.Click += label13_Click;
             // 
             // label14
             // 

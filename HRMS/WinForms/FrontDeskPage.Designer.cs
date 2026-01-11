@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrontDeskPage));
             panel2 = new Panel();
             panel4 = new Panel();
-            button5 = new Button();
             button4 = new Button();
             button3 = new Button();
             button2 = new Button();
@@ -41,6 +40,7 @@
             pictureBox1 = new PictureBox();
             panel5 = new Panel();
             receptionDashboard1 = new HRMS.UCForms.ReceptionDashboard();
+            button6 = new Button();
             panel2.SuspendLayout();
             panel4.SuspendLayout();
             panel3.SuspendLayout();
@@ -67,27 +67,12 @@
             // panel4
             // 
             panel4.BackColor = SystemColors.Window;
-            panel4.Controls.Add(button5);
+            panel4.Controls.Add(button6);
             panel4.Dock = DockStyle.Bottom;
             panel4.Location = new Point(0, 946);
             panel4.Name = "panel4";
             panel4.Size = new Size(277, 107);
             panel4.TabIndex = 5;
-            // 
-            // button5
-            // 
-            button5.FlatAppearance.BorderSize = 0;
-            button5.FlatStyle = FlatStyle.Flat;
-            button5.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button5.Image = (Image)resources.GetObject("button5.Image");
-            button5.ImageAlign = ContentAlignment.MiddleLeft;
-            button5.Location = new Point(20, 20);
-            button5.Name = "button5";
-            button5.Padding = new Padding(10, 0, 0, 0);
-            button5.Size = new Size(234, 64);
-            button5.TabIndex = 6;
-            button5.Text = "Settings";
-            button5.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
@@ -205,6 +190,22 @@
             receptionDashboard1.TabIndex = 0;
             receptionDashboard1.Load += receptionDashboard1_Load;
             // 
+            // button6
+            // 
+            button6.FlatAppearance.BorderSize = 0;
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button6.Image = (Image)resources.GetObject("button6.Image");
+            button6.ImageAlign = ContentAlignment.MiddleLeft;
+            button6.Location = new Point(21, 21);
+            button6.Name = "button6";
+            button6.Padding = new Padding(10, 0, 0, 0);
+            button6.Size = new Size(234, 64);
+            button6.TabIndex = 7;
+            button6.Text = "Logout";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
+            // 
             // FrontDeskPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -236,8 +237,8 @@
         private Button button2;
         private Button button4;
         private Panel panel4;
-        private Button button5;
         private Panel panel5;
         private UCForms.ReceptionDashboard receptionDashboard1;
+        private Button button6;
     }
 }

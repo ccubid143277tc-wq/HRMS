@@ -217,8 +217,9 @@
             button6.Padding = new Padding(10, 0, 0, 0);
             button6.Size = new Size(234, 64);
             button6.TabIndex = 6;
-            button6.Text = "Settings";
+            button6.Text = "Logout";
             button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
             // panel4
             // 

@@ -17,7 +17,7 @@ namespace HRMS.WinForms
         private readonly int _paymentId;
         private readonly PrintDocument _printDocument;
         private readonly PrintPreviewDialog _printPreview;
-        private Bitmap _receiptBitmap;
+        private Bitmap? _receiptBitmap;
 
         public PrintReceipt(int reservationId, int paymentId)
         {
@@ -40,7 +40,7 @@ namespace HRMS.WinForms
             Activated += PrintReceipt_Activated;
         }
 
-        private void PrintReceipt_Load(object sender, EventArgs e)
+        private void PrintReceipt_Load(object? sender, EventArgs e)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace HRMS.WinForms
             }
         }
 
-        private void PrintReceipt_Activated(object sender, EventArgs e)
+        private void PrintReceipt_Activated(object? sender, EventArgs e)
         {
             try
             {
@@ -271,17 +271,17 @@ namespace HRMS.WinForms
                 decimal roomSubtotal = nightlyRoomRateSum * Math.Max(0, nights);
 
                 label29.Text = $"Room Rate ({Math.Max(0, nights)} nights)";
-                label30.Text = $"₱{roomSubtotal:0.00}";
+                label30.Text = MoneyHelper.Format(roomSubtotal);
                 label31.Text = "Additional Services";
-                label33.Text = $"₱{serviceCharges:0.00}";
+                label33.Text = MoneyHelper.Format(serviceCharges);
 
                 // Discount is not stored in DB (based on current code), so default to 0
-                label36.Text = "₱0.00";
-                label34.Text = $"₱{totalDue:0.00}";
-                label39.Text = $"₱{totalPaid:0.00}";
+                label36.Text = MoneyHelper.Format(0m);
+                label34.Text = MoneyHelper.Format(totalDue);
+                label39.Text = MoneyHelper.Format(totalPaid);
 
                 // Optional: show remaining balance on the empty label37 if present
-                label37.Text = $"Remaining: ₱{balance:0.00}";
+                label37.Text = $"Remaining: {MoneyHelper.Format(balance)}";
             }
         }
 
@@ -314,30 +314,30 @@ namespace HRMS.WinForms
                 CreateReceiptBitmap();
             }
 
-            if (_receiptBitmap == null)
+            var bitmap = _receiptBitmap;
+            if (bitmap == null)
             {
                 e.HasMorePages = false;
                 return;
             }
 
             Rectangle marginBounds = e.MarginBounds;
-            float ratio = Math.Min((float)marginBounds.Width / _receiptBitmap.Width, (float)marginBounds.Height / _receiptBitmap.Height);
-            int printWidth = (int)(_receiptBitmap.Width * ratio);
-            int printHeight = (int)(_receiptBitmap.Height * ratio);
+            float ratio = Math.Min((float)marginBounds.Width / bitmap.Width, (float)marginBounds.Height / bitmap.Height);
+            int printWidth = (int)(bitmap.Width * ratio);
+            int printHeight = (int)(bitmap.Height * ratio);
 
             var dest = new Rectangle(marginBounds.Left, marginBounds.Top, printWidth, printHeight);
-            e.Graphics.DrawImage(_receiptBitmap, dest);
+            var graphics = e.Graphics;
+            if (graphics == null)
+            {
+                e.HasMorePages = false;
+                return;
+            }
+
+            graphics.DrawImage(bitmap, dest);
             e.HasMorePages = false;
         }
 
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

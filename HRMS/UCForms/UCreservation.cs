@@ -20,10 +20,10 @@ namespace HRMS.UCForms
         private readonly IRoomTypeService _roomTypeService;
         private readonly IGuestService _guestService;
         private readonly IRoomService _roomService;
-        private Room _selectedRoom;
+        private Room? _selectedRoom;
         private List<Room> _selectedRooms = new List<Room>(); // Track multiple selected rooms
-        private Reservation _selectedReservation;
-        private object _selectedReservationData;
+        private Reservation? _selectedReservation;
+        private object? _selectedReservationData;
         private bool _isEditMode = false;
 
         private int _selectedReservationIdForSummary = 0;
@@ -41,7 +41,7 @@ namespace HRMS.UCForms
             Load += UCreservation_Load;
         }
 
-        private void UCreservation_Load(object sender, EventArgs e)
+        private void UCreservation_Load(object? sender, EventArgs e)
         {
             try
             {
@@ -69,51 +69,6 @@ namespace HRMS.UCForms
         private void label19_Click(object sender, EventArgs e)
         {
             label19.Text = DateTime.Now.ToString("dddd, MMMM dd yyyy hh:mm:ss tt");
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox8_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox7_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox9_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox10_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox11_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox12_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
@@ -887,21 +842,6 @@ namespace HRMS.UCForms
             }
         }
 
-        private decimal ParseCurrencyLabel(string value)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                return 0m;
-            }
-
-            string cleaned = value.Replace("₱", "").Replace(",", "").Trim();
-            if (decimal.TryParse(cleaned, out decimal amount))
-            {
-                return amount;
-            }
-            return 0m;
-        }
-
         private void button6_Click(object sender, EventArgs e)
         {
             if (_selectedReservationIdForSummary <= 0)
@@ -927,7 +867,7 @@ namespace HRMS.UCForms
                 decimal totalDue = _lastSummaryTotalAmount;
                 if (totalDue <= 0m)
                 {
-                    totalDue = ParseCurrencyLabel(label22.Text);
+                    totalDue = MoneyHelper.Parse(label22.Text);
                 }
 
                 decimal alreadyPaid = GetTotalPaidForReservation(_selectedReservationIdForSummary);

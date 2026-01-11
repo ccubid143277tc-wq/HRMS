@@ -156,20 +156,32 @@ namespace HRMS.UCForms
                 dataGridView1.Columns["RoomID"].Visible = false;
 
             // Adjust column widths
-            dataGridView1.Columns["RoomNumber"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns["RoomTypeName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns["BedConfiguration"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns["MaximumOccupancy"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns["RoomFloor"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns["RoomStatusName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns["ViewType"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns["RoomRate"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns["AmenitiesString"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-        }
+            var roomNumberCol = dataGridView1.Columns["RoomNumber"];
+            if (roomNumberCol != null) roomNumberCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
+            var roomTypeNameCol = dataGridView1.Columns["RoomTypeName"];
+            if (roomTypeNameCol != null) roomTypeNameCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
+            var bedConfigurationCol = dataGridView1.Columns["BedConfiguration"];
+            if (bedConfigurationCol != null) bedConfigurationCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            var maximumOccupancyCol = dataGridView1.Columns["MaximumOccupancy"];
+            if (maximumOccupancyCol != null) maximumOccupancyCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            var roomFloorCol = dataGridView1.Columns["RoomFloor"];
+            if (roomFloorCol != null) roomFloorCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            var roomStatusNameCol = dataGridView1.Columns["RoomStatusName"];
+            if (roomStatusNameCol != null) roomStatusNameCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            var viewTypeCol = dataGridView1.Columns["ViewType"];
+            if (viewTypeCol != null) viewTypeCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            var roomRateCol = dataGridView1.Columns["RoomRate"];
+            if (roomRateCol != null) roomRateCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            var amenitiesStringCol = dataGridView1.Columns["AmenitiesString"];
+            if (amenitiesStringCol != null) amenitiesStringCol.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
     }
 }
