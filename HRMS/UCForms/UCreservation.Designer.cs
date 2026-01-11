@@ -30,8 +30,8 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCreservation));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
             panel26 = new Panel();
             label14 = new Label();
             label15 = new Label();
@@ -82,7 +82,6 @@
             button1 = new Button();
             panel11 = new Panel();
             label35 = new Label();
-            textBox4 = new TextBox();
             dataGridView2 = new DataGridView();
             RoomNumber = new DataGridViewTextBoxColumn();
             RoomType = new DataGridViewTextBoxColumn();
@@ -149,6 +148,12 @@
             button7 = new Button();
             button3 = new Button();
             textBox1 = new TextBox();
+            checkBox3 = new CheckBox();
+            checkBox4 = new CheckBox();
+            checkBox5 = new CheckBox();
+            checkBox6 = new CheckBox();
+            checkBox7 = new CheckBox();
+            checkBox1 = new CheckBox();
             panel26.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             panel2.SuspendLayout();
@@ -498,7 +503,7 @@
             // 
             label25.AutoSize = true;
             label25.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label25.Location = new Point(28, 52);
+            label25.Location = new Point(22, 52);
             label25.Name = "label25";
             label25.Size = new Size(143, 23);
             label25.TabIndex = 6;
@@ -621,6 +626,12 @@
             // panel8
             // 
             panel8.BorderStyle = BorderStyle.FixedSingle;
+            panel8.Controls.Add(checkBox1);
+            panel8.Controls.Add(checkBox7);
+            panel8.Controls.Add(checkBox6);
+            panel8.Controls.Add(checkBox5);
+            panel8.Controls.Add(checkBox4);
+            panel8.Controls.Add(checkBox3);
             panel8.Controls.Add(comboBox8);
             panel8.Controls.Add(textBox13);
             panel8.Controls.Add(label50);
@@ -630,7 +641,6 @@
             panel8.Controls.Add(label26);
             panel8.Controls.Add(button1);
             panel8.Controls.Add(panel11);
-            panel8.Controls.Add(textBox4);
             panel8.Controls.Add(dataGridView2);
             panel8.Controls.Add(label34);
             panel8.Controls.Add(comboBox5);
@@ -664,7 +674,7 @@
             // 
             textBox13.Location = new Point(468, 223);
             textBox13.Name = "textBox13";
-            textBox13.Size = new Size(361, 27);
+            textBox13.Size = new Size(358, 27);
             textBox13.TabIndex = 38;
             textBox13.Click += textBox13_Click;
             // 
@@ -728,26 +738,18 @@
             label35.TabIndex = 1;
             label35.Text = "Room Available";
             // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(19, 355);
-            textBox4.Multiline = true;
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(814, 108);
-            textBox4.TabIndex = 20;
-            // 
             // dataGridView2
             // 
             dataGridView2.AllowUserToAddRows = false;
             dataGridView2.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(42, 93, 159);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = Color.FromArgb(42, 93, 159);
+            dataGridViewCellStyle15.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle15.ForeColor = Color.White;
+            dataGridViewCellStyle15.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
+            dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Columns.AddRange(new DataGridViewColumn[] { RoomNumber, RoomType, RoomStatus, RoomFloor, ViewType });
             dataGridView2.EnableHeadersVisualStyles = false;
@@ -798,7 +800,7 @@
             // 
             label34.AutoSize = true;
             label34.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label34.Location = new Point(21, 322);
+            label34.Location = new Point(21, 328);
             label34.Name = "label34";
             label34.Size = new Size(186, 23);
             label34.TabIndex = 19;
@@ -830,7 +832,7 @@
             comboBox4.FormattingEnabled = true;
             comboBox4.Location = new Point(468, 158);
             comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(365, 31);
+            comboBox4.Size = new Size(358, 31);
             comboBox4.TabIndex = 16;
             // 
             // comboBox3
@@ -1194,14 +1196,14 @@
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = Color.White;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(42, 93, 159);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = Color.FromArgb(42, 93, 159);
+            dataGridViewCellStyle16.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle16.ForeColor = Color.White;
+            dataGridViewCellStyle16.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { colGuestName, colBookingReference, colReservationType, ColRoomNumber, ColRoomType, ColNumberOfNights, colNumberOfOccupants, colSpecialRequest, colReservationStatus, colNumberOfRooms });
             dataGridView1.Dock = DockStyle.Fill;
@@ -1383,6 +1385,72 @@
             textBox1.Size = new Size(329, 34);
             textBox1.TabIndex = 0;
             // 
+            // checkBox3
+            // 
+            checkBox3.AutoSize = true;
+            checkBox3.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkBox3.Location = new Point(66, 362);
+            checkBox3.Name = "checkBox3";
+            checkBox3.Size = new Size(194, 29);
+            checkBox3.TabIndex = 40;
+            checkBox3.Text = "Food and Beverage";
+            checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            checkBox4.AutoSize = true;
+            checkBox4.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkBox4.Location = new Point(66, 399);
+            checkBox4.Name = "checkBox4";
+            checkBox4.Size = new Size(261, 29);
+            checkBox4.TabIndex = 41;
+            checkBox4.Text = "Cleaning and Personal Care";
+            checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            checkBox5.AutoSize = true;
+            checkBox5.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkBox5.Location = new Point(66, 436);
+            checkBox5.Name = "checkBox5";
+            checkBox5.Size = new Size(248, 29);
+            checkBox5.TabIndex = 42;
+            checkBox5.Text = "Transportation and Travel";
+            checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            checkBox6.AutoSize = true;
+            checkBox6.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkBox6.Location = new Point(385, 362);
+            checkBox6.Name = "checkBox6";
+            checkBox6.Size = new Size(194, 29);
+            checkBox6.TabIndex = 43;
+            checkBox6.Text = "Spa and Recreation";
+            checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // checkBox7
+            // 
+            checkBox7.AutoSize = true;
+            checkBox7.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkBox7.Location = new Point(385, 399);
+            checkBox7.Name = "checkBox7";
+            checkBox7.Size = new Size(201, 29);
+            checkBox7.TabIndex = 44;
+            checkBox7.Text = "Business and Events";
+            checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkBox1.Location = new Point(385, 434);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(207, 29);
+            checkBox1.TabIndex = 45;
+            checkBox1.Text = "Room-Related Extras";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
             // UCreservation
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1475,7 +1543,6 @@
         private Panel panel9;
         private PictureBox pictureBox3;
         private Label label27;
-        private TextBox textBox4;
         private Label label34;
         private ComboBox comboBox5;
         private Label label33;
@@ -1553,5 +1620,11 @@
         private Label label51;
         private Label label25;
         private Label label22;
+        private CheckBox checkBox3;
+        private CheckBox checkBox4;
+        private CheckBox checkBox5;
+        private CheckBox checkBox6;
+        private CheckBox checkBox7;
+        private CheckBox checkBox1;
     }
 }

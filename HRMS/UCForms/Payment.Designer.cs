@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Payment));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel26 = new Panel();
             label14 = new Label();
             label15 = new Label();
@@ -134,6 +134,8 @@
             button8 = new Button();
             button9 = new Button();
             txtSearchBar = new TextBox();
+            checkBox8 = new CheckBox();
+            textBox23 = new TextBox();
             panel26.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             panel2.SuspendLayout();
@@ -500,7 +502,7 @@
             panel5.Controls.Add(panel9);
             panel5.Location = new Point(789, 158);
             panel5.Name = "panel5";
-            panel5.Size = new Size(402, 401);
+            panel5.Size = new Size(427, 401);
             panel5.TabIndex = 48;
             // 
             // button2
@@ -515,6 +517,8 @@
             // panel14
             // 
             panel14.BorderStyle = BorderStyle.Fixed3D;
+            panel14.Controls.Add(textBox23);
+            panel14.Controls.Add(checkBox8);
             panel14.Controls.Add(checkBox7);
             panel14.Controls.Add(checkBox6);
             panel14.Controls.Add(checkBox5);
@@ -527,18 +531,18 @@
             panel14.Controls.Add(textBox10);
             panel14.Location = new Point(19, 63);
             panel14.Name = "panel14";
-            panel14.Size = new Size(365, 333);
+            panel14.Size = new Size(389, 333);
             panel14.TabIndex = 15;
             // 
             // checkBox7
             // 
             checkBox7.AutoSize = true;
             checkBox7.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            checkBox7.Location = new Point(11, 277);
+            checkBox7.Location = new Point(8, 234);
             checkBox7.Name = "checkBox7";
-            checkBox7.Size = new Size(156, 29);
+            checkBox7.Size = new Size(201, 29);
             checkBox7.TabIndex = 29;
-            checkBox7.Text = "Room Services";
+            checkBox7.Text = "Business and Events";
             checkBox7.UseVisualStyleBackColor = true;
             checkBox7.CheckedChanged += checkBox7_CheckedChanged;
             // 
@@ -546,88 +550,88 @@
             // 
             checkBox6.AutoSize = true;
             checkBox6.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            checkBox6.Location = new Point(10, 213);
+            checkBox6.Location = new Point(9, 181);
             checkBox6.Name = "checkBox6";
-            checkBox6.Size = new Size(167, 29);
+            checkBox6.Size = new Size(194, 29);
             checkBox6.TabIndex = 28;
-            checkBox6.Text = "Laundry Service";
+            checkBox6.Text = "Spa and Recreation";
             checkBox6.UseVisualStyleBackColor = true;
             // 
             // checkBox5
             // 
             checkBox5.AutoSize = true;
             checkBox5.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            checkBox5.Location = new Point(10, 155);
+            checkBox5.Location = new Point(9, 113);
             checkBox5.Name = "checkBox5";
-            checkBox5.Size = new Size(112, 29);
+            checkBox5.Size = new Size(199, 54);
             checkBox5.TabIndex = 27;
-            checkBox5.Text = "Extra Bed";
+            checkBox5.Text = "Transportation and \r\nTravel";
             checkBox5.UseVisualStyleBackColor = true;
             // 
             // checkBox4
             // 
             checkBox4.AutoSize = true;
             checkBox4.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            checkBox4.Location = new Point(10, 94);
+            checkBox4.Location = new Point(9, 51);
             checkBox4.Name = "checkBox4";
-            checkBox4.Size = new Size(160, 29);
+            checkBox4.Size = new Size(148, 54);
             checkBox4.TabIndex = 26;
-            checkBox4.Text = "Late Check-Out";
+            checkBox4.Text = "Cleaning and \r\nPersonal Care";
             checkBox4.UseVisualStyleBackColor = true;
             // 
             // checkBox3
             // 
             checkBox3.AutoSize = true;
             checkBox3.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            checkBox3.Location = new Point(11, 34);
+            checkBox3.Location = new Point(10, 9);
             checkBox3.Name = "checkBox3";
-            checkBox3.Size = new Size(148, 29);
+            checkBox3.Size = new Size(194, 29);
             checkBox3.TabIndex = 25;
-            checkBox3.Text = "Early Check-In";
+            checkBox3.Text = "Food and Beverage";
             checkBox3.UseVisualStyleBackColor = true;
             // 
             // textBox9
             // 
             textBox9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox9.Location = new Point(185, 272);
+            textBox9.Location = new Point(221, 231);
             textBox9.Name = "textBox9";
-            textBox9.Size = new Size(171, 34);
+            textBox9.Size = new Size(157, 34);
             textBox9.TabIndex = 19;
             textBox9.Text = "Enter Amount";
             // 
             // textBox16
             // 
             textBox16.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox16.Location = new Point(185, 213);
+            textBox16.Location = new Point(221, 176);
             textBox16.Name = "textBox16";
-            textBox16.Size = new Size(171, 34);
+            textBox16.Size = new Size(157, 34);
             textBox16.TabIndex = 18;
             textBox16.Text = "Enter Amount";
             // 
             // textBox15
             // 
             textBox15.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox15.Location = new Point(185, 153);
+            textBox15.Location = new Point(221, 119);
             textBox15.Name = "textBox15";
-            textBox15.Size = new Size(171, 34);
+            textBox15.Size = new Size(157, 34);
             textBox15.TabIndex = 17;
             textBox15.Text = "Enter Amount";
             // 
             // textBox14
             // 
             textBox14.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox14.Location = new Point(185, 92);
+            textBox14.Location = new Point(221, 61);
             textBox14.Name = "textBox14";
-            textBox14.Size = new Size(171, 34);
+            textBox14.Size = new Size(157, 34);
             textBox14.TabIndex = 14;
             textBox14.Text = "Enter Amount";
             // 
             // textBox10
             // 
             textBox10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox10.Location = new Point(185, 31);
+            textBox10.Location = new Point(221, 7);
             textBox10.Name = "textBox10";
-            textBox10.Size = new Size(171, 34);
+            textBox10.Size = new Size(157, 34);
             textBox10.TabIndex = 13;
             textBox10.Text = "Enter Amount";
             // 
@@ -639,13 +643,13 @@
             panel9.Dock = DockStyle.Top;
             panel9.Location = new Point(0, 0);
             panel9.Name = "panel9";
-            panel9.Size = new Size(400, 57);
+            panel9.Size = new Size(425, 57);
             panel9.TabIndex = 0;
             // 
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(343, 8);
+            pictureBox3.Location = new Point(373, 8);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(34, 39);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -1056,14 +1060,14 @@
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(42, 93, 159);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(42, 93, 159);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { colpaymentID, colBookingReference, ColPaymentDate, colGuestName, colAmountPaid, colPaymentMethod, colPaymentStatus, colProcessedBy, colTotalDue, colTotalPaid, colBalance, ColReferenceNo });
             dataGridView1.Dock = DockStyle.Fill;
@@ -1226,6 +1230,26 @@
             txtSearchBar.Size = new Size(302, 30);
             txtSearchBar.TabIndex = 59;
             txtSearchBar.Text = "Search";
+            // 
+            // checkBox8
+            // 
+            checkBox8.AutoSize = true;
+            checkBox8.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkBox8.Location = new Point(9, 287);
+            checkBox8.Name = "checkBox8";
+            checkBox8.Size = new Size(207, 29);
+            checkBox8.TabIndex = 30;
+            checkBox8.Text = "Room-Related Extras";
+            checkBox8.UseVisualStyleBackColor = true;
+            // 
+            // textBox23
+            // 
+            textBox23.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox23.Location = new Point(221, 282);
+            textBox23.Name = "textBox23";
+            textBox23.Size = new Size(157, 34);
+            textBox23.TabIndex = 31;
+            textBox23.Text = "Enter Amount";
             // 
             // Payment
             // 
@@ -1395,5 +1419,7 @@
         private TextBox textBox10;
         private Label label24;
         private TextBox textBox24;
+        private CheckBox checkBox8;
+        private TextBox textBox23;
     }
 }

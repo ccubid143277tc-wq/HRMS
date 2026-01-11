@@ -251,9 +251,9 @@
             panel3.Controls.Add(label32);
             panel3.Controls.Add(label31);
             panel3.Controls.Add(label29);
-            panel3.Location = new Point(10, 49);
+            panel3.Location = new Point(10, 48);
             panel3.Name = "panel3";
-            panel3.Size = new Size(798, 241);
+            panel3.Size = new Size(798, 254);
             panel3.TabIndex = 18;
             // 
             // label51
@@ -354,7 +354,6 @@
             label30.Size = new Size(72, 28);
             label30.TabIndex = 19;
             label30.Text = "₱6,600";
-           
             // 
             // label32
             // 
@@ -370,21 +369,21 @@
             // 
             label31.AutoSize = true;
             label31.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label31.Location = new Point(25, 56);
+            label31.Location = new Point(80, 56);
             label31.Name = "label31";
-            label31.Size = new Size(277, 28);
+            label31.Size = new Size(179, 28);
             label31.TabIndex = 20;
-            label31.Text = "Additional Services (Extra Bed)";
+            label31.Text = "Additional Services";
             // 
             // label29
             // 
             label29.AutoSize = true;
             label29.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label29.Location = new Point(72, 17);
+            label29.Location = new Point(118, 17);
             label29.Name = "label29";
-            label29.Size = new Size(195, 28);
+            label29.Size = new Size(113, 28);
             label29.TabIndex = 18;
-            label29.Text = "Room Rate (3 nights)";
+            label29.Text = "Room Rate ";
             // 
             // panel2
             // 
@@ -588,9 +587,9 @@
             label42.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label42.Location = new Point(27, 950);
             label42.Name = "label42";
-            label42.Size = new Size(228, 25);
+            label42.Size = new Size(241, 25);
             label42.TabIndex = 30;
-            label42.Text = "• Check-in Time: 12:00PM";
+            label42.Text = "• Check-out Time: 12:00PM";
             // 
             // label43
             // 
@@ -625,7 +624,7 @@
             // 
             label46.AutoSize = true;
             label46.Font = new Font("Segoe UI", 10.8F);
-            label46.Location = new Point(248, 1091);
+            label46.Location = new Point(248, 1083);
             label46.Name = "label46";
             label46.Size = new Size(347, 25);
             label46.TabIndex = 34;
@@ -635,7 +634,7 @@
             // 
             label47.AutoSize = true;
             label47.Font = new Font("Segoe UI", 10.8F);
-            label47.Location = new Point(35, 1116);
+            label47.Location = new Point(35, 1108);
             label47.Name = "label47";
             label47.Size = new Size(337, 25);
             label47.TabIndex = 35;
@@ -645,7 +644,7 @@
             // 
             label48.AutoSize = true;
             label48.Font = new Font("Segoe UI", 10.8F);
-            label48.Location = new Point(361, 1116);
+            label48.Location = new Point(361, 1108);
             label48.Name = "label48";
             label48.Size = new Size(142, 25);
             label48.TabIndex = 36;
@@ -655,7 +654,7 @@
             // 
             label49.AutoSize = true;
             label49.Font = new Font("Segoe UI", 10.8F);
-            label49.Location = new Point(496, 1116);
+            label49.Location = new Point(496, 1108);
             label49.Name = "label49";
             label49.Size = new Size(119, 25);
             label49.TabIndex = 37;
@@ -666,7 +665,7 @@
             linkLabel2.AutoSize = true;
             linkLabel2.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             linkLabel2.LinkColor = Color.Black;
-            linkLabel2.Location = new Point(609, 1116);
+            linkLabel2.Location = new Point(609, 1108);
             linkLabel2.Name = "linkLabel2";
             linkLabel2.Size = new Size(233, 25);
             linkLabel2.TabIndex = 38;
@@ -678,7 +677,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(868, 1055);
+            ClientSize = new Size(868, 1106);
             Controls.Add(linkLabel2);
             Controls.Add(label49);
             Controls.Add(label48);

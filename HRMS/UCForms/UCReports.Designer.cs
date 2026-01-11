@@ -91,13 +91,13 @@
             panel10 = new Panel();
             chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             panel11 = new Panel();
+            dataGridView1 = new DataGridView();
             panel13 = new Panel();
             pictureBox10 = new PictureBox();
             label36 = new Label();
             label32 = new Label();
             pictureBox9 = new PictureBox();
             panel12 = new Panel();
-            dataGridView1 = new DataGridView();
             ColID = new DataGridViewTextBoxColumn();
             ColGuest = new DataGridViewTextBoxColumn();
             colTotalpayment = new DataGridViewTextBoxColumn();
@@ -124,12 +124,11 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chart2).BeginInit();
-            panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             panel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel26
@@ -230,7 +229,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(49, 10);
+            label1.Location = new Point(49, 15);
             label1.Name = "label1";
             label1.Size = new Size(67, 28);
             label1.TabIndex = 13;
@@ -238,7 +237,7 @@
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(411, 10);
+            dateTimePicker1.Location = new Point(411, 15);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(262, 27);
             dateTimePicker1.TabIndex = 14;
@@ -248,7 +247,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(373, 10);
+            label2.Location = new Point(373, 15);
             label2.Name = "label2";
             label2.Size = new Size(41, 28);
             label2.TabIndex = 15;
@@ -256,7 +255,7 @@
             // 
             // dateTimePicker2
             // 
-            dateTimePicker2.Location = new Point(106, 10);
+            dateTimePicker2.Location = new Point(106, 15);
             dateTimePicker2.Name = "dateTimePicker2";
             dateTimePicker2.Size = new Size(261, 27);
             dateTimePicker2.TabIndex = 16;
@@ -273,7 +272,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(49, 55);
+            label3.Location = new Point(49, 51);
             label3.Name = "label3";
             label3.Size = new Size(196, 25);
             label3.TabIndex = 17;
@@ -363,7 +362,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(59, 224);
+            label4.Location = new Point(16, 224);
             label4.Name = "label4";
             label4.Size = new Size(278, 41);
             label4.TabIndex = 0;
@@ -501,7 +500,7 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            label13.Location = new Point(928, 224);
+            label13.Location = new Point(1012, 224);
             label13.Name = "label13";
             label13.Size = new Size(282, 41);
             label13.TabIndex = 22;
@@ -516,7 +515,7 @@
             panel6.Controls.Add(label20);
             panel6.Controls.Add(label21);
             panel6.ForeColor = SystemColors.ActiveCaptionText;
-            panel6.Location = new Point(1264, 394);
+            panel6.Location = new Point(1407, 394);
             panel6.Name = "panel6";
             panel6.Size = new Size(337, 102);
             panel6.TabIndex = 23;
@@ -569,7 +568,7 @@
             panel7.Controls.Add(label22);
             panel7.Controls.Add(label23);
             panel7.ForeColor = SystemColors.ActiveCaptionText;
-            panel7.Location = new Point(876, 272);
+            panel7.Location = new Point(1019, 272);
             panel7.Name = "panel7";
             panel7.Size = new Size(363, 98);
             panel7.TabIndex = 21;
@@ -623,7 +622,7 @@
             panel8.Controls.Add(label27);
             panel8.Controls.Add(label28);
             panel8.ForeColor = SystemColors.ActiveCaptionText;
-            panel8.Location = new Point(1264, 270);
+            panel8.Location = new Point(1407, 270);
             panel8.Name = "panel8";
             panel8.Size = new Size(337, 100);
             panel8.TabIndex = 24;
@@ -676,7 +675,7 @@
             panel9.Controls.Add(label30);
             panel9.Controls.Add(label31);
             panel9.ForeColor = SystemColors.ActiveCaptionText;
-            panel9.Location = new Point(876, 394);
+            panel9.Location = new Point(1019, 394);
             panel9.Name = "panel9";
             panel9.Size = new Size(363, 102);
             panel9.TabIndex = 25;
@@ -727,7 +726,7 @@
             panel10.Controls.Add(chart2);
             panel10.Location = new Point(21, 538);
             panel10.Name = "panel10";
-            panel10.Size = new Size(868, 445);
+            panel10.Size = new Size(897, 461);
             panel10.TabIndex = 26;
             // 
             // chart2
@@ -745,81 +744,17 @@
             series1.Name = "Series1";
             series1.ShadowColor = Color.Transparent;
             chart2.Series.Add(series1);
-            chart2.Size = new Size(809, 341);
+            chart2.Size = new Size(870, 363);
             chart2.TabIndex = 0;
             chart2.Text = "chart2";
             // 
             // panel11
             // 
             panel11.BorderStyle = BorderStyle.Fixed3D;
-            panel11.Controls.Add(dataGridView1);
-            panel11.Controls.Add(panel13);
-            panel11.Location = new Point(902, 538);
+            panel11.Location = new Point(947, 538);
             panel11.Name = "panel11";
-            panel11.Size = new Size(743, 445);
+            panel11.Size = new Size(802, 461);
             panel11.TabIndex = 27;
-            // 
-            // panel13
-            // 
-            panel13.BackColor = Color.FromArgb(42, 93, 159);
-            panel13.Controls.Add(pictureBox10);
-            panel13.Controls.Add(label36);
-            panel13.Location = new Point(-2, -2);
-            panel13.Name = "panel13";
-            panel13.Size = new Size(831, 65);
-            panel13.TabIndex = 4;
-            // 
-            // pictureBox10
-            // 
-            pictureBox10.Image = (Image)resources.GetObject("pictureBox10.Image");
-            pictureBox10.Location = new Point(20, 16);
-            pictureBox10.Name = "pictureBox10";
-            pictureBox10.Size = new Size(43, 37);
-            pictureBox10.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox10.TabIndex = 2;
-            pictureBox10.TabStop = false;
-            // 
-            // label36
-            // 
-            label36.AutoSize = true;
-            label36.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label36.ForeColor = SystemColors.ButtonHighlight;
-            label36.Location = new Point(69, 16);
-            label36.Name = "label36";
-            label36.Size = new Size(144, 46);
-            label36.TabIndex = 1;
-            label36.Text = "Reports";
-            // 
-            // label32
-            // 
-            label32.AutoSize = true;
-            label32.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label32.ForeColor = SystemColors.ButtonHighlight;
-            label32.Location = new Point(69, 16);
-            label32.Name = "label32";
-            label32.Size = new Size(196, 46);
-            label32.TabIndex = 1;
-            label32.Text = "Sales Chart";
-            // 
-            // pictureBox9
-            // 
-            pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
-            pictureBox9.Location = new Point(20, 16);
-            pictureBox9.Name = "pictureBox9";
-            pictureBox9.Size = new Size(43, 37);
-            pictureBox9.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox9.TabIndex = 2;
-            pictureBox9.TabStop = false;
-            // 
-            // panel12
-            // 
-            panel12.BackColor = Color.FromArgb(42, 93, 159);
-            panel12.Controls.Add(pictureBox9);
-            panel12.Controls.Add(label32);
-            panel12.Location = new Point(21, 538);
-            panel12.Name = "panel12";
-            panel12.Size = new Size(868, 65);
-            panel12.TabIndex = 3;
             // 
             // dataGridView1
             // 
@@ -835,11 +770,73 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ColID, ColGuest, colTotalpayment, ColRevenue });
             dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.Location = new Point(-2, 63);
+            dataGridView1.Location = new Point(953, 608);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(743, 380);
+            dataGridView1.Size = new Size(788, 380);
             dataGridView1.TabIndex = 5;
+            // 
+            // panel13
+            // 
+            panel13.BackColor = Color.FromArgb(42, 93, 159);
+            panel13.Controls.Add(pictureBox10);
+            panel13.Controls.Add(label36);
+            panel13.Location = new Point(947, 538);
+            panel13.Name = "panel13";
+            panel13.Size = new Size(801, 65);
+            panel13.TabIndex = 4;
+            // 
+            // pictureBox10
+            // 
+            pictureBox10.Image = (Image)resources.GetObject("pictureBox10.Image");
+            pictureBox10.Location = new Point(22, 13);
+            pictureBox10.Name = "pictureBox10";
+            pictureBox10.Size = new Size(28, 37);
+            pictureBox10.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox10.TabIndex = 2;
+            pictureBox10.TabStop = false;
+            // 
+            // label36
+            // 
+            label36.AutoSize = true;
+            label36.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label36.ForeColor = SystemColors.ButtonHighlight;
+            label36.Location = new Point(56, 8);
+            label36.Name = "label36";
+            label36.Size = new Size(138, 46);
+            label36.TabIndex = 1;
+            label36.Text = "History";
+            // 
+            // label32
+            // 
+            label32.AutoSize = true;
+            label32.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label32.ForeColor = SystemColors.ButtonHighlight;
+            label32.Location = new Point(51, 8);
+            label32.Name = "label32";
+            label32.Size = new Size(196, 46);
+            label32.TabIndex = 1;
+            label32.Text = "Sales Chart";
+            // 
+            // pictureBox9
+            // 
+            pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
+            pictureBox9.Location = new Point(20, 14);
+            pictureBox9.Name = "pictureBox9";
+            pictureBox9.Size = new Size(29, 37);
+            pictureBox9.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox9.TabIndex = 2;
+            pictureBox9.TabStop = false;
+            // 
+            // panel12
+            // 
+            panel12.BackColor = Color.FromArgb(42, 93, 159);
+            panel12.Controls.Add(pictureBox9);
+            panel12.Controls.Add(label32);
+            panel12.Location = new Point(21, 538);
+            panel12.Name = "panel12";
+            panel12.Size = new Size(897, 65);
+            panel12.TabIndex = 3;
             // 
             // ColID
             // 
@@ -858,14 +855,14 @@
             // colTotalpayment
             // 
             colTotalpayment.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colTotalpayment.HeaderText = "Total Payment";
+            colTotalpayment.HeaderText = "Check-in Date";
             colTotalpayment.MinimumWidth = 6;
             colTotalpayment.Name = "colTotalpayment";
             // 
             // ColRevenue
             // 
             ColRevenue.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ColRevenue.HeaderText = "Revenue";
+            ColRevenue.HeaderText = "Check-out Date";
             ColRevenue.MinimumWidth = 6;
             ColRevenue.Name = "ColRevenue";
             // 
@@ -874,7 +871,9 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
+            Controls.Add(panel13);
             Controls.Add(panel12);
+            Controls.Add(dataGridView1);
             Controls.Add(panel11);
             Controls.Add(panel10);
             Controls.Add(panel9);
@@ -890,7 +889,7 @@
             Controls.Add(panel2);
             Controls.Add(panel26);
             Name = "UCReports";
-            Size = new Size(1601, 887);
+            Size = new Size(1601, 1009);
             panel26.ResumeLayout(false);
             panel26.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
@@ -923,14 +922,13 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             panel10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)chart2).EndInit();
-            panel11.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel13.ResumeLayout(false);
             panel13.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             panel12.ResumeLayout(false);
             panel12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
