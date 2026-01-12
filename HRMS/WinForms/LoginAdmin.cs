@@ -54,7 +54,7 @@ namespace HRMS.WinForms
         {
             string role = (roleName ?? "").Trim();
 
-            if (string.Equals(role, "Hotel Manager", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(role, "Admin", StringComparison.OrdinalIgnoreCase))
             {
                 return new AdminPage();
             }

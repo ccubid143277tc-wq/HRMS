@@ -10,20 +10,23 @@ using System.Windows.Forms.DataVisualization.Charting;
 using HRMS.Services;
 using HRMS.Interfaces;
 using HRMS.Helper;
+using HRMS.DbContext;
 
 namespace HRMS.UCForms
 {
     public partial class ReceptionDashboard : UserControl
     {
-        private readonly RoomService _roomService;
+        private readonly IRoomService _roomRepo;
+        private readonly RoomManager _roomManager;
         private readonly IReservationService _reservationService;
 
         public ReceptionDashboard()
         {
             InitializeComponent();
 
-            _roomService = new RoomService();
-            _reservationService = new ReservationService(new RoomService(), new GuestService(), new RoomTypeService());
+            _roomRepo = new MySqlRoomDbContext();
+            _roomManager = new RoomManager(_roomRepo);
+            _reservationService = new ReservationService(_roomRepo, new MySqlGuestDbContext(), new RoomTypeService());
             Load += ReceptionDashboard_Load;
         }
 
@@ -97,7 +100,7 @@ namespace HRMS.UCForms
 
         private void LoadOccupancyRate()
         {
-            var counts = _roomService.GetRoomStatusCounts();
+            var counts = _roomManager.GetRoomStatusCounts();
 
             counts.TryGetValue("Total", out int totalRooms);
             if (totalRooms <= 0)
@@ -105,7 +108,7 @@ namespace HRMS.UCForms
                 totalRooms = 1;
             }
 
-            int occupiedToday = _roomService.GetOccupiedRoomCountByDate(DateTime.Today);
+            int occupiedToday = _roomManager.GetOccupiedRoomCountByDate(DateTime.Today);
             double occupancyRate = (double)occupiedToday / totalRooms * 100.0;
             label20.Text = $"{occupancyRate:0}%";
 
@@ -122,8 +125,8 @@ namespace HRMS.UCForms
 
         private void LoadAvailabilityMetrics()
         {
-            int arrivalsToday = _roomService.GetExpectedArrivalsCount(DateTime.Today);
-            int departuresToday = _roomService.GetExpectedDeparturesCount(DateTime.Today);
+            int arrivalsToday = _roomManager.GetExpectedArrivalsCount(DateTime.Today);
+            int departuresToday = _roomManager.GetExpectedDeparturesCount(DateTime.Today);
 
             label24.Text = arrivalsToday.ToString();
             label26.Text = departuresToday.ToString();
@@ -131,7 +134,7 @@ namespace HRMS.UCForms
 
         private void LoadRoomStatusPieChart()
         {
-            var counts = _roomService.GetRoomStatusCounts();
+            var counts = _roomManager.GetRoomStatusCounts();
 
             if (chart2.Series.Count == 0)
             {
@@ -167,7 +170,7 @@ namespace HRMS.UCForms
 
         private void LoadWeeklyOccupancyTrendChart()
         {
-            var counts = _roomService.GetRoomStatusCounts();
+            var counts = _roomManager.GetRoomStatusCounts();
             counts.TryGetValue("Total", out int totalRooms);
             if (totalRooms <= 0)
             {
@@ -175,7 +178,7 @@ namespace HRMS.UCForms
             }
 
             DateTime startDate = DateTime.Today.AddDays(-6);
-            var occupiedByDay = _roomService.GetWeeklyOccupiedRoomCounts(startDate, 7);
+            var occupiedByDay = _roomManager.GetWeeklyOccupiedRoomCounts(startDate, 7);
 
             if (chart1.Series.Count == 0)
             {

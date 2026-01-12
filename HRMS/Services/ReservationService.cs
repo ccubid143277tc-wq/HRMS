@@ -130,6 +130,18 @@ namespace HRMS.Services
                 {
                     try
                     {
+                        // Option A: block deletion if any payment records exist for this reservation.
+                        string paymentExistsQuery = "SELECT 1 FROM payment WHERE ReservationID=@ReservationID LIMIT 1";
+                        using (var cmd = new MySqlCommand(paymentExistsQuery, conn, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@ReservationID", reservationId);
+                            object exists = cmd.ExecuteScalar();
+                            if (exists != null && exists != System.DBNull.Value)
+                            {
+                                throw new InvalidOperationException("Cannot delete this reservation because it has payment records. Please delete/void the payments first or cancel the reservation instead.");
+                            }
+                        }
+
                         // Get associated rooms BEFORE deleting links
                         var roomIds = new List<int>();
                         string getRoomIdsQuery = "SELECT RoomID FROM ReservationRooms WHERE ReservationID=@ReservationID";

@@ -423,7 +423,7 @@
             // 
             // roomServiceBindingSource
             // 
-            roomServiceBindingSource.DataSource = typeof(Services.RoomService);
+            roomServiceBindingSource.DataSource = typeof(DbContext.MySqlRoomDbContext);
             // 
             // UCRooms
             // 

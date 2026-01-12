@@ -7,16 +7,18 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using HRMS.Services;  
+using HRMS.Interfaces;
+using HRMS.DbContext;
 
 namespace HRMS.UCForms
 {
     public partial class UCRooms : UserControl
     {
-        private readonly RoomService _roomService;
+        private readonly RoomManager _roomManager;
         public UCRooms()
         {
             InitializeComponent();
-            _roomService = new RoomService();
+            _roomManager = new RoomManager(new MySqlRoomDbContext());
             button1.Click += button1_Click;
 
 
@@ -54,7 +56,7 @@ namespace HRMS.UCForms
         private void UCRooms_Load(object sender, EventArgs e)
         {
 
-            var roomData = _roomService.GetRoomGridData();
+            var roomData = _roomManager.GetRoomGridData();
 
 
             dataGridView1.DataSource = null;
@@ -73,7 +75,7 @@ namespace HRMS.UCForms
             dataGridView1.Columns["ViewType"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns["RoomRate"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns["Amenities"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            var counts = _roomService.GetRoomStatusCounts();
+            var counts = _roomManager.GetRoomStatusCounts();
 
             label3.Text = counts["Total"].ToString();
             label5.Text = counts["Available"].ToString();
@@ -86,7 +88,7 @@ namespace HRMS.UCForms
         }
         private void LoadRoomStatusCounts()
         {
-            var counts = _roomService.GetRoomStatusCounts();
+            var counts = _roomManager.GetRoomStatusCounts();
 
             label3.Text = counts["Total"].ToString();
             label5.Text = counts["Available"].ToString();
@@ -113,7 +115,7 @@ namespace HRMS.UCForms
                 try
                 {
                     // Delete room and its amenities
-                    _roomService.DeleteRoom(roomId);
+                    _roomManager.DeleteRoom(roomId);
 
                     MessageBox.Show("Room deleted successfully!", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -140,7 +142,7 @@ namespace HRMS.UCForms
             }
 
             // Call your service method
-            var results = _roomService.SearchRooms(keyword);
+            var results = _roomManager.SearchRooms(keyword);
 
             // Bind results to DataGridView
             dataGridView1.DataSource = null;

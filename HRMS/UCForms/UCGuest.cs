@@ -2,6 +2,8 @@
 using HRMS.Models;
 using HRMS.Services;
 using HRMS.Helper;
+using MySql.Data.MySqlClient;
+using HRMS.DbContext;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +18,7 @@ namespace HRMS.UCForms
     public partial class UCGuest : UserControl
     {
         private readonly IGuestService _guestService;
+        private readonly GuestManager _guestManager;
 
         private Guest _selectedGuest;
         private bool _isEditMode;
@@ -23,7 +26,8 @@ namespace HRMS.UCForms
         public UCGuest()
         {
             InitializeComponent();
-            _guestService = new GuestService();
+            _guestService = new MySqlGuestDbContext();
+            _guestManager = new GuestManager(_guestService);
             InitializeGuestControls();
 
             Load += UCGuest_Load;
@@ -88,7 +92,7 @@ namespace HRMS.UCForms
         {
             try
             {
-                var guests = _guestService.GetAllGuests();
+                var guests = _guestManager.GetAllGuests();
 
                 BindGuestGrid(guests);
             }
@@ -152,7 +156,7 @@ namespace HRMS.UCForms
 
             try
             {
-                var guests = _guestService.SearchGuest(keyword);
+                var guests = _guestManager.SearchGuest(keyword);
                 BindGuestGrid(guests);
                 dataGridView1.ClearSelection();
                 _selectedGuest = null;
@@ -175,7 +179,7 @@ namespace HRMS.UCForms
         {
             try
             {
-                int totalGuests = _guestService.GetAllGuests().Count();
+                int totalGuests = _guestManager.GetAllGuests().Count();
                 label5.Text = totalGuests.ToString();
             }
             catch
@@ -296,13 +300,13 @@ namespace HRMS.UCForms
                         return;
                     }
 
-                    _guestService.UpdateGuest(guest);
+                    _guestManager.UpdateGuest(guest);
                     MessageBox.Show($"Guest '{guest.FullName}' has been successfully updated.",
                         "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    int guestId = _guestService.AddGuest(guest);
+                    int guestId = _guestManager.AddGuest(guest);
                     if (guestId <= 0)
                     {
                         MessageBox.Show("Failed to save guest information. Please try again.",
@@ -398,14 +402,14 @@ namespace HRMS.UCForms
             {
                 try
                 {
-                    if (_guestService.HasReservationsForGuest(guestId))
+                    if (_guestManager.HasReservationsForGuest(guestId))
                     {
                         MessageBox.Show("This guest cannot be deleted because they have existing reservations. Delete the guest's reservations first (or cancel them) before deleting the guest.",
                             "Cannot Delete Guest", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
-                    _guestService.DeleteGuest(guestId);
+                    _guestManager.DeleteGuest(guestId);
 
                     MessageBox.Show("Guest deleted successfully!", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

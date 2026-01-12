@@ -9,6 +9,7 @@ using HRMS.Models;
 using HRMS.Interfaces;
 using HRMS.Services;
 using HRMS.UCForms;
+using HRMS.DbContext;
 
 
 namespace HRMS.WinForms
@@ -18,14 +19,14 @@ namespace HRMS.WinForms
     {
 
 
-        private readonly IRoomService _roomService;
+        private readonly RoomManager _roomManager;
         private readonly RoomTypeService _roomTypeService;
         private readonly RoomStatusService _roomStatusService;
 
         public AddRoom()
         {
             InitializeComponent();
-            _roomService = new RoomService();
+            _roomManager = new RoomManager(new MySqlRoomDbContext());
             _roomTypeService = new RoomTypeService();
             _roomStatusService = new RoomStatusService();
 
@@ -64,12 +65,10 @@ namespace HRMS.WinForms
                 if (chckCoffeeMaker.Checked) selectedAmenities.Add(8);
 
 
-                int newRoomId = _roomService.AddRoom(room);
-
-
-                foreach (int amenityId in selectedAmenities)
+                int newRoomId = _roomManager.AddRoom(room);
+                foreach (var amenityId in selectedAmenities)
                 {
-                    _roomService.AddRoomAmenity(newRoomId, amenityId);
+                    _roomManager.AddRoomAmenity(newRoomId, amenityId);
                 }
 
                 MessageBox.Show("Room added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

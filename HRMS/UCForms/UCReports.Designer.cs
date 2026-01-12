@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCReports));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel26 = new Panel();
             pictureBox16 = new PictureBox();
             label19 = new Label();
@@ -92,16 +92,16 @@
             chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             panel11 = new Panel();
             dataGridView1 = new DataGridView();
+            ColID = new DataGridViewTextBoxColumn();
+            ColGuest = new DataGridViewTextBoxColumn();
+            colTotalpayment = new DataGridViewTextBoxColumn();
+            ColRevenue = new DataGridViewTextBoxColumn();
             panel13 = new Panel();
             pictureBox10 = new PictureBox();
             label36 = new Label();
             label32 = new Label();
             pictureBox9 = new PictureBox();
             panel12 = new Panel();
-            ColID = new DataGridViewTextBoxColumn();
-            ColGuest = new DataGridViewTextBoxColumn();
-            colTotalpayment = new DataGridViewTextBoxColumn();
-            ColRevenue = new DataGridViewTextBoxColumn();
             panel26.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             panel2.SuspendLayout();
@@ -732,21 +732,22 @@
             // chart2
             // 
             chart2.BorderlineColor = Color.Transparent;
-            chartArea1.Name = "ChartArea1";
-            chart2.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            chart2.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            chart2.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            chart2.Legends.Add(legend2);
             chart2.Location = new Point(18, 85);
             chart2.Name = "chart2";
-            series1.ChartArea = "ChartArea1";
-            series1.Color = Color.FromArgb(42, 93, 159);
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            series1.ShadowColor = Color.Transparent;
-            chart2.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Color = Color.FromArgb(42, 93, 159);
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            series2.ShadowColor = Color.Transparent;
+            chart2.Series.Add(series2);
             chart2.Size = new Size(870, 363);
             chart2.TabIndex = 0;
             chart2.Text = "chart2";
+            chart2.Click += chart2_Click;
             // 
             // panel11
             // 
@@ -759,14 +760,14 @@
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(42, 93, 159);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(42, 93, 159);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ColID, ColGuest, colTotalpayment, ColRevenue });
             dataGridView1.EnableHeadersVisualStyles = false;
@@ -775,6 +776,34 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(788, 380);
             dataGridView1.TabIndex = 5;
+            // 
+            // ColID
+            // 
+            ColID.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColID.HeaderText = "ID";
+            ColID.MinimumWidth = 6;
+            ColID.Name = "ColID";
+            // 
+            // ColGuest
+            // 
+            ColGuest.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColGuest.HeaderText = "Guest";
+            ColGuest.MinimumWidth = 6;
+            ColGuest.Name = "ColGuest";
+            // 
+            // colTotalpayment
+            // 
+            colTotalpayment.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colTotalpayment.HeaderText = "Check-in Date";
+            colTotalpayment.MinimumWidth = 6;
+            colTotalpayment.Name = "colTotalpayment";
+            // 
+            // ColRevenue
+            // 
+            ColRevenue.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColRevenue.HeaderText = "Check-out Date";
+            ColRevenue.MinimumWidth = 6;
+            ColRevenue.Name = "ColRevenue";
             // 
             // panel13
             // 
@@ -838,34 +867,6 @@
             panel12.Size = new Size(897, 65);
             panel12.TabIndex = 3;
             // 
-            // ColID
-            // 
-            ColID.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ColID.HeaderText = "ID";
-            ColID.MinimumWidth = 6;
-            ColID.Name = "ColID";
-            // 
-            // ColGuest
-            // 
-            ColGuest.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ColGuest.HeaderText = "Guest";
-            ColGuest.MinimumWidth = 6;
-            ColGuest.Name = "ColGuest";
-            // 
-            // colTotalpayment
-            // 
-            colTotalpayment.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colTotalpayment.HeaderText = "Check-in Date";
-            colTotalpayment.MinimumWidth = 6;
-            colTotalpayment.Name = "colTotalpayment";
-            // 
-            // ColRevenue
-            // 
-            ColRevenue.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ColRevenue.HeaderText = "Check-out Date";
-            ColRevenue.MinimumWidth = 6;
-            ColRevenue.Name = "ColRevenue";
-            // 
             // UCReports
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -889,7 +890,8 @@
             Controls.Add(panel2);
             Controls.Add(panel26);
             Name = "UCReports";
-            Size = new Size(1601, 1009);
+            Size = new Size(1580, 988);
+            Load += UCReports_Load_1;
             panel26.ResumeLayout(false);
             panel26.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();

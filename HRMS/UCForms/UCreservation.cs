@@ -3,6 +3,7 @@ using HRMS.Models;
 using HRMS.Services;
 using HRMS.Helper;
 using MySql.Data.MySqlClient;
+using HRMS.DbContext;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,8 @@ namespace HRMS.UCForms
         private readonly IRoomTypeService _roomTypeService;
         private readonly IGuestService _guestService;
         private readonly IRoomService _roomService;
+        private readonly RoomManager _roomManager;
+        private readonly GuestManager _guestManager;
         private Room? _selectedRoom;
         private List<Room> _selectedRooms = new List<Room>(); // Track multiple selected rooms
         private Reservation? _selectedReservation;
@@ -32,8 +35,10 @@ namespace HRMS.UCForms
         public UCreservation()
         {
             InitializeComponent();
-            _guestService = new GuestService();
-            _roomService = new RoomService();
+            _guestService = new MySqlGuestDbContext();
+            _guestManager = new GuestManager(_guestService);
+            _roomService = new MySqlRoomDbContext();
+            _roomManager = new RoomManager(_roomService);
             _roomTypeService = new RoomTypeService();
             _reservationService = new ReservationService(_roomService, _guestService, _roomTypeService);
             InitializeGuestControls();
@@ -95,7 +100,7 @@ namespace HRMS.UCForms
         {
             try
             {
-                var roomTypes = _roomService.GetRoomTypes();
+                var roomTypes = _roomManager.GetRoomTypes();
                 comboBox5.Items.Clear();
 
                 foreach (var roomType in roomTypes)
@@ -183,7 +188,7 @@ namespace HRMS.UCForms
                     return;
                 }
 
-                var availableRooms = _roomService.GetAvailableRoomsByType(selectedRoomType);
+                var availableRooms = _roomManager.GetAvailableRoomsByType(selectedRoomType);
 
                 // Add room data manually to match designer columns
                 foreach (var room in availableRooms)
@@ -212,6 +217,132 @@ namespace HRMS.UCForms
         private void button1_Click(object sender, EventArgs e)
         {
             ClearAllFields();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Validate all required information
+                if (!ValidateReservationInformation())
+                {
+                    return;
+                }
+
+                // Create guest object
+                var guest = new Guest
+                {
+                    FirstName = textBox5.Text.Trim(),
+                    LastName = textBox8.Text.Trim(),
+                    Email = textBox7.Text.Trim(),
+                    PhoneNumber = textBox9.Text.Trim(),
+                    Address = textBox10.Text.Trim(),
+                    IDNumber = textBox11.Text.Trim(),
+                    Nationality = textBox12.Text.Trim(),
+                    DateOfBirth = dateTimePicker3.Value,
+                    IDType = comboBox6.SelectedItem?.ToString() ?? "",
+                    Classification = comboBox7.SelectedItem?.ToString() ?? ""
+                };
+
+                // Save or update guest
+                int guestId;
+                if (_isEditMode && _selectedReservation != null)
+                {
+                    // Update existing guest
+                    var existingGuest = _guestManager.GetGuestById(_selectedReservation.GuestID);
+                    if (existingGuest != null)
+                    {
+                        guest.GuestID = existingGuest.GuestID;
+                        _guestManager.UpdateGuest(guest);
+                        guestId = existingGuest.GuestID;
+                    }
+                    else
+                    {
+                        guestId = _guestManager.AddGuest(guest);
+                    }
+                }
+                else
+                {
+                    // Add new guest
+                    guestId = _guestManager.AddGuest(guest);
+                }
+
+                if (guestId <= 0)
+                {
+                    MessageBox.Show("Failed to save guest information. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Create reservation object
+                var reservation = new Reservation
+                {
+                    GuestID = guestId,
+                    Check_InDate = dateTimePicker1.Value,
+                    Check_OutDate = dateTimePicker2.Value,
+                    NumAdult = Convert.ToInt32(comboBox3.SelectedItem?.ToString() ?? "1"),
+                    NumChild = Convert.ToInt32(comboBox4.SelectedItem?.ToString() ?? "0"),
+                    SpecialRequest = BuildSpecialRequestFromCheckboxes(),
+                    ReservationStatus = comboBox2.SelectedItem?.ToString() ?? "Confirmed",
+                    ReservationType = comboBox8.SelectedItem?.ToString() ?? "Walk-in",
+                    BookingReferences = GenerateBookingReference(), // This is the key fix!
+                    RoomID = _selectedRooms.FirstOrDefault()?.RoomID ?? 0,
+                    RoomTypeID = _selectedRooms.FirstOrDefault()?.RoomType ?? 0
+                };
+
+                int reservationId;
+                if (_isEditMode && _selectedReservation != null)
+                {
+                    // Update existing reservation
+                    reservation.ReservationID = _selectedReservation.ReservationID;
+                    _reservationService.UpdateReservation(reservation);
+                    reservationId = _selectedReservation.ReservationID;
+                }
+                else
+                {
+                    // Add new reservation
+                    reservationId = _reservationService.AddReservation(reservation);
+                }
+
+                if (reservationId > 0)
+                {
+                    if (!_isEditMode)
+                    {
+                        var roomIds = _selectedRooms
+                            .Select(r => r.RoomID)
+                            .Where(id => id > 0)
+                            .Distinct()
+                            .ToList();
+
+                        if (roomIds.Count > 0)
+                        {
+                            _reservationService.AddReservationRooms(reservationId, roomIds);
+                        }
+                    }
+
+                    // Update room statuses to "Occupied"
+                    foreach (var room in _selectedRooms)
+                    {
+                        _roomManager.UpdateRoomStatus(room.RoomID, "Occupied");
+                    }
+
+                    MessageBox.Show($"Reservation created successfully!\n\nGuest: {guest.FullName}\nBooking Reference: {reservation.BookingReferences}\nReservation ID: {reservationId}\nNumber of Rooms: {_selectedRooms.Count}\nCheck-In: {dateTimePicker1.Value:yyyy-MM-dd}\nCheck-Out: {dateTimePicker2.Value:yyyy-MM-dd}",
+                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    ClearAllFields();
+
+                    // Refresh both datagrids
+                    LoadReservationData();
+                    LoadAvailableRooms(); // Refresh room list to show updated statuses
+                }
+                else
+                {
+                    MessageBox.Show("Failed to create reservation. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving reservation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void LoadReservationData()
@@ -384,231 +515,95 @@ namespace HRMS.UCForms
                 return false;
             }
 
-            // For edit mode, if no room is selected, use the existing reservation room
-            if (_isEditMode && _selectedRoom == null && _selectedReservation != null)
-            {
-                // Use the existing room from the reservation
-                _selectedRoom = _roomService.GetAllRooms()
-                    .FirstOrDefault(r => r.RoomNumber == _selectedReservation.RoomNumber);
-            }
-
             return true;
         }
 
         private void ClearAllFields()
         {
-            // Clear guest information fields
-            textBox5.Clear();
-            textBox8.Clear();
-            textBox7.Clear();
-            textBox9.Clear();
-            textBox10.Clear();
-            textBox11.Clear();
-            textBox12.Clear();
-            textBox13.Clear();
-            textBox4.Clear();
-            textBox13.ReadOnly = false; // Make booking reference editable for new reservations
-            
-            // Reset combo boxes
-            comboBox6.SelectedIndex = -1;
-            comboBox7.SelectedIndex = -1;
-            comboBox3.SelectedIndex = -1;
-            comboBox4.SelectedIndex = -1;
-            comboBox5.SelectedIndex = -1;
-            comboBox8.SelectedIndex = 0;
-            comboBox2.SelectedIndex = 0;
-            
-            // Reset date pickers
-            dateTimePicker1.Value = DateTime.Now;
-            dateTimePicker2.Value = DateTime.Now;
-            dateTimePicker3.Value = DateTime.Now;
-            
-            // Clear room selection
-            _selectedRoom = null;
-            _selectedRooms.Clear(); // Clear multiple rooms selection
-            _selectedReservationData = null;
-            
-            // Clear room datagrid selection
-            dataGridView2.ClearSelection();
-            
-            // Reset edit mode
-            ResetEditMode();
-        }
-
-        private void textBox13_Click(object sender, EventArgs e)
-        {
             try
             {
-                // Generate booking reference when textbox is clicked
-                string bookingReference = GenerateBookingReference();
-                textBox13.Text = bookingReference;
-                textBox13.ReadOnly = true; // Make it read-only after generation
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error generating booking reference: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+                textBox5.Clear();
+                textBox8.Clear();
+                textBox7.Clear();
+                textBox9.Clear();
+                textBox10.Clear();
+                textBox11.Clear();
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (!ValidateReservationInformation())
-                return;
-
-            try
-            {
-                if (_isEditMode && _selectedReservation != null)
-                {
-                    // Update existing reservation
-                    UpdateExistingReservation();
-                }
-                else
-                {
-                    // Create new reservation
-                    CreateNewReservation();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred while saving reservation: {ex.Message}",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void UpdateExistingReservation()
-        {
-            // Update guest information
-            var guest = new Guest
-            {
-                GuestID = _selectedReservation.GuestID,
-                FirstName = textBox5.Text.Trim(),
-                LastName = textBox8.Text.Trim(),
-                Email = textBox7.Text.Trim(),
-                PhoneNumber = textBox9.Text.Trim(),
-                Address = textBox10.Text.Trim(),
-                IDType = comboBox6.SelectedItem.ToString(),
-                IDNumber = textBox11.Text.Trim(),
-                Nationality = textBox12.Text.Trim(),
-                DateOfBirth = dateTimePicker3.Value,
-                Classification = comboBox7.SelectedItem.ToString()
-            };
-
-            _guestService.UpdateGuest(guest);
-
-            // Update reservation
-            var reservation = new Reservation
-            {
-                ReservationID = _selectedReservation.ReservationID,
-                GuestID = _selectedReservation.GuestID,
-                Check_InDate = dateTimePicker1.Value,
-                Check_OutDate = dateTimePicker2.Value,
-                NumAdult = Convert.ToInt32(comboBox3.SelectedItem),
-                NumChild = Convert.ToInt32(comboBox4.SelectedItem),
-                SpecialRequest = textBox4.Text.Trim(),
-                ReservationStatus = comboBox2.SelectedItem?.ToString() ?? "Confirmed",
-                ReservationType = comboBox8.SelectedItem?.ToString() ?? "",
-                RoomID = _selectedRoom?.RoomID ?? _selectedReservation.RoomID,
-                GuestName = guest.FullName,
-                RoomNumber = _selectedRoom?.RoomNumber ?? _selectedReservation.RoomNumber,
-                RoomTypeName = _selectedRoom?.RoomTypeName ?? _selectedReservation.RoomTypeName,
-                BookingReferences = _selectedReservation.BookingReferences // Keep existing booking reference
-            };
-
-            _reservationService.UpdateReservation(reservation);
-
-            MessageBox.Show($"Reservation updated successfully!\n\nGuest: {guest.FullName}\nBooking Reference: {reservation.BookingReferences}\nReservation ID: {reservation.ReservationID}\nCheck-In: {dateTimePicker1.Value:yyyy-MM-dd}\nCheck-Out: {dateTimePicker2.Value:yyyy-MM-dd}",
-                "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            // Reset edit mode and refresh
-            ResetEditMode();
-            ClearAllFields();
-            LoadReservationData();
-        }
-
-        private void CreateNewReservation()
-        {
-            // First, create and save the guest
-            var guest = new Guest
-            {
-                FirstName = textBox5.Text.Trim(),
-                LastName = textBox8.Text.Trim(),
-                Email = textBox7.Text.Trim(),
-                PhoneNumber = textBox9.Text.Trim(),
-                Address = textBox10.Text.Trim(),
-                IDType = comboBox6.SelectedItem.ToString(),
-                IDNumber = textBox11.Text.Trim(),
-                Nationality = textBox12.Text.Trim(),
-                DateOfBirth = dateTimePicker3.Value,
-                Classification = comboBox7.SelectedItem.ToString()
-            };
-
-            int guestId = _guestService.AddGuest(guest);
-
-            if (guestId <= 0)
-            {
-                MessageBox.Show("Failed to save guest information. Please try again.",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Use the first selected room for the main reservation record
-            var primaryRoom = _selectedRooms.FirstOrDefault() ?? _selectedRoom;
-            
-            // Then, create and save the reservation
-            var reservation = new Reservation
-            {
-                GuestID = guestId,
-                Check_InDate = dateTimePicker1.Value,
-                Check_OutDate = dateTimePicker2.Value,
-                NumAdult = Convert.ToInt32(comboBox3.SelectedItem),
-                NumChild = Convert.ToInt32(comboBox4.SelectedItem),
-                SpecialRequest = textBox4.Text.Trim(),
-                ReservationStatus = comboBox2.SelectedItem?.ToString() ?? "Confirmed",
-                ReservationType = comboBox8.SelectedItem?.ToString() ?? "",
-                RoomID = primaryRoom?.RoomID ?? 1, // Use primary room or default
-                GuestName = guest.FullName,
-                RoomNumber = _selectedRooms.Count > 1 ? $"{_selectedRooms.Count} Rooms" : (primaryRoom?.RoomNumber ?? "TBD"),
-                RoomTypeName = primaryRoom?.RoomTypeName ?? comboBox5.SelectedItem.ToString(),
-                BookingReferences = !string.IsNullOrEmpty(textBox13.Text) ? textBox13.Text : GenerateBookingReference() // Use textbox value or generate new one
-            };
-
-            int reservationId = _reservationService.AddReservation(reservation);
-
-            if (reservationId > 0)
-            {
-                // Add room relationships to junction table
-                var roomIds = _selectedRooms.Select(r => r.RoomID).ToList();
-                _reservationService.AddReservationRooms(reservationId, roomIds);
+                textBox3.Clear();
                 
-                // Update room statuses for all selected rooms
-                int updatedRooms = 0;
-                foreach (var room in _selectedRooms)
-                {
-                    if (_roomService.UpdateRoomStatus(room.RoomID, "Reserved"))
-                    {
-                        updatedRooms++;
-                    }
-                }
 
-                string roomDetails = _selectedRooms.Count > 1 
-                    ? $"\nRooms: {string.Join(", ", _selectedRooms.Select(r => r.RoomNumber))}"
-                    : $"\nRoom: {primaryRoom?.RoomNumber ?? "TBD"}";
+                checkBox3.Checked = false;
+                checkBox4.Checked = false;
+                checkBox5.Checked = false;
+                checkBox6.Checked = false;
+                checkBox7.Checked = false;
+                checkBox1.Checked = false;
 
-                MessageBox.Show($"Reservation created successfully!\n\nGuest: {guest.FullName}\nBooking Reference: {reservation.BookingReferences}\nReservation ID: {reservationId}\nNumber of Rooms: {_selectedRooms.Count}{roomDetails}\nCheck-In: {dateTimePicker1.Value:yyyy-MM-dd}\nCheck-Out: {dateTimePicker2.Value:yyyy-MM-dd}",
-                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                ClearAllFields();
+                comboBox6.SelectedIndex = -1;
+                comboBox7.SelectedIndex = -1;
+                comboBox8.SelectedIndex = -1;
+                comboBox2.SelectedIndex = -1;
 
-                // Refresh both datagrids
-                RefreshGuestData();
-                LoadReservationData();
-                LoadAvailableRooms(); // Refresh room list to show updated statuses
+                if (comboBox3.Items.Count > 0) comboBox3.SelectedIndex = 0;
+                if (comboBox4.Items.Count > 0) comboBox4.SelectedIndex = 0;
+
+                _selectedRoom = null;
+                _selectedRooms.Clear();
+                _selectedReservation = null;
+                _selectedReservationData = null;
+                _isEditMode = false;
+
+                // Clear available rooms selection
+                dataGridView2.ClearSelection();
             }
-            else
+            catch
             {
-                MessageBox.Show("Failed to create reservation. Please try again.",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private string BuildSpecialRequestFromCheckboxes()
+        {
+            var selected = new List<string>();
+
+            if (checkBox3.Checked) selected.Add(checkBox3.Text);
+            if (checkBox4.Checked) selected.Add(checkBox4.Text);
+            if (checkBox5.Checked) selected.Add(checkBox5.Text);
+            if (checkBox6.Checked) selected.Add(checkBox6.Text);
+            if (checkBox7.Checked) selected.Add(checkBox7.Text);
+            if (checkBox1.Checked) selected.Add(checkBox1.Text);
+
+            return string.Join(", ", selected);
+        }
+
+        private void ApplySpecialRequestToCheckboxes(string? specialRequest)
+        {
+            string src = (specialRequest ?? string.Empty).Trim();
+
+            checkBox3.Checked = false;
+            checkBox4.Checked = false;
+            checkBox5.Checked = false;
+            checkBox6.Checked = false;
+            checkBox7.Checked = false;
+            checkBox1.Checked = false;
+
+            if (string.IsNullOrWhiteSpace(src))
+            {
+                return;
+            }
+
+            var parts = src
+                .Split(',')
+                .Select(p => p.Trim())
+                .Where(p => !string.IsNullOrWhiteSpace(p))
+                .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+            if (parts.Contains(checkBox3.Text)) checkBox3.Checked = true;
+            if (parts.Contains(checkBox4.Text)) checkBox4.Checked = true;
+            if (parts.Contains(checkBox5.Text)) checkBox5.Checked = true;
+            if (parts.Contains(checkBox6.Text)) checkBox6.Checked = true;
+            if (parts.Contains(checkBox7.Text)) checkBox7.Checked = true;
+            if (parts.Contains(checkBox1.Text)) checkBox1.Checked = true;
         }
 
         private void ResetEditMode()
@@ -711,6 +706,44 @@ namespace HRMS.UCForms
                 var specialRequest = _selectedReservationData.GetType().GetProperty("SpecialRequest")?.GetValue(_selectedReservationData)?.ToString() ?? "";
                 var status = _selectedReservationData.GetType().GetProperty("Status")?.GetValue(_selectedReservationData)?.ToString() ?? "";
                 var numberOfRooms = _selectedReservationData.GetType().GetProperty("NumberOfRooms")?.GetValue(_selectedReservationData)?.ToString() ?? "1";
+
+                // If some cells are blank (common when the grid was refreshed), re-fetch from DB by booking reference.
+                if (!string.IsNullOrWhiteSpace(bookingReference) && (string.IsNullOrWhiteSpace(roomNumber) || string.IsNullOrWhiteSpace(roomType)))
+                {
+                    var dbReservation = _reservationService.GetReservationGridData()
+                        .FirstOrDefault(r => string.Equals(r.BookingReferences, bookingReference, StringComparison.OrdinalIgnoreCase));
+
+                    if (dbReservation != null)
+                    {
+                        guestName = string.IsNullOrWhiteSpace(guestName) ? (dbReservation.GuestName ?? "") : guestName;
+                        roomNumber = string.IsNullOrWhiteSpace(roomNumber) ? (dbReservation.RoomNumber ?? "") : roomNumber;
+                        roomType = string.IsNullOrWhiteSpace(roomType) ? (dbReservation.RoomTypeName ?? "") : roomType;
+
+                        if (string.IsNullOrWhiteSpace(numberOfNights) || numberOfNights == "0")
+                        {
+                            numberOfNights = dbReservation.TotalDays.ToString();
+                        }
+
+                        if (string.IsNullOrWhiteSpace(numberOfOccupants) || numberOfOccupants == "0")
+                        {
+                            numberOfOccupants = dbReservation.TotalGuests.ToString();
+                        }
+
+                        specialRequest = string.IsNullOrWhiteSpace(specialRequest) ? (dbReservation.SpecialRequest ?? "") : specialRequest;
+                        status = string.IsNullOrWhiteSpace(status) ? (dbReservation.ReservationStatus ?? "") : status;
+
+                        if (string.IsNullOrWhiteSpace(numberOfRooms) || numberOfRooms == "0")
+                        {
+                            var roomCount = (dbReservation.RoomNumber ?? "")
+                                .Split(',')
+                                .Select(r => r.Trim())
+                                .Where(r => !string.IsNullOrWhiteSpace(r))
+                                .Distinct(StringComparer.OrdinalIgnoreCase)
+                                .Count();
+                            numberOfRooms = Math.Max(1, roomCount).ToString();
+                        }
+                    }
+                }
 
                 // Update the summary panel (panel4)
                 UpdateReservationSummary(guestName, roomNumber, roomType, numberOfNights, numberOfOccupants, specialRequest, status, bookingReference, numberOfRooms);
@@ -1001,7 +1034,7 @@ namespace HRMS.UCForms
                     return 0m;
                 }
 
-                var allRooms = _roomService.GetAllRooms().ToList();
+                var allRooms = _roomManager.GetAllRooms().ToList();
                 decimal totalRate = 0m;
 
                 foreach (var rn in requestedRoomNumbers)
@@ -1065,7 +1098,7 @@ namespace HRMS.UCForms
                     return;
                 }
 
-                var guest = _guestService.GetGuestById(_selectedReservation.GuestID);
+                var guest = _guestManager.GetGuestById(_selectedReservation.GuestID);
 
                 // Make sure the guest information panel is visible and brought to front
                 panel10.Visible = true;
@@ -1096,10 +1129,11 @@ namespace HRMS.UCForms
                 dateTimePicker2.Value = _selectedReservation.Check_OutDate;
                 textBox3.Text = _selectedReservation.TotalDays.ToString();
 
+                ApplySpecialRequestToCheckboxes(_selectedReservation.SpecialRequest);
+
                 comboBox3.SelectedItem = _selectedReservation.NumAdult.ToString();
                 comboBox4.SelectedItem = _selectedReservation.NumChild.ToString();
 
-                textBox4.Text = _selectedReservation.SpecialRequest ?? specialRequest;
                 textBox13.Text = _selectedReservation.BookingReferences ?? bookingReference;
                 textBox13.ReadOnly = true;
 
@@ -1154,7 +1188,7 @@ namespace HRMS.UCForms
                 else
                 {
                     // Keep the existing room selection, don't force re-selection
-                    _selectedRoom = _roomService.GetAllRooms()
+                    _selectedRoom = _roomManager.GetAllRooms()
                         .FirstOrDefault(r => r.RoomNumber == currentRoomNumber);
                 }
 
@@ -1221,7 +1255,7 @@ namespace HRMS.UCForms
                 if (row.Cells["RoomNumber"].Tag != null)
                 {
                     int roomId = Convert.ToInt32(row.Cells["RoomNumber"].Tag);
-                    var room = _roomService.GetAllRooms().FirstOrDefault(r => r.RoomID == roomId);
+                    var room = _roomManager.GetAllRooms().FirstOrDefault(r => r.RoomID == roomId);
                     if (room != null)
                     {
                         selectedRooms.Add(room);
@@ -1241,7 +1275,7 @@ namespace HRMS.UCForms
                 foreach (var room in selectedRooms)
                 {
                     // Update room status in database
-                    bool success = _roomService.UpdateRoomStatus(room.RoomID, "Available");
+                    bool success = _roomManager.UpdateRoomStatus(room.RoomID, "Available");
                     
                     if (success)
                     {

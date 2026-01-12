@@ -256,6 +256,28 @@ namespace HRMS.WinForms
                 label24.Text = checkOut == DateTime.MinValue ? "" : checkOut.ToString("MMM-dd-yyyy");
                 label25.Text = nights.ToString();
 
+                DateTime displayCheckIn = checkIn;
+                if (displayCheckIn != DateTime.MinValue && displayCheckIn.TimeOfDay == TimeSpan.Zero)
+                {
+                    displayCheckIn = displayCheckIn.Date.AddHours(12);
+                }
+
+                DateTime displayCheckOut = checkOut;
+                if (displayCheckOut != DateTime.MinValue && displayCheckOut.TimeOfDay == TimeSpan.Zero)
+                {
+                    displayCheckOut = displayCheckOut.Date.AddHours(12);
+                }
+
+                if (label41 != null)
+                {
+                    label41.Text = $"• Check-in Time: {(displayCheckIn == DateTime.MinValue ? "" : displayCheckIn.ToString("hh:mm tt"))}";
+                }
+
+                if (label42 != null)
+                {
+                    label42.Text = $"• Check-out Time: {(displayCheckOut == DateTime.MinValue ? "" : displayCheckOut.ToString("hh:mm tt"))}";
+                }
+
                 string guestsText;
                 if (children > 0 && adults > 0)
                 {

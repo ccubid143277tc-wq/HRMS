@@ -24,5 +24,10 @@ namespace HRMS.Interfaces
         IEnumerable<Room> GetAvailableRoomsByType(string roomTypeName);
         bool IsRoomAvailable(int roomId, DateTime checkInDate, DateTime checkOutDate);
         bool UpdateRoomStatus(int roomId, string status);
+        Dictionary<string, int> GetRoomStatusCounts();
+        int GetOccupiedRoomCountByDate(DateTime date);
+        Dictionary<DateTime, int> GetWeeklyOccupiedRoomCounts(DateTime startDate, int days);
+        int GetExpectedArrivalsCount(DateTime date);
+        int GetExpectedDeparturesCount(DateTime date);
     }
 }

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using HRMS.Helper;
+using HRMS.WinForms;
 using MySql.Data.MySqlClient;
 using System.Globalization;
 using System.Linq;
@@ -19,7 +20,42 @@ namespace HRMS.UCForms
         {
             InitializeComponent();
 
-            Load += UCReports_Load;
+            if (dataGridView1 != null)
+            {
+                dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
+            }
+        }
+
+        private void dataGridView1_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex < 0)
+                {
+                    return;
+                }
+
+                var row = dataGridView1.Rows[e.RowIndex];
+                object rawId = row.Cells["ColID"]?.Value;
+                if (rawId == null || rawId == DBNull.Value)
+                {
+                    return;
+                }
+
+                if (!int.TryParse(rawId.ToString(), out int reservationId) || reservationId <= 0)
+                {
+                    return;
+                }
+
+                using (var form = new GuestInformation(reservationId))
+                {
+                    form.StartPosition = FormStartPosition.CenterParent;
+                    form.ShowDialog(this);
+                }
+            }
+            catch
+            {
+            }
         }
 
         private void ConfigureReportGrid()
@@ -39,11 +75,11 @@ namespace HRMS.UCForms
             // Ensure the existing designer columns bind to known field names.
             if (ColID != null) ColID.DataPropertyName = "ReservationID";
             if (ColGuest != null) ColGuest.DataPropertyName = "GuestName";
-            if (colTotalpayment != null) colTotalpayment.DataPropertyName = "TotalPayment";
-            if (ColRevenue != null) ColRevenue.DataPropertyName = "Revenue";
+            if (colTotalpayment != null) colTotalpayment.DataPropertyName = "CheckInDate";
+            if (ColRevenue != null) ColRevenue.DataPropertyName = "CheckOutDate";
 
-            if (colTotalpayment != null) colTotalpayment.DefaultCellStyle.Format = "₱ #,##0.00";
-            if (ColRevenue != null) ColRevenue.DefaultCellStyle.Format = "₱ #,##0.00";
+            if (colTotalpayment != null) colTotalpayment.DefaultCellStyle.Format = "MMM-dd-yyyy";
+            if (ColRevenue != null) ColRevenue.DefaultCellStyle.Format = "MMM-dd-yyyy";
         }
 
         private string GetPaymentMethodSqlCondition(string paymentFilter)
@@ -59,28 +95,15 @@ namespace HRMS.UCForms
 
         private DataTable LoadReportGridData(MySqlConnection conn, DateTime fromInclusive, DateTime toExclusive, string paymentFilter)
         {
-            string paymentMethodCondition = GetPaymentMethodSqlCondition(paymentFilter);
-
-            string query = $@"SELECT
+            string query = @"SELECT
                                 r.ReservationID,
                                 CONCAT(g.FirstName, ' ', g.LastName) AS GuestName,
-                                ROUND(COALESCE(SUM(CASE
-                                    WHEN (p.Payment_method IS NULL OR p.Payment_method <> 'Additional Service')
-                                         AND (p.Payment_Status IS NULL OR p.Payment_Status <> 'Charge')
-                                    THEN p.amount
-                                    ELSE 0
-                                END), 0), 2) AS TotalPayment,
-                                ROUND(COALESCE(SUM(p.amount), 0), 2) AS Revenue
+                                r.Check_InDate AS CheckInDate,
+                                r.Check_OutDate AS CheckOutDate
                              FROM reservations r
                              LEFT JOIN Guest g ON r.GuestID = g.GuestID
-                             LEFT JOIN payment p ON p.ReservationID = r.ReservationID
-                                AND p.Payment_Date >= @fromDate
-                                AND p.Payment_Date < @toDate
-                                AND (p.Payment_Status IS NULL OR p.Payment_Status <> 'Voided')
-                                AND ({paymentMethodCondition})
                              WHERE r.Check_InDate >= @fromDate
                                AND r.Check_InDate < @toDate
-                             GROUP BY r.ReservationID, g.FirstName, g.LastName
                              ORDER BY r.ReservationID DESC";
 
             using (var cmd = new MySqlCommand(query, conn))
@@ -418,9 +441,14 @@ namespace HRMS.UCForms
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void chart2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void UCReports_Load_1(object sender, EventArgs e)
+        {
+            UCReports_Load(sender, e);
         }
     }
 }

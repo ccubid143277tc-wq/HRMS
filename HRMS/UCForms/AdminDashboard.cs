@@ -9,18 +9,22 @@ using System.Windows.Forms.DataVisualization.Charting;
 using HRMS.Helper;
 using HRMS.Services;
 using MySql.Data.MySqlClient;
+using HRMS.Interfaces;
+using HRMS.DbContext;
 
 namespace HRMS.UCForms
 {
     public partial class AdminDashboard : UserControl
     {
-        private readonly RoomService _roomService;
+        private readonly IRoomService _roomRepo;
+        private readonly RoomManager _roomManager;
 
         public AdminDashboard()
         {
             InitializeComponent();
 
-            _roomService = new RoomService();
+            _roomRepo = new MySqlRoomDbContext();
+            _roomManager = new RoomManager(_roomRepo);
             Load += AdminDashboard_Load;
         }
 
@@ -62,7 +66,7 @@ namespace HRMS.UCForms
 
         private void LoadOccupancyRate()
         {
-            var counts = _roomService.GetRoomStatusCounts();
+            var counts = _roomManager.GetRoomStatusCounts();
 
             counts.TryGetValue("Total", out int totalRooms);
             if (totalRooms <= 0)
@@ -70,7 +74,7 @@ namespace HRMS.UCForms
                 totalRooms = 1;
             }
 
-            int occupiedToday = _roomService.GetOccupiedRoomCountByDate(DateTime.Today);
+            int occupiedToday = _roomManager.GetOccupiedRoomCountByDate(DateTime.Today);
             double occupancyRate = (double)occupiedToday / totalRooms * 100.0;
 
             label2.Text = $"{occupancyRate:0}%";
@@ -107,8 +111,8 @@ namespace HRMS.UCForms
 
         private void LoadCheckInOutMetrics()
         {
-            int checkInsToday = _roomService.GetExpectedArrivalsCount(DateTime.Today);
-            int checkOutsToday = _roomService.GetExpectedDeparturesCount(DateTime.Today);
+            int checkInsToday = _roomManager.GetExpectedArrivalsCount(DateTime.Today);
+            int checkOutsToday = _roomManager.GetExpectedDeparturesCount(DateTime.Today);
 
             label5.Text = checkInsToday.ToString();
             label27.Text = $"{checkInsToday} Pending Arrivals";
@@ -121,7 +125,8 @@ namespace HRMS.UCForms
         {
             try
             {
-                var counts = _roomService.GetRoomStatusCounts();
+                var counts = _roomManager.GetRoomStatusCounts();
+
 
                 if (counts.TryGetValue("Available", out int availableRooms))
                 {
@@ -213,7 +218,7 @@ namespace HRMS.UCForms
 
         private void LoadRoomStatusPieChart()
         {
-            var counts = _roomService.GetRoomStatusCounts();
+            var counts = _roomManager.GetRoomStatusCounts();
 
             if (chart1.Series.Count == 0)
             {

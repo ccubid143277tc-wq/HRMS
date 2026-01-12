@@ -1,6 +1,7 @@
 ﻿using HRMS.Interfaces;
 using HRMS.Models;
 using HRMS.Services;
+using HRMS.DbContext;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ namespace HRMS.WinForms
     public partial class EditRoom : Form
     {
         private int _roomId;
-        private readonly IRoomService _roomService;
+        private readonly RoomManager _roomManager;
         private readonly RoomTypeService _roomTypeService;
         private readonly RoomStatusService _roomStatusService;
         
@@ -22,7 +23,7 @@ namespace HRMS.WinForms
         {
             InitializeComponent();
             _roomId = roomId;
-            _roomService = new RoomService();
+            _roomManager = new RoomManager(new MySqlRoomDbContext());
             _roomTypeService = new RoomTypeService();
             _roomStatusService = new RoomStatusService();
 
@@ -52,7 +53,7 @@ namespace HRMS.WinForms
                 };
 
                
-                _roomService.UpdateRoom(room);
+                _roomManager.UpdateRoom(room);
 
                 MessageBox.Show("Room updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -110,7 +111,7 @@ namespace HRMS.WinForms
         {
             try
             {
-                var room = _roomService.GetRoomById(_roomId);
+                var room = _roomManager.GetRoomById(_roomId);
 
                 if (room != null)
                 {
@@ -164,7 +165,7 @@ namespace HRMS.WinForms
             {
                 // Get amenities for this room from RoomAmenities table
                 // You'll need to add a method to get room amenities
-                var roomAmenities = _roomService.GetRoomAmenities(roomId);
+                var roomAmenities = _roomManager.GetRoomAmenities(roomId);
                 
                 // Reset all checkboxes first
                 chckWifi.Checked = false;

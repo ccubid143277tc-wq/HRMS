@@ -28,6 +28,7 @@ namespace HRMS.UCForms
             textBox15.TextChanged += BillingInputs_Changed;
             textBox16.TextChanged += BillingInputs_Changed;
             textBox9.TextChanged += BillingInputs_Changed;
+            textBox23.TextChanged += BillingInputs_Changed;
             textBox18.TextChanged += BillingInputs_Changed;
 
             checkBox3.CheckedChanged += BillingInputs_Changed;
@@ -35,6 +36,7 @@ namespace HRMS.UCForms
             checkBox5.CheckedChanged += BillingInputs_Changed;
             checkBox6.CheckedChanged += BillingInputs_Changed;
             checkBox7.CheckedChanged += BillingInputs_Changed;
+            checkBox8.CheckedChanged += BillingInputs_Changed;
 
             textBox27.TextChanged += PaymentInputs_Changed;
             comboBox1.SelectedIndexChanged += PaymentInputs_Changed;
@@ -69,6 +71,7 @@ namespace HRMS.UCForms
             if (checkBox5.Checked) additionalServices += MoneyHelper.Parse(textBox15.Text);
             if (checkBox6.Checked) additionalServices += MoneyHelper.Parse(textBox16.Text);
             if (checkBox7.Checked) additionalServices += MoneyHelper.Parse(textBox9.Text);
+            if (checkBox8.Checked) additionalServices += MoneyHelper.Parse(textBox23.Text);
             return additionalServices;
         }
 
@@ -469,6 +472,7 @@ namespace HRMS.UCForms
             textBox15.Enabled = checkBox5.Checked;
             textBox16.Enabled = checkBox6.Checked;
             textBox9.Enabled = checkBox7.Checked;
+            textBox23.Enabled = checkBox8.Checked;
         }
 
 
@@ -483,6 +487,7 @@ namespace HRMS.UCForms
             if (checkBox5.Checked) additionalServices += MoneyHelper.Parse(textBox15.Text);
             if (checkBox6.Checked) additionalServices += MoneyHelper.Parse(textBox16.Text);
             if (checkBox7.Checked) additionalServices += MoneyHelper.Parse(textBox9.Text);
+            if (checkBox8.Checked) additionalServices += MoneyHelper.Parse(textBox23.Text);
 
             decimal discount = MoneyHelper.Parse(textBox18.Text);
 
