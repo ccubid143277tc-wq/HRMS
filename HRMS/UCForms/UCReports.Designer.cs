@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCReports));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel26 = new Panel();
             pictureBox16 = new PictureBox();
             label19 = new Label();
@@ -175,11 +175,11 @@
             // 
             label14.AutoSize = true;
             label14.ForeColor = SystemColors.ActiveCaptionText;
-            label14.Location = new Point(1449, 60);
+            label14.Location = new Point(1479, 60);
             label14.Name = "label14";
-            label14.Size = new Size(91, 20);
+            label14.Size = new Size(53, 20);
             label14.TabIndex = 12;
-            label14.Text = "Receptionist";
+            label14.Text = "Admin";
             // 
             // label15
             // 
@@ -732,18 +732,18 @@
             // chart2
             // 
             chart2.BorderlineColor = Color.Transparent;
-            chartArea2.Name = "ChartArea1";
-            chart2.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            chart2.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            chart2.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            chart2.Legends.Add(legend1);
             chart2.Location = new Point(18, 85);
             chart2.Name = "chart2";
-            series2.ChartArea = "ChartArea1";
-            series2.Color = Color.FromArgb(42, 93, 159);
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            series2.ShadowColor = Color.Transparent;
-            chart2.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Color = Color.FromArgb(42, 93, 159);
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            series1.ShadowColor = Color.Transparent;
+            chart2.Series.Add(series1);
             chart2.Size = new Size(870, 363);
             chart2.TabIndex = 0;
             chart2.Text = "chart2";
@@ -760,14 +760,14 @@
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(42, 93, 159);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(42, 93, 159);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ColID, ColGuest, colTotalpayment, ColRevenue });
             dataGridView1.EnableHeadersVisualStyles = false;
@@ -890,7 +890,7 @@
             Controls.Add(panel2);
             Controls.Add(panel26);
             Name = "UCReports";
-            Size = new Size(1580, 988);
+            Size = new Size(1559, 967);
             Load += UCReports_Load_1;
             panel26.ResumeLayout(false);
             panel26.PerformLayout();

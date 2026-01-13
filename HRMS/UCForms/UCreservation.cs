@@ -161,7 +161,7 @@ namespace HRMS.UCForms
 
                 string query = @"SELECT
                                     ROUND((COALESCE(SUM(DISTINCT rm.RoomRate), 0)
-                                          * COALESCE(r.numberOfNights, DATEDIFF(r.Check_OutDate, r.Check_InDate)))
+                                          * GREATEST(COALESCE(r.numberOfNights, 0), DATEDIFF(r.Check_OutDate, r.Check_InDate)))
                                          * 1.05, 2) AS TotalDue
                                  FROM reservations r
                                  LEFT JOIN ReservationRooms rr ON r.ReservationID = rr.ReservationID
@@ -273,6 +273,64 @@ namespace HRMS.UCForms
                     Status = row.Cells["colReservationStatus"].Value?.ToString() ?? "",
                     NumberOfRooms = row.Cells["colNumberOfRooms"].Value?.ToString() ?? "1"
                 };
+
+                try
+                {
+                    // Keep summary + process payment panel in sync with the selected reservation.
+                    var guestName = row.Cells["colGuestName"].Value?.ToString() ?? "";
+                    var bookingReference = row.Cells["colBookingReference"].Value?.ToString() ?? "";
+                    var roomNumber = row.Cells["ColRoomNumber"].Value?.ToString() ?? "";
+                    var roomType = row.Cells["ColRoomType"].Value?.ToString() ?? "";
+                    var numberOfNights = row.Cells["ColNumberOfNights"].Value?.ToString() ?? "0";
+                    var numberOfOccupants = row.Cells["colNumberOfOccupants"].Value?.ToString() ?? "0";
+                    var specialRequest = row.Cells["colSpecialRequest"].Value?.ToString() ?? "";
+                    var status = row.Cells["colReservationStatus"].Value?.ToString() ?? "";
+                    var numberOfRooms = row.Cells["colNumberOfRooms"].Value?.ToString() ?? "1";
+
+                    // If some cells are blank (common when the grid was refreshed), re-fetch from DB by booking reference.
+                    if (!string.IsNullOrWhiteSpace(bookingReference) && (string.IsNullOrWhiteSpace(roomNumber) || string.IsNullOrWhiteSpace(roomType)))
+                    {
+                        var dbReservation = _reservationService.GetReservationGridData()
+                            .FirstOrDefault(r => string.Equals(r.BookingReferences, bookingReference, StringComparison.OrdinalIgnoreCase));
+
+                        if (dbReservation != null)
+                        {
+                            guestName = string.IsNullOrWhiteSpace(guestName) ? (dbReservation.GuestName ?? "") : guestName;
+                            roomNumber = string.IsNullOrWhiteSpace(roomNumber) ? (dbReservation.RoomNumber ?? "") : roomNumber;
+                            roomType = string.IsNullOrWhiteSpace(roomType) ? (dbReservation.RoomTypeName ?? "") : roomType;
+
+                            if (string.IsNullOrWhiteSpace(numberOfNights) || numberOfNights == "0")
+                            {
+                                numberOfNights = dbReservation.TotalDays.ToString();
+                            }
+
+                            if (string.IsNullOrWhiteSpace(numberOfOccupants) || numberOfOccupants == "0")
+                            {
+                                numberOfOccupants = dbReservation.TotalGuests.ToString();
+                            }
+
+                            specialRequest = string.IsNullOrWhiteSpace(specialRequest) ? (dbReservation.SpecialRequest ?? "") : specialRequest;
+                            status = string.IsNullOrWhiteSpace(status) ? (dbReservation.ReservationStatus ?? "") : status;
+
+                            if (string.IsNullOrWhiteSpace(numberOfRooms) || numberOfRooms == "0")
+                            {
+                                var roomCount = (dbReservation.RoomNumber ?? "")
+                                    .Split(',')
+                                    .Select(r => r.Trim())
+                                    .Where(r => !string.IsNullOrWhiteSpace(r))
+                                    .Distinct(StringComparer.OrdinalIgnoreCase)
+                                    .Count();
+                                numberOfRooms = Math.Max(1, roomCount).ToString();
+                            }
+                        }
+                    }
+
+                    UpdateReservationSummary(guestName, roomNumber, roomType, numberOfNights, numberOfOccupants, specialRequest, status, bookingReference, numberOfRooms);
+                }
+                catch
+                {
+                    // Intentionally ignore here to avoid crashing the page
+                }
             }
         }
 

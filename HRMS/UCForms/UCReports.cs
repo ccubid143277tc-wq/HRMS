@@ -102,8 +102,8 @@ namespace HRMS.UCForms
                                 r.Check_OutDate AS CheckOutDate
                              FROM reservations r
                              LEFT JOIN Guest g ON r.GuestID = g.GuestID
-                             WHERE r.Check_InDate >= @fromDate
-                               AND r.Check_InDate < @toDate
+                             WHERE r.Check_OutDate >= @fromDate
+                               AND r.Check_OutDate < @toDate
                                AND r.ReservationStatus = 'Checked-Out'
                              ORDER BY r.ReservationID DESC";
 

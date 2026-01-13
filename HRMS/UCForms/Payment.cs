@@ -15,6 +15,7 @@ namespace HRMS.UCForms
     {
         private int _currentReservationId;
         private decimal _currentBalance;
+        private bool _isUpdatingBillingSummary;
 
         public Payment()
         {
@@ -43,6 +44,8 @@ namespace HRMS.UCForms
 
             textBox26.ReadOnly = true;
             textBox24.ReadOnly = true;
+            textBox22.ReadOnly = true;
+            textBox22.TextChanged -= textBox22_TextChanged;
             checkBox1.Enabled = false;
             checkBox2.Enabled = false;
 
@@ -245,6 +248,7 @@ namespace HRMS.UCForms
                         {
                             _currentBalance = balance;
                             label22.Text = $"Remaining Balance: ₱{balance:0.00}";
+                            textBox22.Text = balance.ToString("0.00");
                         }
                     }
 
@@ -291,7 +295,10 @@ namespace HRMS.UCForms
                                     CONCAT(g.FirstName, ' ', g.LastName) AS GuestName,
                                     p.amount,
                                     p.Payment_method,
-                                    p.Payment_Status,
+                                    CASE
+                                        WHEN ROUND((COALESCE(rtcalc.TotalDue, 0) + COALESCE(svc.ServiceCharges, 0)) - COALESCE(pd.TotalPaid, 0), 2) > 0.01 THEN 'Pending'
+                                        ELSE 'Paid'
+                                    END AS Payment_Status,
                                     COALESCE(u.Username, '') AS ProcessedBy,
                                     ROUND(COALESCE(rtcalc.TotalDue, 0) + COALESCE(svc.ServiceCharges, 0), 2) AS TotalDue,
                                     ROUND(COALESCE(pd.TotalPaid, 0), 2) AS TotalPaid,
@@ -305,7 +312,7 @@ namespace HRMS.UCForms
                                      SELECT
                                          r2.ReservationID,
                                          ((COALESCE(SUM(DISTINCT rm.RoomRate), 0)
-                                           * COALESCE(r2.numberOfNights, DATEDIFF(r2.Check_OutDate, r2.Check_InDate)))
+                                           * GREATEST(COALESCE(r2.numberOfNights, 0), DATEDIFF(r2.Check_OutDate, r2.Check_InDate)))
                                           * 1.05) AS TotalDue
                                      FROM reservations r2
                                      LEFT JOIN ReservationRooms rr ON r2.ReservationID = rr.ReservationID
@@ -341,6 +348,7 @@ namespace HRMS.UCForms
                                  ) lp ON lp.ReservationID = r.ReservationID
                                  LEFT JOIN payment p ON p.PaymentID = lp.LastPaymentID
                                  LEFT JOIN Users u ON p.UserID = u.UserID
+                                 WHERE (r.ReservationStatus IS NULL OR r.ReservationStatus <> 'Checked-Out')
                                  ORDER BY COALESCE(p.Payment_Date, r.Check_InDate) DESC, COALESCE(p.PaymentID, 0) DESC";
 
                 using (var cmd = new MySqlCommand(query, conn))
@@ -383,6 +391,7 @@ namespace HRMS.UCForms
                     {
                         _currentBalance = balance;
                         label22.Text = $"Remaining Balance: ₱{balance:0.00}";
+                        textBox22.Text = balance.ToString("0.00");
                     }
                 }
 
@@ -455,6 +464,11 @@ namespace HRMS.UCForms
         {
             try
             {
+                if (_isUpdatingBillingSummary)
+                {
+                    return;
+                }
+
                 SyncAdditionalServiceInputs();
                 RecalculateBillingSummary();
                 UpdatePaymentSection();
@@ -503,11 +517,21 @@ namespace HRMS.UCForms
             decimal subtotalBeforeTax = Math.Round(roomCharges + additionalServices, 2);
             decimal totalAmount = Math.Round((roomCharges * 1.05m) + additionalServicesCharge, 2);
 
-            textBox21.Text = roomCharges.ToString("0.00");
-            textBox20.Text = additionalServices.ToString("0.00");
-            textBox19.Text = tax.ToString("0.00");
-            textBox22.Text = subtotalBeforeTax.ToString("0.00");
-            textBox24.Text = totalAmount.ToString("0.00");
+            decimal remainingBalance = GetCurrentBalance();
+
+            _isUpdatingBillingSummary = true;
+            try
+            {
+                textBox21.Text = roomCharges.ToString("0.00");
+                textBox20.Text = additionalServices.ToString("0.00");
+                textBox19.Text = tax.ToString("0.00");
+                textBox22.Text = remainingBalance.ToString("0.00");
+                textBox24.Text = totalAmount.ToString("0.00");
+            }
+            finally
+            {
+                _isUpdatingBillingSummary = false;
+            }
         }
 
         private void LoadReservationDetailsAndCharges(int reservationId)
@@ -732,10 +756,12 @@ namespace HRMS.UCForms
                         try
                         {
                             using (var cmd = new MySqlCommand(@"UPDATE reservations
-                                                              SET ReservationStatus = 'Checked-Out'
+                                                              SET ReservationStatus = 'Checked-Out',
+                                                                  Check_OutDate = @CheckOutDate
                                                               WHERE ReservationID = @ReservationID", conn, tx))
                             {
                                 cmd.Parameters.AddWithValue("@ReservationID", reservationId);
+                                cmd.Parameters.AddWithValue("@CheckOutDate", DateTime.Now.Date);
                                 cmd.ExecuteNonQuery();
                             }
 
