@@ -104,6 +104,7 @@ namespace HRMS.UCForms
                              LEFT JOIN Guest g ON r.GuestID = g.GuestID
                              WHERE r.Check_InDate >= @fromDate
                                AND r.Check_InDate < @toDate
+                               AND r.ReservationStatus = 'Checked-Out'
                              ORDER BY r.ReservationID DESC";
 
             using (var cmd = new MySqlCommand(query, conn))

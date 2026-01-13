@@ -1,6 +1,7 @@
 ﻿using HRMS.Interfaces;
 using HRMS.Models;
 using HRMS.Services;
+using HRMS.DbContext;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +22,7 @@ namespace HRMS.WinForms
         public AddUsers()
         {
             InitializeComponent();
-            _userService = new UserService();
+            _userService = new MySqlUserDbContext();
             _roleService = new RoleService();
             LoadRoles();
             LoadStatuses();

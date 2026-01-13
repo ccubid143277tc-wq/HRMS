@@ -30,13 +30,12 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Payment));
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel26 = new Panel();
             label14 = new Label();
             label15 = new Label();
             pictureBox16 = new PictureBox();
             label16 = new Label();
-            label17 = new Label();
             label18 = new Label();
             label19 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
@@ -64,6 +63,8 @@
             panel5 = new Panel();
             button2 = new Button();
             panel14 = new Panel();
+            textBox23 = new TextBox();
+            checkBox8 = new CheckBox();
             checkBox7 = new CheckBox();
             checkBox6 = new CheckBox();
             checkBox5 = new CheckBox();
@@ -134,8 +135,7 @@
             button8 = new Button();
             button9 = new Button();
             txtSearchBar = new TextBox();
-            checkBox8 = new CheckBox();
-            textBox23 = new TextBox();
+            button5 = new Button();
             panel26.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             panel2.SuspendLayout();
@@ -170,7 +170,6 @@
             panel26.Controls.Add(label15);
             panel26.Controls.Add(pictureBox16);
             panel26.Controls.Add(label16);
-            panel26.Controls.Add(label17);
             panel26.Controls.Add(label18);
             panel26.Controls.Add(label19);
             panel26.Dock = DockStyle.Top;
@@ -214,22 +213,11 @@
             label16.AutoSize = true;
             label16.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label16.ForeColor = SystemColors.ControlDarkDark;
-            label16.Location = new Point(132, 66);
+            label16.Location = new Point(25, 68);
             label16.Name = "label16";
             label16.Size = new Size(76, 23);
             label16.TabIndex = 8;
             label16.Text = "Payment";
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label17.ForeColor = SystemColors.ControlDarkDark;
-            label17.Location = new Point(27, 66);
-            label17.Name = "label17";
-            label17.Size = new Size(108, 23);
-            label17.TabIndex = 7;
-            label17.Text = " Front Desk -";
             // 
             // label18
             // 
@@ -533,6 +521,26 @@
             panel14.Name = "panel14";
             panel14.Size = new Size(389, 333);
             panel14.TabIndex = 15;
+            // 
+            // textBox23
+            // 
+            textBox23.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox23.Location = new Point(221, 282);
+            textBox23.Name = "textBox23";
+            textBox23.Size = new Size(157, 34);
+            textBox23.TabIndex = 31;
+            textBox23.Text = "Enter Amount";
+            // 
+            // checkBox8
+            // 
+            checkBox8.AutoSize = true;
+            checkBox8.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            checkBox8.Location = new Point(9, 287);
+            checkBox8.Name = "checkBox8";
+            checkBox8.Size = new Size(207, 29);
+            checkBox8.TabIndex = 30;
+            checkBox8.Text = "Room-Related Extras";
+            checkBox8.UseVisualStyleBackColor = true;
             // 
             // checkBox7
             // 
@@ -1060,14 +1068,14 @@
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(42, 93, 159);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(42, 93, 159);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { colpaymentID, colBookingReference, ColPaymentDate, colGuestName, colAmountPaid, colPaymentMethod, colPaymentStatus, colProcessedBy, colTotalDue, colTotalPaid, colBalance, ColReferenceNo });
             dataGridView1.Dock = DockStyle.Fill;
@@ -1231,31 +1239,26 @@
             txtSearchBar.TabIndex = 59;
             txtSearchBar.Text = "Search";
             // 
-            // checkBox8
+            // button5
             // 
-            checkBox8.AutoSize = true;
-            checkBox8.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            checkBox8.Location = new Point(9, 287);
-            checkBox8.Name = "checkBox8";
-            checkBox8.Size = new Size(207, 29);
-            checkBox8.TabIndex = 30;
-            checkBox8.Text = "Room-Related Extras";
-            checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // textBox23
-            // 
-            textBox23.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox23.Location = new Point(221, 282);
-            textBox23.Name = "textBox23";
-            textBox23.Size = new Size(157, 34);
-            textBox23.TabIndex = 31;
-            textBox23.Text = "Enter Amount";
+            button5.BackColor = Color.FromArgb(42, 93, 159);
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button5.ForeColor = SystemColors.ButtonHighlight;
+            button5.Location = new Point(376, 1007);
+            button5.Name = "button5";
+            button5.Size = new Size(110, 30);
+            button5.TabIndex = 61;
+            button5.Text = "Check-Out";
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // Payment
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
+            Controls.Add(button5);
             Controls.Add(textBox6);
             Controls.Add(button9);
             Controls.Add(textBox8);
@@ -1321,7 +1324,6 @@
         private Label label15;
         private PictureBox pictureBox16;
         private Label label16;
-        private Label label17;
         private Label label18;
         private Label label19;
         private System.Windows.Forms.Timer timer1;
@@ -1421,5 +1423,6 @@
         private TextBox textBox24;
         private CheckBox checkBox8;
         private TextBox textBox23;
+        private Button button5;
     }
 }

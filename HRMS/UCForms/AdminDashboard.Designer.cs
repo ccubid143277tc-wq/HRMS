@@ -145,11 +145,11 @@
             // 
             label14.AutoSize = true;
             label14.ForeColor = SystemColors.ControlDarkDark;
-            label14.Location = new Point(1424, 68);
+            label14.Location = new Point(1455, 69);
             label14.Name = "label14";
-            label14.Size = new Size(109, 20);
+            label14.Size = new Size(53, 20);
             label14.TabIndex = 12;
-            label14.Text = "Hotel Manager";
+            label14.Text = "Admin";
             // 
             // label15
             // 

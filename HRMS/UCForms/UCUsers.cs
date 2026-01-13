@@ -2,6 +2,7 @@
 using HRMS.Models;
 using HRMS.Services;
 using HRMS.WinForms;
+using HRMS.DbContext;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +20,7 @@ namespace HRMS.UCForms
         public UCUsers()
         {
             InitializeComponent();
-            _userService = new UserService();
+            _userService = new MySqlUserDbContext();
             this.Load += UCUsers_Load;
         }
 

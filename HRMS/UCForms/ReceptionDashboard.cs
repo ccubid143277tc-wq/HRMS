@@ -26,7 +26,7 @@ namespace HRMS.UCForms
 
             _roomRepo = new MySqlRoomDbContext();
             _roomManager = new RoomManager(_roomRepo);
-            _reservationService = new ReservationService(_roomRepo, new MySqlGuestDbContext(), new RoomTypeService());
+            _reservationService = new MySqlReservationDbContext();
             Load += ReceptionDashboard_Load;
         }
 

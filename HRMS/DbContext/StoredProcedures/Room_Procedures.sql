@@ -66,7 +66,7 @@ BEGIN
     SELECT COUNT(*) INTO reservation_count 
     FROM reservations 
     WHERE RoomID = p_RoomID 
-    AND (Status = 'Confirmed' OR Status = 'Checked-In');
+    AND (ReservationStatus = 'Confirmed' OR ReservationStatus = 'Checked-In');
     
     -- If active reservations exist, return error
     IF reservation_count > 0 THEN
@@ -136,9 +136,7 @@ CREATE PROCEDURE prcGetRoomTypes()
 BEGIN
     SELECT 
         RoomTypeID,
-        RoomType,
-        Description,
-        BaseRate
+        RoomType
     FROM RoomType
     ORDER BY RoomType;
 END //
@@ -225,13 +223,13 @@ BEGIN
         SELECT DISTINCT RoomID 
         FROM reservations 
         WHERE (Check_InDate <= p_CheckOutDate AND Check_OutDate >= p_CheckInDate)
-        AND Status IN ('Confirmed', 'Checked-In')
+        AND ReservationStatus IN ('Confirmed', 'Checked-In')
         UNION
         SELECT DISTINCT rr.RoomID 
         FROM ReservationRooms rr
         JOIN reservations r ON rr.ReservationID = r.ReservationID
         WHERE (r.Check_InDate <= p_CheckOutDate AND r.Check_OutDate >= p_CheckInDate)
-        AND r.Status IN ('Confirmed', 'Checked-In')
+        AND r.ReservationStatus IN ('Confirmed', 'Checked-In')
     )
     ORDER BY r.RoomNumber;
 END //

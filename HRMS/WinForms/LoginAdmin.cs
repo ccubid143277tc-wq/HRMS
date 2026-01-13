@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using HRMS.Helper;
 using HRMS.Services;
+using HRMS.DbContext;
 
 namespace HRMS.WinForms
 {
@@ -27,7 +28,7 @@ namespace HRMS.WinForms
 
             try
             {
-                var userService = new UserService();
+                var userService = new MySqlUserDbContext();
                 var user = userService.AuthenticateUser(username, password);
                 if (user == null)
                 {

@@ -40,10 +40,100 @@ namespace HRMS.UCForms
             _roomService = new MySqlRoomDbContext();
             _roomManager = new RoomManager(_roomService);
             _roomTypeService = new RoomTypeService();
-            _reservationService = new ReservationService(_roomService, _guestService, _roomTypeService);
+            _reservationService = new MySqlReservationDbContext();
             InitializeGuestControls();
 
+            if (radioButton7 != null) radioButton7.CheckedChanged += PaymentOption_Changed;
+            if (radioButton8 != null) radioButton8.CheckedChanged += PaymentOption_Changed;
+            if (radioButton9 != null) radioButton9.CheckedChanged += PaymentOption_Changed;
+            if (textBox6 != null) textBox6.TextChanged += PaymentOption_Changed;
+
             Load += UCreservation_Load;
+        }
+
+        private void PaymentOption_Changed(object? sender, EventArgs e)
+        {
+            try
+            {
+                UpdateAdvancePaymentPreview();
+            }
+            catch
+            {
+                // Intentionally ignore here to avoid crashing the page
+            }
+        }
+
+        private void UpdateAdvancePaymentPreview()
+        {
+            if (_selectedReservationIdForSummary <= 0)
+            {
+                return;
+            }
+
+            decimal totalDue = GetTotalDueForReservation(_selectedReservationIdForSummary);
+            if (totalDue <= 0m)
+            {
+                totalDue = MoneyHelper.Parse(label22.Text);
+            }
+
+            decimal alreadyPaid = GetTotalPaidForReservation(_selectedReservationIdForSummary);
+            decimal balance = totalDue - alreadyPaid;
+            if (balance < 0m)
+            {
+                balance = 0m;
+            }
+
+            if (radioButton9.Checked) // Full Payment
+            {
+                textBox6.Enabled = false;
+                textBox6.Text = balance.ToString("0.00");
+                label39.Text = $"Advance Payment (optional) - Remaining: ₱{balance:0.00}";
+                return;
+            }
+
+            if (radioButton8.Checked) // 50% Payment
+            {
+                decimal targetPaid = Math.Round(totalDue * 0.5m, 2);
+                decimal amountToPay = Math.Round(targetPaid - alreadyPaid, 2);
+                if (amountToPay < 0m)
+                {
+                    amountToPay = 0m;
+                }
+                if (amountToPay > balance)
+                {
+                    amountToPay = balance;
+                }
+
+                decimal remainingAfter = Math.Round(balance - amountToPay, 2);
+                if (remainingAfter < 0m)
+                {
+                    remainingAfter = 0m;
+                }
+
+                textBox6.Enabled = false;
+                textBox6.Text = amountToPay.ToString("0.00");
+                label39.Text = $"Advance Payment (optional) - Remaining: ₱{remainingAfter:0.00}";
+                return;
+            }
+
+            // Custom Payment
+            textBox6.Enabled = true;
+            string raw = (textBox6.Text ?? "").Trim();
+            decimal custom = MoneyHelper.Parse(raw);
+            if (custom < 0m)
+            {
+                custom = 0m;
+            }
+            if (custom > balance)
+            {
+                custom = balance;
+            }
+            decimal remaining = Math.Round(balance - custom, 2);
+            if (remaining < 0m)
+            {
+                remaining = 0m;
+            }
+            label39.Text = $"Advance Payment (optional) - Remaining: ₱{remaining:0.00}";
         }
 
         private void UCreservation_Load(object? sender, EventArgs e)
@@ -55,6 +145,46 @@ namespace HRMS.UCForms
             catch
             {
                 // Intentionally ignore here to avoid crashing the page
+            }
+        }
+
+        private decimal GetTotalDueForReservation(int reservationId)
+        {
+            if (reservationId <= 0)
+            {
+                return 0m;
+            }
+
+            using (var conn = DBHelper.GetConnection())
+            {
+                conn.Open();
+
+                string query = @"SELECT
+                                    ROUND((COALESCE(SUM(DISTINCT rm.RoomRate), 0)
+                                          * COALESCE(r.numberOfNights, DATEDIFF(r.Check_OutDate, r.Check_InDate)))
+                                         * 1.05, 2) AS TotalDue
+                                 FROM reservations r
+                                 LEFT JOIN ReservationRooms rr ON r.ReservationID = rr.ReservationID
+                                 LEFT JOIN Rooms rm ON rm.RoomID = COALESCE(rr.RoomID, r.RoomID)
+                                 WHERE r.ReservationID = @ReservationID
+                                 GROUP BY r.ReservationID, r.numberOfNights, r.Check_InDate, r.Check_OutDate";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ReservationID", reservationId);
+                    object result = cmd.ExecuteScalar();
+                    if (result == null || result == DBNull.Value)
+                    {
+                        return 0m;
+                    }
+
+                    if (decimal.TryParse(result.ToString(), out decimal totalDue))
+                    {
+                        return totalDue;
+                    }
+
+                    return Convert.ToDecimal(result);
+                }
             }
         }
 
@@ -821,6 +951,8 @@ namespace HRMS.UCForms
                 
                 // You can also update other labels if needed
                 // For example, update special requests or guest info in other areas
+
+                UpdateAdvancePaymentPreview();
             }
             catch (Exception ex)
             {
@@ -860,7 +992,9 @@ namespace HRMS.UCForms
                 string query = @"SELECT COALESCE(SUM(p.amount), 0)
                                  FROM payment p
                                  WHERE p.ReservationID = @ReservationID
-                                   AND (p.Payment_Status IS NULL OR p.Payment_Status <> 'Voided')";
+                                   AND (p.Payment_Status IS NULL OR p.Payment_Status <> 'Voided')
+                                   AND (p.Payment_method IS NULL OR p.Payment_method <> 'Additional Service')
+                                   AND (p.Payment_Status IS NULL OR p.Payment_Status <> 'Charge')";
 
                 using (var cmd = new MySqlCommand(query, conn))
                 {
@@ -897,10 +1031,14 @@ namespace HRMS.UCForms
 
             try
             {
-                decimal totalDue = _lastSummaryTotalAmount;
+                decimal totalDue = GetTotalDueForReservation(_selectedReservationIdForSummary);
                 if (totalDue <= 0m)
                 {
-                    totalDue = MoneyHelper.Parse(label22.Text);
+                    totalDue = _lastSummaryTotalAmount;
+                    if (totalDue <= 0m)
+                    {
+                        totalDue = MoneyHelper.Parse(label22.Text);
+                    }
                 }
 
                 decimal alreadyPaid = GetTotalPaidForReservation(_selectedReservationIdForSummary);
@@ -997,6 +1135,10 @@ namespace HRMS.UCForms
 
                 decimal updatedPaid = GetTotalPaidForReservation(_selectedReservationIdForSummary);
                 decimal updatedBalance = totalDue - updatedPaid;
+                if (updatedBalance < 0m)
+                {
+                    updatedBalance = 0m;
+                }
 
                 MessageBox.Show($"Payment recorded successfully!\n\nPaid Now: ₱{amountToPay:F2}\nTotal Paid: ₱{updatedPaid:F2}\nBalance: ₱{updatedBalance:F2}",
                     "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

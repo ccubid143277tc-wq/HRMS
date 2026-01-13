@@ -282,10 +282,7 @@ namespace HRMS.UCForms
             {
                 conn.Open();
 
-                // Notes:
-                // - TotalDue is calculated similar to Reservation Summary (sum room rates per night x nights + 5% tax)
-                // - Multi-room is supported via ReservationRooms, with a fallback to reservations.RoomID
-                // - TotalPaid includes all payments except those explicitly marked as 'Voided'
+                
                 string query = @"SELECT
                                     p.PaymentID,
                                     r.ReservationID,
@@ -298,18 +295,22 @@ namespace HRMS.UCForms
                                     COALESCE(u.Username, '') AS ProcessedBy,
                                     ROUND(COALESCE(rtcalc.TotalDue, 0) + COALESCE(svc.ServiceCharges, 0), 2) AS TotalDue,
                                     ROUND(COALESCE(pd.TotalPaid, 0), 2) AS TotalPaid,
-                                    ROUND((COALESCE(rtcalc.TotalDue, 0) + COALESCE(svc.ServiceCharges, 0)) - COALESCE(pd.TotalPaid, 0), 2) AS Balance,
+                                    GREATEST(0,
+                                        ROUND((COALESCE(rtcalc.TotalDue, 0) + COALESCE(svc.ServiceCharges, 0)) - COALESCE(pd.TotalPaid, 0), 2)
+                                    ) AS Balance,
                                     '' AS ReferenceNo
                                  FROM reservations r
                                  LEFT JOIN Guest g ON r.GuestID = g.GuestID
                                  LEFT JOIN (
                                      SELECT
                                          r2.ReservationID,
-                                         ((COALESCE(SUM(DISTINCT rm.RoomRate), 0) * COALESCE(r2.numberOfNights, 0)) * 1.05) AS TotalDue
+                                         ((COALESCE(SUM(DISTINCT rm.RoomRate), 0)
+                                           * COALESCE(r2.numberOfNights, DATEDIFF(r2.Check_OutDate, r2.Check_InDate)))
+                                          * 1.05) AS TotalDue
                                      FROM reservations r2
                                      LEFT JOIN ReservationRooms rr ON r2.ReservationID = rr.ReservationID
                                      LEFT JOIN Rooms rm ON rm.RoomID = COALESCE(rr.RoomID, r2.RoomID)
-                                     GROUP BY r2.ReservationID, r2.numberOfNights
+                                     GROUP BY r2.ReservationID, r2.numberOfNights, r2.Check_InDate, r2.Check_OutDate
                                  ) rtcalc ON rtcalc.ReservationID = r.ReservationID
                                  LEFT JOIN (
                                      SELECT
@@ -489,16 +490,18 @@ namespace HRMS.UCForms
             if (checkBox7.Checked) additionalServices += MoneyHelper.Parse(textBox9.Text);
             if (checkBox8.Checked) additionalServices += MoneyHelper.Parse(textBox23.Text);
 
-            decimal discount = MoneyHelper.Parse(textBox18.Text);
-
-            decimal subtotalBeforeTax = roomCharges + additionalServices - discount;
-            if (subtotalBeforeTax < 0m)
+            decimal additionalServicesCharge = Math.Round(additionalServices * 1.05m, 2);
+            if (additionalServicesCharge < 0m)
             {
-                subtotalBeforeTax = 0m;
+                additionalServicesCharge = 0m;
             }
 
-            decimal tax = Math.Round(subtotalBeforeTax * 0.05m, 2);
-            decimal totalAmount = Math.Round(subtotalBeforeTax + tax, 2);
+            decimal roomTax = Math.Round(roomCharges * 0.05m, 2);
+            decimal serviceTax = Math.Round(additionalServicesCharge - additionalServices, 2);
+            decimal tax = Math.Round(roomTax + serviceTax, 2);
+
+            decimal subtotalBeforeTax = Math.Round(roomCharges + additionalServices, 2);
+            decimal totalAmount = Math.Round((roomCharges * 1.05m) + additionalServicesCharge, 2);
 
             textBox21.Text = roomCharges.ToString("0.00");
             textBox20.Text = additionalServices.ToString("0.00");
@@ -673,6 +676,118 @@ namespace HRMS.UCForms
         private void button8_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                if (dataGridView1.CurrentRow == null)
+                {
+                    MessageBox.Show("Please select a reservation to check-out.", "Check-Out", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                var rowView = dataGridView1.CurrentRow.DataBoundItem as DataRowView;
+                if (rowView == null)
+                {
+                    MessageBox.Show("Please select a valid row to check-out.", "Check-Out", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                int reservationId = 0;
+                if (rowView.Row.Table.Columns.Contains("ReservationID") && rowView["ReservationID"] != DBNull.Value)
+                {
+                    int.TryParse(rowView["ReservationID"].ToString(), out reservationId);
+                }
+
+                if (reservationId <= 0)
+                {
+                    MessageBox.Show("Please select a reservation row to check-out.", "Check-Out", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                decimal balance = 0m;
+                if (rowView.Row.Table.Columns.Contains("Balance") && rowView["Balance"] != DBNull.Value)
+                {
+                    decimal.TryParse(rowView["Balance"].ToString(), out balance);
+                }
+                else
+                {
+                    balance = GetCurrentBalance();
+                }
+
+                if (balance > 0.01m)
+                {
+                    MessageBox.Show("Cannot check-out: this reservation still has remaining balance.", "Check-Out", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                using (var conn = DBHelper.GetConnection())
+                {
+                    conn.Open();
+                    using (var tx = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            using (var cmd = new MySqlCommand(@"UPDATE reservations
+                                                              SET ReservationStatus = 'Checked-Out'
+                                                              WHERE ReservationID = @ReservationID", conn, tx))
+                            {
+                                cmd.Parameters.AddWithValue("@ReservationID", reservationId);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            var roomIds = new List<int>();
+                            using (var cmdRooms = new MySqlCommand(@"SELECT DISTINCT COALESCE(rr.RoomID, r.RoomID) AS RoomID
+                                                                   FROM reservations r
+                                                                   LEFT JOIN ReservationRooms rr ON r.ReservationID = rr.ReservationID
+                                                                   WHERE r.ReservationID = @ReservationID", conn, tx))
+                            {
+                                cmdRooms.Parameters.AddWithValue("@ReservationID", reservationId);
+                                using (var reader = cmdRooms.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        if (reader["RoomID"] != DBNull.Value
+                                            && int.TryParse(reader["RoomID"].ToString(), out int roomId)
+                                            && roomId > 0)
+                                        {
+                                            roomIds.Add(roomId);
+                                        }
+                                    }
+                                }
+                            }
+
+                            foreach (var roomId in roomIds)
+                            {
+                                using (var cmdUpdate = new MySqlCommand("prcUpdateRoomStatus", conn, tx))
+                                {
+                                    cmdUpdate.CommandType = CommandType.StoredProcedure;
+                                    cmdUpdate.Parameters.AddWithValue("p_RoomID", roomId);
+                                    cmdUpdate.Parameters.AddWithValue("p_StatusName", "Available");
+                                    cmdUpdate.ExecuteNonQuery();
+                                }
+                            }
+
+                            tx.Commit();
+                        }
+                        catch
+                        {
+                            tx.Rollback();
+                            throw;
+                        }
+                    }
+                }
+
+                LoadPaymentsGrid();
+                MessageBox.Show("Reservation checked-out successfully.", "Check-Out", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Unable to check-out: {ex.Message}", "Check-Out", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

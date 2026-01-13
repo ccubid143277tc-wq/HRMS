@@ -38,5 +38,32 @@ if %errorlevel% neq 0 (
 )
 
 echo.
+echo Installing Reservation procedures...
+%MYSQL_PATH% -u root -p < "DbContext\StoredProcedures\Reservation_Procedures.sql"
+if %errorlevel% neq 0 (
+    echo ERROR: Failed to install Reservation procedures.
+    pause
+    exit /b 1
+)
+
+echo.
+echo Installing Users procedures...
+%MYSQL_PATH% -u root -p < "DbContext\StoredProcedures\Users_Procedures.sql"
+if %errorlevel% neq 0 (
+    echo ERROR: Failed to install Users procedures.
+    pause
+    exit /b 1
+)
+
+echo.
+echo Installing Receipt procedures...
+%MYSQL_PATH% -u root -p < "DbContext\StoredProcedures\Receipt_Procedures.sql"
+if %errorlevel% neq 0 (
+    echo ERROR: Failed to install Receipt procedures.
+    pause
+    exit /b 1
+)
+
+echo.
 echo All stored procedures installed successfully!
 pause

@@ -36,7 +36,6 @@
             label15 = new Label();
             pictureBox16 = new PictureBox();
             label16 = new Label();
-            label17 = new Label();
             label18 = new Label();
             label19 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
@@ -117,7 +116,6 @@
             panel26.Controls.Add(label15);
             panel26.Controls.Add(pictureBox16);
             panel26.Controls.Add(label16);
-            panel26.Controls.Add(label17);
             panel26.Controls.Add(label18);
             panel26.Controls.Add(label19);
             panel26.Dock = DockStyle.Top;
@@ -161,22 +159,11 @@
             label16.AutoSize = true;
             label16.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label16.ForeColor = SystemColors.ControlDarkDark;
-            label16.Location = new Point(132, 66);
+            label16.Location = new Point(25, 66);
             label16.Name = "label16";
             label16.Size = new Size(161, 23);
             label16.TabIndex = 8;
             label16.Text = "Guest Management";
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label17.ForeColor = SystemColors.ControlDarkDark;
-            label17.Location = new Point(27, 66);
-            label17.Name = "label17";
-            label17.Size = new Size(108, 23);
-            label17.TabIndex = 7;
-            label17.Text = " Front Desk -";
             // 
             // label18
             // 
@@ -773,7 +760,6 @@
         private Label label15;
         private PictureBox pictureBox16;
         private Label label16;
-        private Label label17;
         private Label label18;
         private Label label19;
         private System.Windows.Forms.Timer timer1;

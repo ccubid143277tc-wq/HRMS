@@ -251,9 +251,9 @@
             panel3.Controls.Add(label32);
             panel3.Controls.Add(label31);
             panel3.Controls.Add(label29);
-            panel3.Location = new Point(10, 48);
+            panel3.Location = new Point(3, 48);
             panel3.Name = "panel3";
-            panel3.Size = new Size(798, 254);
+            panel3.Size = new Size(805, 254);
             panel3.TabIndex = 18;
             // 
             // label51
@@ -290,7 +290,7 @@
             // 
             label38.AutoSize = true;
             label38.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label38.Location = new Point(399, 209);
+            label38.Location = new Point(397, 209);
             label38.Name = "label38";
             label38.Size = new Size(188, 28);
             label38.TabIndex = 26;
@@ -677,7 +677,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(868, 1106);
+            ClientSize = new Size(868, 1055);
             Controls.Add(linkLabel2);
             Controls.Add(label49);
             Controls.Add(label48);
