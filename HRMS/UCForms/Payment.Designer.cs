@@ -805,7 +805,7 @@
             textBox17.Name = "textBox17";
             textBox17.Size = new Size(371, 47);
             textBox17.TabIndex = 19;
-            textBox17.Text = "TOTAL AMOUNT";
+            textBox17.Text = "REMAINING BALANCE";
             // 
             // textBox18
             // 
@@ -925,7 +925,7 @@
             label24.Name = "label24";
             label24.Size = new Size(154, 31);
             label24.TabIndex = 31;
-            label24.Text = "Total Amount";
+            label24.Text = "Remaining Balance";
             // 
             // textBox24
             // 

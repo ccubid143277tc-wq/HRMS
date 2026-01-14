@@ -219,6 +219,7 @@ namespace HRMS.DbContext
             var counts = new Dictionary<string, int>
             {
                 ["Total"] = 0,
+                ["Pending"] = 0,
                 ["Confirmed"] = 0,
                 ["Checked-In"] = 0,
                 ["Checked-Out"] = 0,

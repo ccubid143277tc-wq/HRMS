@@ -462,6 +462,12 @@ namespace HRMS.UCForms
                 }
 
                 // Create reservation object
+                var checkInDate = dateTimePicker1.Value.Date;
+                var selectedStatus = comboBox2.SelectedItem?.ToString();
+                var reservationStatus = checkInDate > DateTime.Today
+                    ? "Pending"
+                    : (selectedStatus ?? "Confirmed");
+
                 var reservation = new Reservation
                 {
                     GuestID = guestId,
@@ -470,7 +476,7 @@ namespace HRMS.UCForms
                     NumAdult = Convert.ToInt32(comboBox3.SelectedItem?.ToString() ?? "1"),
                     NumChild = Convert.ToInt32(comboBox4.SelectedItem?.ToString() ?? "0"),
                     SpecialRequest = BuildSpecialRequestFromCheckboxes(),
-                    ReservationStatus = comboBox2.SelectedItem?.ToString() ?? "Confirmed",
+                    ReservationStatus = reservationStatus,
                     ReservationType = comboBox8.SelectedItem?.ToString() ?? "Walk-in",
                     BookingReferences = GenerateBookingReference(), // This is the key fix!
                     RoomID = _selectedRooms.FirstOrDefault()?.RoomID ?? 0,
@@ -507,10 +513,14 @@ namespace HRMS.UCForms
                         }
                     }
 
-                    // Update room statuses to "Occupied"
+                    // Update room statuses based on reservation status
+                    string targetRoomStatus = string.Equals(reservation.ReservationStatus, "Checked-In", StringComparison.OrdinalIgnoreCase)
+                        ? "Occupied"
+                        : "Reserved";
+
                     foreach (var room in _selectedRooms)
                     {
-                        _roomManager.UpdateRoomStatus(room.RoomID, "Occupied");
+                        _roomManager.UpdateRoomStatus(room.RoomID, targetRoomStatus);
                     }
 
                     MessageBox.Show($"Reservation created successfully!\n\nGuest: {guest.FullName}\nBooking Reference: {reservation.BookingReferences}\nReservation ID: {reservationId}\nNumber of Rooms: {_selectedRooms.Count}\nCheck-In: {dateTimePicker1.Value:yyyy-MM-dd}\nCheck-Out: {dateTimePicker2.Value:yyyy-MM-dd}",
@@ -594,7 +604,7 @@ namespace HRMS.UCForms
             comboBox8.Items.AddRange(new object[] { "Walk-in", "Online", "Phone", "Agent" });
             comboBox8.SelectedIndex = 0;
 
-            comboBox2.Items.AddRange(new object[] { "Confirmed", "Checked-In", "Checked-Out", "Cancelled" });
+            comboBox2.Items.AddRange(new object[] { "Pending", "Confirmed", "Checked-In", "Checked-Out", "Cancelled" });
             comboBox2.SelectedIndex = 0;
 
             // Initialize Classification dropdown

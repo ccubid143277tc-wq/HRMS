@@ -518,6 +518,7 @@ namespace HRMS.UCForms
             decimal totalAmount = Math.Round((roomCharges * 1.05m) + additionalServicesCharge, 2);
 
             decimal remainingBalance = GetCurrentBalance();
+            decimal effectiveBalance = Math.Round(remainingBalance + additionalServicesCharge, 2);
 
             _isUpdatingBillingSummary = true;
             try
@@ -526,7 +527,7 @@ namespace HRMS.UCForms
                 textBox20.Text = additionalServices.ToString("0.00");
                 textBox19.Text = tax.ToString("0.00");
                 textBox22.Text = remainingBalance.ToString("0.00");
-                textBox24.Text = totalAmount.ToString("0.00");
+                textBox24.Text = effectiveBalance.ToString("0.00");
             }
             finally
             {

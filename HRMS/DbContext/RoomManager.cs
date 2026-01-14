@@ -351,9 +351,7 @@ namespace HRMS.DbContext
                 var cmdMaintenance = new MySqlCommand("SELECT COUNT(*) FROM Rooms WHERE RoomStatusID = 3", conn);
                 result["Maintenance"] = Convert.ToInt32(cmdMaintenance.ExecuteScalar());
 
-                var cmdReserved = new MySqlCommand(@"SELECT COUNT(*)
-                                                    FROM Rooms
-                                                    WHERE RoomStatusID = (SELECT RoomStatusID FROM RoomStatus WHERE RoomStatus = 'Reserved' LIMIT 1)", conn);
+                var cmdReserved = new MySqlCommand(@"SELECT COUNT(*) FROM Rooms WHERE RoomStatusID = 4", conn);
                 result["Reserved"] = Convert.ToInt32(cmdReserved.ExecuteScalar());
             }
 
